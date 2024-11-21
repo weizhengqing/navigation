@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>网址导航</title>
+    <style>
+        :root {
+            --primary-color: #337ab7;
+            --secondary-color: white;
+            --hover-bg-color: white;
+            --hover-text-color: #337ab7;
+            --separator-color: #333;
+            --font-family: Arial, sans-serif;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .bookmark-bar {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 10px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .bookmark-bar button {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            transition: background-color 0.3s ease;
+        }
+        .bookmark-bar button.active,
+        .bookmark-bar button:hover {
+            background-color: var(--hover-bg-color);
+            color: var(--hover-text-color);
+            border: 1px solid #ddd;
+            border-bottom: none;
+        }
+        .content-section {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .link-group {
+            margin-bottom: 20px;
+        }
+        .link-title {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        .link-item {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .link-item a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .link-item a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+        .link-item .separator {
+            color: var(--separator-color);
+        }
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .bookmark-bar {
+                display: flex;
+                flex-direction: column;
+            }
+            .bookmark-bar button {
+                margin: 5px 0;
+            }
+        }
+    </style>
+    <script>
+        function showSection(sectionId, button) {
+            document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+            document.querySelectorAll('.bookmark-bar button').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(sectionId).classList.add('active');
+            button.classList.add('active');
+            
+            // Save the current section to localStorage
+            localStorage.setItem('currentSection', sectionId);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentSection = localStorage.getItem('currentSection') || 'literature';
+            const currentButton = document.querySelector(`.bookmark-bar button[onclick*="${currentSection}"]`);
+            if (currentButton) showSection(currentSection, currentButton);
+        });
+    </script>
+</head>
+<body>
+
+<div class="bookmark-bar">
+    <button onclick="showSection('literature', this)" aria-label="博士项目">博士项目</button>
+    <button onclick="showSection('german_life', this)" aria-label="德国生活">德国生活</button>
+    <button onclick="showSection('softwares', this)" aria-label="工具软件">工具软件</button>
+    <button onclick="showSection('other', this)" aria-label="其它">其它</button>
+</div>
+
+<div id="literature" class="content-section active">
+    <div class="section-title">博士项目</div>
+    <div class="link-group">
+        <div class="link-title">1. 学术导航</div>
+        <div class="link-title">1.1 图书馆</div>
+        <div class="link-item">
+            <a href="https://www.tu-chemnitz.de/ub/index.html.en#" target="_blank">TUC Library</a><span class="separator">|</span>
+            <a href="https://www.slub-dresden.de/" target="_blank">SLUB Dresden</a><span class="separator">|</span>
+            <a href="https://z.library.sh.cn/next" target="_blank">上海图书馆</a>
+        </div>
+        <div class="link-title">1.2 文献检索</div>   
+        <div class="link-item">
+            <a href="https://www.webofscience.com/wos/woscc/basic-search" target="_blank">Web of Science</a><span class="separator">|</span>        
+            <a href="https://scholar.google.com/schhp?hl=en&as_sdt=0,5" target="_blank">Google Scholar</a><span class="separator">|</span>
+            <a href="https://www.proquest.com/?accountid=1" target="_blank">ProQuest</a><span class="separator">|</span>
+            <a href="https://www.sciencedirect.com/" target="_blank">Science Direct</a><span class="separator">|</span>
+            <a href="https://link.springer.com/" target="_blank">Springer</a><span class="separator">|</span>
+            <a href="https://onlinelibrary.wiley.com/" target="_blank">Wiley</a><span class="separator">|</span>
+            <a href="https://www.scopus.com/search/form.uri?display=basic&zone=header&origin=searchbasic#basic" target="_blank">Scopus</a><span class="separator">|</span>
+            <a href="https://www.emerald.com/insight/" target="_blank">Emerald</a><span class="separator">|</span>
+            <a href="https://www.ebsco.com/" target="_blank">EBSCO</a><span class="separator">|</span>
+            <a href="https://arxiv.org/" target="_blank">arxiv</a><span class="separator">|</span>
+            <a href="https://ieeexplore.ieee.org/Xplore/home.jsp" target="_blank">IEEE Xplore</a><span class="separator">|</span>
+            <a href="https://www.aps.org/" target="_blank">APS Advancing Physics</a>
+        </div>
+        <div class="link-title">1.3 其它</div>   
+        <div class="link-item">      
+            <a href="https://libgen.is" target="_blank">Libgen</a><span class="separator">|</span>
+            <a href="https://z-library.sk/" target="_blank">Z-library</a><span class="separator">|</span>
+            <a href="https://sci-hub.se" target="_blank">Sci-Hub 1</a><span class="separator">|</span>
+            <a href="https://sci-hub.ee/" target="_blank">Sci-Hub 2</a><span class="separator">|</span>
+            <a href="https://ac.scmor.com/" target="_blank">學術導航</a><span class="separator">|</span>
+            <a href="https://zh.annas-archive.li/" target="_blank">安娜的档案</a><span class="separator">|</span>
+            <a href="https://www.researchgate.net/" target="_blank">ResearchGate</a>
+        </div>
+        <div class="link-title">1.4 TUC 常用</div>
+        <div class="link-item">
+            <a href="http://www.library.sh.cn/" target="_blank">TU Chemnitz</a><span class="separator">|</span>
+            <a href="https://campus.tu-chemnitz.de/qisserver/pages/cs/sys/portal/hisinoneStartPage.faces?chco=y" target="_blank">SB-Service</a><span class="separator">|</span>
+            <a href="https://bildungsportal.sachsen.de/opal/home/?5&ajax=true" target="_blank">OPAL</a><span class="separator">|</span>
+            <a href="https://mail.tu-chemnitz.de/SOGo/" target="_blank">TUC Mail</a><span class="separator">|</span>
+            <a href="https://tuc.cloud/index.php/apps/files/files" target="_blank">TUC Cloud</a><span class="separator">|</span>
+            <a href="https://www.swcz.de/bilderspeiseplan/" target="_blank">Speiseplan</a><span class="separator">|</span>
+            <a href="https://www.swcz.de/" target="_blank">swcz.de</a><span class="separator">|</span>
+            <a href="https://www.csn.tu-chemnitz.de/secure/user/" target="_blank">CSN</a><span class="separator">|</span>
+            <a href="https://abo.ride-ticketing.de/app/subscription?partnerId=35e9b2855e1721fd6cb06488eb05ef80&bookingId=e24f7f9995f3ffe564ebc09304f7700b" target="_blank">Deutschlandsemesterticket</a>
+        </div>   
+        <div class="link-title">1.5 数字化工具</div>
+        <div class="link-item">
+            <a href="https://education.github.com/learner/learn" target="_blank">Github Education</a><span class="separator">|</span>
+            <a href="https://github.com/" target="_blank">Github官网</a><span class="separator">|</span>
+            <a href="https://overleaf.hrz.tu-chemnitz.de/project" target="_blank">Overleaf TUC</a><span class="separator">|</span>
+            <a href="https://gitlab.hrz.tu-chemnitz.de/" target="_blank">GitLab TUC</a>
+        </div>
+        <div class="link-title">1.6 Abinit</div>
+        <div class="link-item">
+            <a href="https://www.abinit.org/" target="_blank">Abinit首页</a><span class="separator">|</span>
+            <a href="https://abinit.github.io/abipy/index.html#" target="_blank">Abipy</a><span class="separator">|</span>
+            <a href="https://gui.abinit.org/" target="_blank">AbiGUI</a><span class="separator">|</span>
+            <a href="https://www.abinit.org/pseudopotential.html" target="_blank">Pseudopotentials & PAW data</a><span class="separator">|</span>
+            <a href="https://discourse.abinit.org/" target="_blank">Abinit Forum</a><span class="separator">|</span>
+            <a href="https://docs.abinit.org/variables/#A" target="_blank">Input Variables</a><span class="separator">|</span>
+            <a href="https://docs.abinit.org/tutorial/" target="_blank">Tutorials</a><span class="separator">|</span>
+            <a href="https://docs.abinit.org/topics/features/" target="_blank">Topics</a>
+        </div>
+        <div class="link-title">1.7 LAMMPS</div>
+        <div class="link-item">
+            <a href="https://www.lammps.org/index.html#gsc.tab=0" target="_blank">Lammps官网</a><span class="separator">|</span>
+            <a href="https://lammpscnv2.vercel.app/" target="_blank">Lammps中文站</a><span class="separator">|</span>
+            <a href="https://docs.lammps.org/Manual.html#" target="_blank">LAMMPS Documentation</a><span class="separator">|</span>
+            <a href="https://www.lammps.org/workshops.html" target="_blank">Lammps workshop</a><span class="separator">|</span>
+        </div>   
+
+        <div class="link-title">1.8 材料数据库</div>
+        <div class="link-item">
+            <a href="https://next-gen.materialsproject.org/" target="_blank">Materials Project</a>
+        </div>   
+        
+    </div>
+    
+    <div class="link-group">
+        <div class="link-title">2. 博士项目</div>
+        <div class="link-title">2.1 RTG 2868 D<sup>3</sup></div>
+        <div class="link-item">
+            <a href="https://tu-dresden.de/ing/forschung/graduiertenkollegs/grk2868" target="_blank">RTG 2868 D<sup>3</sup></a><span class="separator">|</span>
+            <a href="https://sharepoint.tu-dresden.de/projects/DCube/SitePages/Home.aspx" target="_blank">Shared Points</a><span class="separator">|</span>
+            <a href="https://summerschooldresden.science/materials40-2024D3.html" target="_blank">2024 Summer School</a>
+        </div>
+        <div class="link-title">2.2 HPC</div>
+        <div class="link-item">
+            <a href="https://mainsim.etit.tu-chemnitz.de/#/" target="_blank">Mainsim Dashboard</a><span class="separator">|</span>
+            <a href="https://doc.zih.tu-dresden.de/" target="_blank">ZIH HPC Doc</a><span class="separator">|</span>
+            <a href="https://tu-dresden.de/zih" target="_blank">TUD ZIH</a>
+        </div>
+        <div class="link-title">2.4 TU Dresden</div>
+        <div class="link-item">
+            <a href="https://tu-dresden.de/" target="_blank">TU Dresden</a>
+        </div>
+        <div class="link-title">2.5 资助机构 </div>
+        <div class="link-item">
+            <a href="https://www.dfg.de/en/" target="_blank">DFG</a>
+        </div>
+    </div>
+    <div class="link-group">
+        <div class="link-title">3. Conferences</div>
+        <div class="link-item">
+            <a href="https://psi-k.net/" target="_blank">Psi-k</a><span class="separator">|</span>
+            <a href="https://mse-congress.de/" target="_blank">MSE 2024</a><span class="separator">|</span>
+            <a href="https://mmm2024.org/" target="_blank">MMM 2024</a>
+        </div>
+    </div>
+    <div class="link-group">
+        <div class="link-title">4. Training and Learning</div>
+        <div class="link-item">
+            <a href="https://bohrium.dp.tech/courses/1125570243?tab=courses" target="_blank">Computational Materials Science (Autumn 2024)</a><span class="separator">|</span>
+            <a href="https://space.bilibili.com/1111135013/video" target="_blank">斯坦福大厨</a><span class="separator">|</span>
+            <a href="http://www.materialssimulation.com/book" target="_blank">《计算材料学》附件资源</a><span class="separator">|</span>
+            <a href="https://www.youtube.com/playlist?list=PLD-P7EYSYymE3InuIWWIZ3BMzGPTUpcp4" target="_blank">《计算材料学》油管</a><span class="separator">|</span>
+            <a href="https://space.bilibili.com/491801834" target="_blank">不会武功的老师傅</a><span class="separator">|</span>
+            <a href="https://space.bilibili.com/1690382481?spm_id_from=333.999.0.0" target="_blank">朱老师讲VASP</a><span class="separator">|</span>
+            <a href="https://space.bilibili.com/1436049964/channel/series" target="_blank">天玑算-科研服务</a><span class="separator">|</span>
+            <a href="https://space.bilibili.com/520163694/?spm_id_from=333.999.0.0" target="_blank">华算科技</a><span class="separator">|</span>
+            <a href="https://space.bilibili.com/669166168/?spm_id_from=333.999.0.0" target="_blank">MS杨站长</a><span class="separator">|</span>
+            <a href="https://professional.mit.edu/course-catalog/machine-learning-materials-informatics" target="_blank">MIT Courses</a>
+        </div>
+    </div>
+</div>
+
+<div id="german_life" class="content-section">
+    <div class="section-title">德国生活</div>
+    <div class="link-group">
+        <div class="link-title">1. 出行</div>
+        <div class="link-title">1.1 住宿</div>
+        <div class="link-item">
+            <a href="https://www.booking.com/" target="_blank">Booking.com</a><span class="separator">|</span>        
+            <a href="https://de.hotels.com/" target="_blank">Hotels.com</a><span class="separator">|</span>  
+            <a href="https://www.airbnb.com/" target="_blank">Airbnb</a>
+        </div>
+        <div class="link-title">1.2 订机票</div>     
+        <div class="link-item">
+            <a href="https://www.ctrip.com/" target="_blank">携程</a><span class="separator">|</span>       
+            <a href="https://www.omio.com/" target="_blank">Omio</a><span class="separator">|</span>
+            <a href="https://www.skyscanner.de/" target="_blank">Skyscanner</a>
+        </div>
+        <div class="link-title">1.5 德国火车/汽车</div>        
+        <div class="link-item">
+            <a href="https://int.bahn.de/en" target="_blank">DB (Deutsche Bahn)</a><span class="separator">|</span>
+            <a href="https://global.flixbus.com/" target="_blank">Flixbus</a><span class="separator">|</span>
+            <a href="https://www.cvag.de/" target="_blank">CVAG (Chemnitz)</a><span class="separator">|</span>
+            <a href="https://www.vms.de/" target="_blank">VMS (Chemnitz)</a>
+        </div>
+    </div>
+</div>
+
+<div id="softwares" class="content-section">
+    <div class="section-title">工具软件</div>
+    <div class="link-group">
+        <div class="link-title">0. AI tools</div>
+        <div class="link-title">0.1 Chatbot</div>
+        <div class="link-item">
+            <a href="https://chatgpt.com/" target="_blank">ChatGPT</a> |
+            <a href="https://claude.ai/new" target="_blank">Claude</a> |
+            <a href="https://kelaode.ai/" target="_blank">Claude合集</a>
+        </div>
+    
+        <div class="link-title">1. 论文写作</div>
+        <div class="link-title">1.1 Latex</div>
+        <div class="link-item">
+            <a href="https://www.overleaf.com/" target="_blank">Overleaf</a> |
+            <a href="https://typst.app/" target="_blank">Typst</a> |
+            <a href="https://overleaf.hrz.tu-chemnitz.de/project" target="_blank">Overleaf TUC</a>
+        </div>
+        <div class="link-title">1.2 Latex Tools</div>
+        <div class="link-item">
+            <a href="https://www.latexlive.com/" target="_blank">Latexlive</a> |
+            <a href="https://www.tablesgenerator.com/" target="_blank">Tables Generator</a> |
+            <a href="https://www.latex-tables.com/" target="_blank">Latex Tables</a> |
+            <a href="https://latexeditor.lagrida.com/" target="_blank">Equation Editor</a> |
+            <a href="https://www.tutorialspoint.com/latex_equation_editor.htm" target="_blank">Equation Editor 2</a> |
+            <a href="https://www.tablesgenerator.com/markdown_tables" target="_blank">Markdown Tables Generator</a> |
+            <a href="https://tikzmaker.com/editor" target="_blank">TikzMaker</a> |
+            <a href="https://tikzit.github.io/index.html" target="_blank">tikzit</a> |
+            <a href="https://tikzcd.yichuanshen.de/" target="_blank">tikzcd</a> |
+            <a href="https://www.mathcha.io/editor" target="_blank">mathcha.io</a>
+        </div>
+        <div class="link-title">1.3 CTAN</div>
+        <div class="link-item">
+            <a href="https://www.ctan.org/pkg/beamer" target="_blank">beamer</a> |
+            <a href="https://ctan.org/pkg/pgfplots?lang=de" target="_blank">pgfplots</a> |
+            <a href="https://ctan.org/pkg/pgf?lang=de" target="_blank">pgf/TikZ</a>
+        </div>
+        <div class="link-title">1.4 Latex References</div>
+        <div class="link-item">
+            <a href="https://www.python.org/" target="_blank">python</a> |
+            <a href="https://tikz.dev/" target="_blank">PGF/TikZ Manual</a> |
+            <a href="https://tikz.net/" target="_blank">TikZ.net</a>
+        </div>
+
+        <div class="link-title">2. Programming</div>
+        <div class="link-title">2.1 Python</div>
+        <div class="link-item">
+            <a href="https://www.python.org/" target="_blank">python</a> |
+            <a href="https://pypi.org/" target="_blank">PyPi</a> |
+            <a href="https://numpy.org/" target="_blank">numpy</a> |
+            <a href="https://scipy.org/" target="_blank">scipy</a> |
+            <a href="https://pandas.pydata.org/" target="_blank">Pandas</a> |
+            <a href="https://www.sympy.org/en/index.html" target="_blank">Sympy</a> |
+            <a href="https://jupyter.org/" target="_blank">Jupyter Notebook</a> |
+            <a href="https://www.tensorflow.org/" target="_blank">TensorFlow</a> |
+            <a href="https://pytorch.org/" target="_blank">PyTorch</a> |
+            <a href="https://scikit-learn.org/stable/" target="_blank">Scikit-learn</a> |
+            <a href="https://www.statsmodels.org/stable/index.html#" target="_blank">Statsmodels</a> |
+            <a href="https://docs.h5py.org/en/stable/quick.html" target="_blank">H5py</a> |
+            <a href="https://numba.pydata.org/" target="_blank">Numba</a> |
+            <a href="https://jeltef.github.io/PyLaTeX/current/index.html#" target="_blank">PyLatex</a>
+        </div>
+
+        <div class="link-title">2.2 符号</div>
+        <div class="link-item">
+            <a href="https://symbl.cc/en/" target="_blank">Unicode Table</a> |
+            <a href="https://www.symbols.com/" target="_blank">symbols.com</a> |
+            <a href="https://theasciicode.com.ar/" target="_blank">ASCII Code</a> |
+            <a href="https://www.toptal.com/designers/htmlarrows/" target="_blank">html symbols</a> |
+            <a href="https://emojipedia.org/" target="_blank">emojipedia</a>
+        </div>
+    </div>
+
+    <div class="section-title">Simulations</div>
+    <div class="link-group">
+        <div class="link-title">1. DFT</div>
+        <div class="link-title">1.1 Abinit</div>
+        <div class="link-item">
+            <a href="https://www.abinit.org/" target="_blank">Abinit首页</a> |
+            <a href="https://abinit.github.io/abipy/index.html#" target="_blank">Abipy</a> |
+            <a href="https://gui.abinit.org/" target="_blank">AbiGUI</a> |
+            <a href="https://www.abinit.org/pseudopotential.html" target="_blank">Pseudopotentials & PAW data</a> |
+            <a href="https://discourse.abinit.org/" target="_blank">Abinit Forum</a> |
+            <a href="https://docs.abinit.org/variables/#A" target="_blank">Input Variables</a> |
+            <a href="https://docs.abinit.org/tutorial/" target="_blank">Tutorials</a> |
+            <a href="https://docs.abinit.org/topics/features/" target="_blank">Topics</a>
+        </div>
+
+        <div class="link-title">1.2 Abinit Dependencies</div>
+        <div class="link-item">
+            <a href="https://libxc.gitlab.io/" target="_blank">libxc</a>
+        </div>
+
+        <div class="link-title">1.3 MD</div>
+        <div class="link-item">
+            <a href="https://www.lammps.org/#gsc.tab=0" target="_blank">LAMMPS</a>
+        </div>
+
+        <div class="link-title">1.4 建模</div>
+        <div class="link-item">
+            <a href="https://wiki.fysik.dtu.dk/ase/index.html" target="_blank">ASE (Atomic Simulation Environment)</a><span class="separator">|</span> 
+            <a href="https://jmol.sourceforge.net/" target="_blank">jmol</a>
+        </div>
+
+        <div class="link-title">1.5 绘图</div>
+        <div class="link-item">
+            <a href="http://www.gnuplot.info/" target="_blank">gnuplot</a>
+        </div>
+        <div class="link-title">1.6 Machine Learning</div>
+        <div class="link-item">
+            <a href="https://scikit-learn.org/stable/" target="_blank">scikit-learn</a>
+        </div>
+    </div>
+</div>
+
+<div id="other" class="content-section">
+    <!-- 其它内容 -->
+</div>
+
+</body>
+</html>
