@@ -53,273 +53,133 @@
   </header>
 
   <div class="post-content">
-    <h2 id="博士项目">博士项目</h2>
+    <link rel="stylesheet" href="/assets/css/nav-style.css" />
 
-<h3 id="1-学术导航">1. 学术导航</h3>
+<div class="page-wrapper">
+  <div class="main-content">
+    <input type="text" class="search-box" id="searchBox" placeholder="搜索导航..." onkeyup="searchLinks()" />
 
-<h4 id="11-图书馆">1.1 图书馆</h4>
-<ul>
-  <li><a href="https://www.tu-chemnitz.de/ub/index.html.en#">TUC Library</a></li>
-  <li><a href="https://www.slub-dresden.de/">SLUB Dresden</a></li>
-  <li><a href="https://z.library.sh.cn/next">上海图书馆</a></li>
-</ul>
+    <div class="sidebar-nav">
+      <a href="#literature">文献检索</a>
+      <a href="#open-access">开放获取</a>
+      <a href="#tuc">TUC 常用</a>
+      <a href="#tools">科研工具</a>
+      <a href="#life">生活服务</a>
+      <a href="#ai">AI工具</a>
+    </div>
 
-<h4 id="12-文献检索">1.2 文献检索</h4>
-<ul>
-  <li><a href="https://www.webofscience.com/wos/woscc/basic-search">Web of Science</a></li>
-  <li><a href="https://scholar.google.com/schhp?hl=en&amp;as_sdt=0,5">Google Scholar</a></li>
-  <li><a href="https://www.proquest.com/?accountid=1">ProQuest</a></li>
-  <li><a href="https://www.sciencedirect.com/">Science Direct</a></li>
-  <li><a href="https://link.springer.com/">Springer</a></li>
-  <li><a href="https://onlinelibrary.wiley.com/">Wiley</a></li>
-  <li><a href="https://www.scopus.com/search/form.uri?display=basic&amp;zone=header&amp;origin=searchbasic#basic">Scopus</a></li>
-  <li><a href="https://www.emerald.com/insight/">Emerald</a></li>
-  <li><a href="https://www.ebsco.com/">EBSCO</a></li>
-  <li><a href="https://arxiv.org/">arxiv</a></li>
-  <li><a href="https://ieeexplore.ieee.org/Xplore/home.jsp">IEEE Xplore</a></li>
-  <li><a href="https://www.aps.org/">APS Advancing Physics</a></li>
-</ul>
+    <div class="nav-container">
+      <div class="nav-section" id="literature">
+        <div class="nav-title">文献检索</div>
+        <div class="nav-links">
+          <a href="https://www.webofscience.com/" class="nav-link">Web of Science</a>
+          <a href="https://scholar.google.com/" class="nav-link">Google Scholar</a>
+          <a href="https://www.sciencedirect.com/" class="nav-link">Science Direct</a>
+          <a href="https://link.springer.com/" class="nav-link">Springer</a>
+          <a href="https://ieeexplore.ieee.org/" class="nav-link">IEEE Xplore</a>
+          <a href="https://www.scopus.com/" class="nav-link">Scopus</a>
+          <a href="https://arxiv.org/" class="nav-link">arXiv</a>
+          <a href="https://www.proquest.com/" class="nav-link">ProQuest</a>
+          <a href="https://www.emerald.com/insight/" class="nav-link">Emerald</a>
+        </div>
+      </div>
 
-<h4 id="13-其它">1.3 其它</h4>
-<ul>
-  <li><a href="https://libgen.is">Libgen</a></li>
-  <li><a href="https://z-library.sk/">Z-library</a></li>
-  <li><a href="https://sci-hub.se">Sci-Hub 1</a></li>
-  <li><a href="https://sci-hub.ee/">Sci-Hub 2</a></li>
-  <li><a href="https://ac.scmor.com/">學術導航</a></li>
-  <li><a href="https://zh.annas-archive.li/">安娜的档案</a></li>
-  <li><a href="https://www.researchgate.net/">ResearchGate</a></li>
-</ul>
+      <div class="nav-section" id="open-access">
+        <div class="nav-title">开放获取</div>
+        <div class="nav-links">
+          <a href="https://sci-hub.se/" class="nav-link">Sci-Hub</a>
+          <a href="https://z-library.sk/" class="nav-link">Z-library</a>
+          <a href="https://libgen.is/" class="nav-link">LibGen</a>
+          <a href="https://www.researchgate.net/" class="nav-link">ResearchGate</a>
+          <a href="https://zh.annas-archive.li/" class="nav-link">安娜的档案</a>
+          <a href="https://ac.scmor.com/" class="nav-link">學術導航</a>
+        </div>
+      </div>
 
-<h4 id="14-tuc-常用">1.4 TUC 常用</h4>
-<ul>
-  <li><a href="http://www.library.sh.cn/">TU Chemnitz</a></li>
-  <li><a href="https://campus.tu-chemnitz.de/qisserver/pages/cs/sys/portal/hisinoneStartPage.faces?chco=y">SB-Service</a></li>
-  <li><a href="https://bildungsportal.sachsen.de/opal/home/?5&amp;ajax=true">OPAL</a></li>
-  <li><a href="https://mail.tu-chemnitz.de/SOGo/">TUC Mail</a></li>
-  <li><a href="https://tuc.cloud/index.php/apps/files/files">TUC Cloud</a></li>
-  <li><a href="https://www.swcz.de/bilderspeiseplan/">Speiseplan</a></li>
-  <li><a href="https://www.swcz.de/">swcz.de</a></li>
-  <li><a href="https://www.csn.tu-chemnitz.de/secure/user/">CSN</a></li>
-  <li><a href="https://abo.ride-ticketing.de/app/subscription?partnerId=35e9b2855e1721fd6cb06488eb05ef80&amp;bookingId=e24f7f9995f3ffe564ebc09304f7700b">Deutschlandsemesterticket</a></li>
-</ul>
+      <div class="nav-section" id="tuc">
+        <div class="nav-title">TUC 常用</div>
+        <div class="nav-links">
+          <a href="https://www.tu-chemnitz.de/" class="nav-link">TU Chemnitz</a>
+          <a href="https://campus.tu-chemnitz.de/" class="nav-link">SB-Service</a>
+          <a href="https://mail.tu-chemnitz.de/" class="nav-link">TUC Mail</a>
+          <a href="https://tuc.cloud/" class="nav-link">TUC Cloud</a>
+          <a href="https://www.swcz.de/bilderspeiseplan/" class="nav-link">Speiseplan</a>
+          <a href="https://bildungsportal.sachsen.de/opal/" class="nav-link">OPAL</a>
+        </div>
+      </div>
 
-<h4 id="15-数字化工具">1.5 数字化工具</h4>
-<ul>
-  <li><a href="https://education.github.com/learner/learn">Github Education</a></li>
-  <li><a href="https://github.com/">Github官网</a></li>
-  <li><a href="https://overleaf.hrz.tu-chemnitz.de/project">Overleaf TUC</a></li>
-  <li><a href="https://gitlab.hrz.tu-chemnitz.de/">GitLab TUC</a></li>
-</ul>
+      <div class="nav-section" id="tools">
+        <div class="nav-title">科研工具</div>
+        <div class="nav-links">
+          <a href="https://www.abinit.org/" class="nav-link">Abinit</a>
+          <a href="https://www.lammps.org/" class="nav-link">LAMMPS</a>
+          <a href="https://www.python.org/" class="nav-link">Python</a>
+          <a href="https://jupyter.org/" class="nav-link">Jupyter</a>
+          <a href="https://www.overleaf.com/" class="nav-link">Overleaf</a>
+          <a href="https://github.com/" class="nav-link">GitHub</a>
+          <a href="https://gitlab.hrz.tu-chemnitz.de/" class="nav-link">GitLab TUC</a>
+        </div>
+      </div>
 
-<h4 id="16-abinit">1.6 Abinit</h4>
-<ul>
-  <li><a href="https://www.abinit.org/">Abinit首页</a></li>
-  <li><a href="https://abinit.github.io/abipy/index.html#">Abipy</a></li>
-  <li><a href="https://gui.abinit.org/">AbiGUI</a></li>
-  <li><a href="https://www.abinit.org/pseudopotential.html">Pseudopotentials &amp; PAW data</a></li>
-  <li><a href="https://discourse.abinit.org/">Abinit Forum</a></li>
-  <li><a href="https://docs.abinit.org/variables/#A">Input Variables</a></li>
-  <li><a href="https://docs.abinit.org/tutorial/">Tutorials</a></li>
-  <li><a href="https://docs.abinit.org/topics/features/">Topics</a></li>
-</ul>
+      <div class="nav-section" id="life">
+        <div class="nav-title">生活服务</div>
+        <div class="nav-links">
+          <a href="https://www.booking.com/" class="nav-link">Booking</a>
+          <a href="https://www.airbnb.com/" class="nav-link">Airbnb</a>
+          <a href="https://www.bahn.de/" class="nav-link">德铁DB</a>
+          <a href="https://www.cvag.de/" class="nav-link">CVAG</a>
+          <a href="https://www.ctrip.com/" class="nav-link">携程</a>
+          <a href="https://www.skyscanner.de/" class="nav-link">Skyscanner</a>
+        </div>
+      </div>
 
-<h4 id="17-lammps">1.7 LAMMPS</h4>
-<ul>
-  <li><a href="https://www.lammps.org/index.html#gsc.tab=0">Lammps官网</a></li>
-  <li><a href="https://lammpscnv2.vercel.app/">Lammps中文站</a></li>
-  <li><a href="https://docs.lammps.org/Manual.html#">LAMMPS Documentation</a></li>
-  <li><a href="https://www.lammps.org/workshops.html">Lammps workshop</a></li>
-</ul>
+      <div class="nav-section" id="ai">
+        <div class="nav-title">AI工具</div>
+        <div class="nav-links">
+          <a href="https://chat.openai.com/" class="nav-link">ChatGPT</a>
+          <a href="https://claude.ai/" class="nav-link">Claude</a>
+          <a href="https://www.perplexity.ai/" class="nav-link">Perplexity</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h4 id="18-材料数据库">1.8 材料数据库</h4>
-<ul>
-  <li><a href="https://next-gen.materialsproject.org/">Materials Project</a></li>
-</ul>
+<script>
+function searchLinks() {
+  const searchText = document.getElementById('searchBox').value.toLowerCase();
+  const sections = document.getElementsByClassName('nav-section');
+  
+  for (let section of sections) {
+    const links = section.getElementsByClassName('nav-link');
+    let hasVisibleLinks = false;
+    
+    for (let link of links) {
+      const text = link.textContent.toLowerCase();
+      if (text.includes(searchText)) {
+        link.style.display = 'block';
+        hasVisibleLinks = true;
+      } else {
+        link.style.display = 'none';
+      }
+    }
+    
+    section.style.display = hasVisibleLinks ? 'block' : 'none';
+  }
+}
 
-<h3 id="2-博士项目">2. 博士项目</h3>
+// 平滑滚动
+document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href').slice(1);
+    document.getElementById(targetId).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+</script>
 
-<h4 id="21-rtg-2868-d">2.1 RTG 2868 D³</h4>
-<ul>
-  <li><a href="https://tu-dresden.de/ing/forschung/graduiertenkollegs/grk2868">RTG 2868 D³</a></li>
-  <li><a href="https://sharepoint.tu-dresden.de/projects/DCube/SitePages/Home.aspx">Shared Points</a></li>
-  <li><a href="https://summerschooldresden.science/materials40-2024D3.html">2024 Summer School</a></li>
-</ul>
-
-<h4 id="22-hpc">2.2 HPC</h4>
-<ul>
-  <li><a href="https://mainsim.etit.tu-chemnitz.de/#/">Mainsim Dashboard</a></li>
-  <li><a href="https://doc.zih.tu-dresden.de/">ZIH HPC Doc</a></li>
-  <li><a href="https://tu-dresden.de/zih">TUD ZIH</a></li>
-</ul>
-
-<h4 id="24-tu-dresden">2.4 TU Dresden</h4>
-<ul>
-  <li><a href="https://tu-dresden.de/">TU Dresden</a></li>
-</ul>
-
-<h4 id="25-资助机构">2.5 资助机构</h4>
-<ul>
-  <li><a href="https://www.dfg.de/en/">DFG</a></li>
-</ul>
-
-<h3 id="3-conferences">3. Conferences</h3>
-<ul>
-  <li><a href="https://psi-k.net/">Psi-k</a></li>
-  <li><a href="https://mse-congress.de/">MSE 2024</a></li>
-  <li><a href="https://mmm2024.org/">MMM 2024</a></li>
-</ul>
-
-<h3 id="4-training-and-learning">4. Training and Learning</h3>
-<ul>
-  <li><a href="https://bohrium.dp.tech/courses/1125570243?tab=courses">Computational Materials Science (Autumn 2024)</a></li>
-  <li><a href="https://space.bilibili.com/1111135013/video">斯坦福大厨</a></li>
-  <li><a href="http://www.materialssimulation.com/book">《计算材料学》附件</a></li>
-  <li><a href="https://www.youtube.com/playlist?list=PLD-P7EYSYymE3InuIWWIZ3BMzGPTUpcp4">《计算材料学》油管</a></li>
-  <li><a href="https://space.bilibili.com/491801834">不会武功的老师傅</a></li>
-  <li><a href="https://space.bilibili.com/1690382481">朱老师讲VASP</a></li>
-  <li><a href="https://space.bilibili.com/1436049964/channel/series">天玑算-科研服务</a></li>
-  <li><a href="https://space.bilibili.com/520163694">华算科技</a></li>
-  <li><a href="https://space.bilibili.com/669166168">MS杨站长</a></li>
-  <li><a href="https://professional.mit.edu/course-catalog/machine-learning-materials-informatics">MIT Courses</a></li>
-</ul>
-
-<h2 id="德国生活">德国生活</h2>
-
-<h3 id="1-出行">1. 出行</h3>
-
-<h4 id="11-住宿">1.1 住宿</h4>
-<ul>
-  <li><a href="https://www.booking.com/">Booking.com</a></li>
-  <li><a href="https://de.hotels.com/">Hotels.com</a></li>
-  <li><a href="https://www.airbnb.com/">Airbnb</a></li>
-</ul>
-
-<h4 id="12-订机票">1.2 订机票</h4>
-<ul>
-  <li><a href="https://www.ctrip.com/">携程</a></li>
-  <li><a href="https://www.omio.com/">Omio</a></li>
-  <li><a href="https://www.skyscanner.de/">Skyscanner</a></li>
-</ul>
-
-<h4 id="13-德国火车汽车">1.3 德国火车/汽车</h4>
-<ul>
-  <li><a href="https://int.bahn.de/en">DB (Deutsche Bahn)</a></li>
-  <li><a href="https://global.flixbus.com/">Flixbus</a></li>
-  <li><a href="https://www.cvag.de/">CVAG (Chemnitz)</a></li>
-  <li><a href="https://www.vms.de/">VMS (Chemnitz)</a></li>
-</ul>
-
-<h2 id="工具软件">工具软件</h2>
-
-<h3 id="1-ai-工具">1. AI 工具</h3>
-
-<h4 id="11-chatbot">1.1 Chatbot</h4>
-<ul>
-  <li><a href="https://chatgpt.com/">ChatGPT</a></li>
-  <li><a href="https://claude.ai/new">Claude</a></li>
-  <li><a href="https://kelaode.ai/">Claude合集</a></li>
-</ul>
-
-<h3 id="2-论文写作">2. 论文写作</h3>
-
-<h4 id="21-latex">2.1 Latex</h4>
-<ul>
-  <li><a href="https://www.overleaf.com/">Overleaf</a></li>
-  <li><a href="https://typst.app/">Typst</a></li>
-  <li><a href="https://overleaf.hrz.tu-chemnitz.de/project">Overleaf TUC</a></li>
-</ul>
-
-<h4 id="22-latex-tools">2.2 Latex Tools</h4>
-<ul>
-  <li><a href="https://www.latexlive.com/">Latexlive</a></li>
-  <li><a href="https://www.tablesgenerator.com/">Tables Generator</a></li>
-  <li><a href="https://www.latex-tables.com/">Latex Tables</a></li>
-  <li><a href="https://latexeditor.lagrida.com/">Equation Editor</a></li>
-  <li><a href="https://www.tutorialspoint.com/latex_equation_editor.htm">Equation Editor 2</a></li>
-  <li><a href="https://www.tablesgenerator.com/markdown_tables">Markdown Tables Generator</a></li>
-  <li><a href="https://tikzmaker.com/editor">TikzMaker</a></li>
-  <li><a href="https://tikzit.github.io/index.html">tikzit</a></li>
-  <li><a href="https://tikzcd.yichuanshen.de/">tikzcd</a></li>
-  <li><a href="https://www.mathcha.io/editor">mathcha.io</a></li>
-</ul>
-
-<h4 id="23-ctan">2.3 CTAN</h4>
-<ul>
-  <li><a href="https://www.ctan.org/pkg/beamer">beamer</a></li>
-  <li><a href="https://ctan.org/pkg/pgfplots?lang=de">pgfplots</a></li>
-  <li><a href="https://ctan.org/pkg/pgf?lang=de">pgf/TikZ</a></li>
-</ul>
-
-<h4 id="24-latex-references">2.4 Latex References</h4>
-<ul>
-  <li><a href="https://tikz.dev/">PGF/TikZ Manual</a></li>
-  <li><a href="https://tikz.net/">TikZ.net</a></li>
-</ul>
-
-<h3 id="3-programming">3. Programming</h3>
-
-<h4 id="31-python">3.1 Python</h4>
-<ul>
-  <li><a href="https://www.python.org/">python</a></li>
-  <li><a href="https://pypi.org/">PyPi</a></li>
-  <li><a href="https://numpy.org/">numpy</a></li>
-  <li><a href="https://scipy.org/">scipy</a></li>
-  <li><a href="https://pandas.pydata.org/">Pandas</a></li>
-  <li><a href="https://www.sympy.org/en/index.html">Sympy</a></li>
-  <li><a href="https://jupyter.org/">Jupyter Notebook</a></li>
-  <li><a href="https://www.tensorflow.org/">TensorFlow</a></li>
-  <li><a href="https://pytorch.org/">PyTorch</a></li>
-  <li><a href="https://scikit-learn.org/stable/">Scikit-learn</a></li>
-  <li><a href="https://www.statsmodels.org/stable/index.html#">Statsmodels</a></li>
-  <li><a href="https://docs.h5py.org/en/stable/quick.html">H5py</a></li>
-  <li><a href="https://numba.pydata.org/">Numba</a></li>
-  <li><a href="https://jeltef.github.io/PyLaTeX/current/index.html#">PyLatex</a></li>
-</ul>
-
-<h3 id="4-符号">4. 符号</h3>
-<ul>
-  <li><a href="https://symbl.cc/en/">Unicode Table</a></li>
-  <li><a href="https://www.symbols.com/">symbols.com</a></li>
-  <li><a href="https://theasciicode.com.ar/">ASCII Code</a></li>
-  <li><a href="https://www.toptal.com/designers/htmlarrows/">html symbols</a></li>
-  <li><a href="https://emojipedia.org/">emojipedia</a></li>
-</ul>
-
-<h3 id="5-模拟软件">5. 模拟软件</h3>
-
-<h4 id="51-dft">5.1 DFT</h4>
-<ul>
-  <li><a href="https://www.abinit.org/">Abinit首页</a></li>
-  <li><a href="https://abinit.github.io/abipy/index.html#">Abipy</a></li>
-  <li><a href="https://gui.abinit.org/">AbiGUI</a></li>
-  <li><a href="https://www.abinit.org/pseudopotential.html">Pseudopotentials &amp; PAW data</a></li>
-  <li><a href="https://discourse.abinit.org/">Abinit Forum</a></li>
-  <li><a href="https://docs.abinit.org/variables/#A">Input Variables</a></li>
-  <li><a href="https://docs.abinit.org/tutorial/">Tutorials</a></li>
-  <li><a href="https://docs.abinit.org/topics/features/">Topics</a></li>
-</ul>
-
-<h4 id="52-md">5.2 MD</h4>
-<ul>
-  <li><a href="https://www.lammps.org/#gsc.tab=0">LAMMPS</a></li>
-</ul>
-
-<h4 id="53-建模">5.3 建模</h4>
-<ul>
-  <li><a href="https://wiki.fysik.dtu.dk/ase/index.html">ASE (Atomic Simulation Environment)</a></li>
-  <li><a href="https://jmol.sourceforge.net/">jmol</a></li>
-</ul>
-
-<h4 id="54-绘图">5.4 绘图</h4>
-<ul>
-  <li><a href="http://www.gnuplot.info/">gnuplot</a></li>
-</ul>
-
-<h4 id="55-机器学习">5.5 机器学习</h4>
-<ul>
-  <li><a href="https://scikit-learn.org/stable/">scikit-learn</a></li>
-</ul>
 
   </div>
 
@@ -336,7 +196,7 @@
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
           <!-- <li class="p-name">ZWei</li> -->
-          <li class="p-name">联系：</li><li><a class="u-email" href="mailto:zhengqing.wei@outlook.com">zhengqing.wei@outlook.com</a></li></ul>
+          <li class="p-name">联系：</li><li><a class="u-email" href="mailto:zhwei@gmx.de">zhwei@gmx.de</a></li></ul>
       </div>
 
       <div class="footer-col footer-col-2"><ul class="social-media-list"><li>

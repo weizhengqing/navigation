@@ -4,212 +4,129 @@ title: 导航
 permalink: /nav/
 ---
 
-## 博士项目
+<link rel="stylesheet" href="/assets/css/nav-style.css">
 
-### 1. 学术导航
+<div class="page-wrapper">
+  <div class="main-content">
+    <input type="text" class="search-box" id="searchBox" placeholder="搜索导航..." onkeyup="searchLinks()">
 
-#### 1.1 图书馆
-- [TUC Library](https://www.tu-chemnitz.de/ub/index.html.en#)
-- [SLUB Dresden](https://www.slub-dresden.de/)
-- [上海图书馆](https://z.library.sh.cn/next)
+    <div class="sidebar-nav">
+      <a href="#literature">文献检索</a>
+      <a href="#open-access">开放获取</a>
+      <a href="#tuc">TUC 常用</a>
+      <a href="#tools">科研工具</a>
+      <a href="#life">生活服务</a>
+      <a href="#ai">AI工具</a>
+    </div>
 
-#### 1.2 文献检索
-- [Web of Science](https://www.webofscience.com/wos/woscc/basic-search)
-- [Google Scholar](https://scholar.google.com/schhp?hl=en&as_sdt=0,5)
-- [ProQuest](https://www.proquest.com/?accountid=1)
-- [Science Direct](https://www.sciencedirect.com/)
-- [Springer](https://link.springer.com/)
-- [Wiley](https://onlinelibrary.wiley.com/)
-- [Scopus](https://www.scopus.com/search/form.uri?display=basic&zone=header&origin=searchbasic#basic)
-- [Emerald](https://www.emerald.com/insight/)
-- [EBSCO](https://www.ebsco.com/)
-- [arxiv](https://arxiv.org/)
-- [IEEE Xplore](https://ieeexplore.ieee.org/Xplore/home.jsp)
-- [APS Advancing Physics](https://www.aps.org/)
+    <div class="nav-container">
+      <div class="nav-section" id="literature">
+        <div class="nav-title">文献检索</div>
+        <div class="nav-links">
+          <a href="https://www.webofscience.com/" class="nav-link">Web of Science</a>
+          <a href="https://scholar.google.com/" class="nav-link">Google Scholar</a>
+          <a href="https://www.sciencedirect.com/" class="nav-link">Science Direct</a>
+          <a href="https://link.springer.com/" class="nav-link">Springer</a>
+          <a href="https://ieeexplore.ieee.org/" class="nav-link">IEEE Xplore</a>
+          <a href="https://www.scopus.com/" class="nav-link">Scopus</a>
+          <a href="https://arxiv.org/" class="nav-link">arXiv</a>
+          <a href="https://www.proquest.com/" class="nav-link">ProQuest</a>
+          <a href="https://www.emerald.com/insight/" class="nav-link">Emerald</a>
+        </div>
+      </div>
 
-#### 1.3 其它
-- [Libgen](https://libgen.is)
-- [Z-library](https://z-library.sk/)
-- [Sci-Hub 1](https://sci-hub.se)
-- [Sci-Hub 2](https://sci-hub.ee/)
-- [學術導航](https://ac.scmor.com/)
-- [安娜的档案](https://zh.annas-archive.li/)
-- [ResearchGate](https://www.researchgate.net/)
+      <div class="nav-section" id="open-access">
+        <div class="nav-title">开放获取</div>
+        <div class="nav-links">
+          <a href="https://sci-hub.se/" class="nav-link">Sci-Hub</a>
+          <a href="https://z-library.sk/" class="nav-link">Z-library</a>
+          <a href="https://libgen.is/" class="nav-link">LibGen</a>
+          <a href="https://www.researchgate.net/" class="nav-link">ResearchGate</a>
+          <a href="https://zh.annas-archive.li/" class="nav-link">安娜的档案</a>
+          <a href="https://ac.scmor.com/" class="nav-link">學術導航</a>
+        </div>
+      </div>
 
-#### 1.4 TUC 常用
-- [TU Chemnitz](http://www.library.sh.cn/)
-- [SB-Service](https://campus.tu-chemnitz.de/qisserver/pages/cs/sys/portal/hisinoneStartPage.faces?chco=y)
-- [OPAL](https://bildungsportal.sachsen.de/opal/home/?5&ajax=true)
-- [TUC Mail](https://mail.tu-chemnitz.de/SOGo/)
-- [TUC Cloud](https://tuc.cloud/index.php/apps/files/files)
-- [Speiseplan](https://www.swcz.de/bilderspeiseplan/)
-- [swcz.de](https://www.swcz.de/)
-- [CSN](https://www.csn.tu-chemnitz.de/secure/user/)
-- [Deutschlandsemesterticket](https://abo.ride-ticketing.de/app/subscription?partnerId=35e9b2855e1721fd6cb06488eb05ef80&bookingId=e24f7f9995f3ffe564ebc09304f7700b)
+      <div class="nav-section" id="tuc">
+        <div class="nav-title">TUC 常用</div>
+        <div class="nav-links">
+          <a href="https://www.tu-chemnitz.de/" class="nav-link">TU Chemnitz</a>
+          <a href="https://campus.tu-chemnitz.de/" class="nav-link">SB-Service</a>
+          <a href="https://mail.tu-chemnitz.de/" class="nav-link">TUC Mail</a>
+          <a href="https://tuc.cloud/" class="nav-link">TUC Cloud</a>
+          <a href="https://www.swcz.de/bilderspeiseplan/" class="nav-link">Speiseplan</a>
+          <a href="https://bildungsportal.sachsen.de/opal/" class="nav-link">OPAL</a>
+        </div>
+      </div>
 
-#### 1.5 数字化工具
-- [Github Education](https://education.github.com/learner/learn)
-- [Github官网](https://github.com/)
-- [Overleaf TUC](https://overleaf.hrz.tu-chemnitz.de/project)
-- [GitLab TUC](https://gitlab.hrz.tu-chemnitz.de/)
+      <div class="nav-section" id="tools">
+        <div class="nav-title">科研工具</div>
+        <div class="nav-links">
+          <a href="https://www.abinit.org/" class="nav-link">Abinit</a>
+          <a href="https://www.lammps.org/" class="nav-link">LAMMPS</a>
+          <a href="https://www.python.org/" class="nav-link">Python</a>
+          <a href="https://jupyter.org/" class="nav-link">Jupyter</a>
+          <a href="https://www.overleaf.com/" class="nav-link">Overleaf</a>
+          <a href="https://github.com/" class="nav-link">GitHub</a>
+          <a href="https://gitlab.hrz.tu-chemnitz.de/" class="nav-link">GitLab TUC</a>
+        </div>
+      </div>
 
-#### 1.6 Abinit
-- [Abinit首页](https://www.abinit.org/)
-- [Abipy](https://abinit.github.io/abipy/index.html#)
-- [AbiGUI](https://gui.abinit.org/)
-- [Pseudopotentials & PAW data](https://www.abinit.org/pseudopotential.html)
-- [Abinit Forum](https://discourse.abinit.org/)
-- [Input Variables](https://docs.abinit.org/variables/#A)
-- [Tutorials](https://docs.abinit.org/tutorial/)
-- [Topics](https://docs.abinit.org/topics/features/)
+      <div class="nav-section" id="life">
+        <div class="nav-title">生活服务</div>
+        <div class="nav-links">
+          <a href="https://www.booking.com/" class="nav-link">Booking</a>
+          <a href="https://www.airbnb.com/" class="nav-link">Airbnb</a>
+          <a href="https://www.bahn.de/" class="nav-link">德铁DB</a>
+          <a href="https://www.cvag.de/" class="nav-link">CVAG</a>
+          <a href="https://www.ctrip.com/" class="nav-link">携程</a>
+          <a href="https://www.skyscanner.de/" class="nav-link">Skyscanner</a>
+        </div>
+      </div>
 
-#### 1.7 LAMMPS
-- [Lammps官网](https://www.lammps.org/index.html#gsc.tab=0)
-- [Lammps中文站](https://lammpscnv2.vercel.app/)
-- [LAMMPS Documentation](https://docs.lammps.org/Manual.html#)
-- [Lammps workshop](https://www.lammps.org/workshops.html)
+      <div class="nav-section" id="ai">
+        <div class="nav-title">AI工具</div>
+        <div class="nav-links">
+          <a href="https://chat.openai.com/" class="nav-link">ChatGPT</a>
+          <a href="https://claude.ai/" class="nav-link">Claude</a>
+          <a href="https://www.perplexity.ai/" class="nav-link">Perplexity</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-#### 1.8 材料数据库
-- [Materials Project](https://next-gen.materialsproject.org/)
+<script>
+function searchLinks() {
+  const searchText = document.getElementById('searchBox').value.toLowerCase();
+  const sections = document.getElementsByClassName('nav-section');
+  
+  for (let section of sections) {
+    const links = section.getElementsByClassName('nav-link');
+    let hasVisibleLinks = false;
+    
+    for (let link of links) {
+      const text = link.textContent.toLowerCase();
+      if (text.includes(searchText)) {
+        link.style.display = 'block';
+        hasVisibleLinks = true;
+      } else {
+        link.style.display = 'none';
+      }
+    }
+    
+    section.style.display = hasVisibleLinks ? 'block' : 'none';
+  }
+}
 
-### 2. 博士项目
-
-#### 2.1 RTG 2868 D³
-- [RTG 2868 D³](https://tu-dresden.de/ing/forschung/graduiertenkollegs/grk2868)
-- [Shared Points](https://sharepoint.tu-dresden.de/projects/DCube/SitePages/Home.aspx)
-- [2024 Summer School](https://summerschooldresden.science/materials40-2024D3.html)
-
-#### 2.2 HPC
-- [Mainsim Dashboard](https://mainsim.etit.tu-chemnitz.de/#/)
-- [ZIH HPC Doc](https://doc.zih.tu-dresden.de/)
-- [TUD ZIH](https://tu-dresden.de/zih)
-
-#### 2.4 TU Dresden
-- [TU Dresden](https://tu-dresden.de/)
-
-#### 2.5 资助机构
-- [DFG](https://www.dfg.de/en/)
-
-### 3. Conferences
-- [Psi-k](https://psi-k.net/)
-- [MSE 2024](https://mse-congress.de/)
-- [MMM 2024](https://mmm2024.org/)
-
-### 4. Training and Learning
-- [Computational Materials Science (Autumn 2024)](https://bohrium.dp.tech/courses/1125570243?tab=courses)
-- [斯坦福大厨](https://space.bilibili.com/1111135013/video)
-- [《计算材料学》附件](http://www.materialssimulation.com/book)
-- [《计算材料学》油管](https://www.youtube.com/playlist?list=PLD-P7EYSYymE3InuIWWIZ3BMzGPTUpcp4)
-- [不会武功的老师傅](https://space.bilibili.com/491801834)
-- [朱老师讲VASP](https://space.bilibili.com/1690382481)
-- [天玑算-科研服务](https://space.bilibili.com/1436049964/channel/series)
-- [华算科技](https://space.bilibili.com/520163694)
-- [MS杨站长](https://space.bilibili.com/669166168)
-- [MIT Courses](https://professional.mit.edu/course-catalog/machine-learning-materials-informatics) 
-
-## 德国生活
-
-### 1. 出行
-
-#### 1.1 住宿
-- [Booking.com](https://www.booking.com/)
-- [Hotels.com](https://de.hotels.com/)
-- [Airbnb](https://www.airbnb.com/)
-
-#### 1.2 订机票
-- [携程](https://www.ctrip.com/)
-- [Omio](https://www.omio.com/)
-- [Skyscanner](https://www.skyscanner.de/)
-
-#### 1.3 德国火车/汽车
-- [DB (Deutsche Bahn)](https://int.bahn.de/en)
-- [Flixbus](https://global.flixbus.com/)
-- [CVAG (Chemnitz)](https://www.cvag.de/)
-- [VMS (Chemnitz)](https://www.vms.de/)
-
-## 工具软件
-
-### 1. AI 工具
-
-#### 1.1 Chatbot
-- [ChatGPT](https://chatgpt.com/)
-- [Claude](https://claude.ai/new)
-- [Claude合集](https://kelaode.ai/)
-
-### 2. 论文写作
-
-#### 2.1 Latex
-- [Overleaf](https://www.overleaf.com/)
-- [Typst](https://typst.app/)
-- [Overleaf TUC](https://overleaf.hrz.tu-chemnitz.de/project)
-
-#### 2.2 Latex Tools
-- [Latexlive](https://www.latexlive.com/)
-- [Tables Generator](https://www.tablesgenerator.com/)
-- [Latex Tables](https://www.latex-tables.com/)
-- [Equation Editor](https://latexeditor.lagrida.com/)
-- [Equation Editor 2](https://www.tutorialspoint.com/latex_equation_editor.htm)
-- [Markdown Tables Generator](https://www.tablesgenerator.com/markdown_tables)
-- [TikzMaker](https://tikzmaker.com/editor)
-- [tikzit](https://tikzit.github.io/index.html)
-- [tikzcd](https://tikzcd.yichuanshen.de/)
-- [mathcha.io](https://www.mathcha.io/editor)
-
-#### 2.3 CTAN
-- [beamer](https://www.ctan.org/pkg/beamer)
-- [pgfplots](https://ctan.org/pkg/pgfplots?lang=de)
-- [pgf/TikZ](https://ctan.org/pkg/pgf?lang=de)
-
-#### 2.4 Latex References
-- [PGF/TikZ Manual](https://tikz.dev/)
-- [TikZ.net](https://tikz.net/)
-
-### 3. Programming
-
-#### 3.1 Python
-- [python](https://www.python.org/)
-- [PyPi](https://pypi.org/)
-- [numpy](https://numpy.org/)
-- [scipy](https://scipy.org/)
-- [Pandas](https://pandas.pydata.org/)
-- [Sympy](https://www.sympy.org/en/index.html)
-- [Jupyter Notebook](https://jupyter.org/)
-- [TensorFlow](https://www.tensorflow.org/)
-- [PyTorch](https://pytorch.org/)
-- [Scikit-learn](https://scikit-learn.org/stable/)
-- [Statsmodels](https://www.statsmodels.org/stable/index.html#)
-- [H5py](https://docs.h5py.org/en/stable/quick.html)
-- [Numba](https://numba.pydata.org/)
-- [PyLatex](https://jeltef.github.io/PyLaTeX/current/index.html#)
-
-### 4. 符号
-- [Unicode Table](https://symbl.cc/en/)
-- [symbols.com](https://www.symbols.com/)
-- [ASCII Code](https://theasciicode.com.ar/)
-- [html symbols](https://www.toptal.com/designers/htmlarrows/)
-- [emojipedia](https://emojipedia.org/)
-
-### 5. 模拟软件
-
-#### 5.1 DFT
-- [Abinit首页](https://www.abinit.org/)
-- [Abipy](https://abinit.github.io/abipy/index.html#)
-- [AbiGUI](https://gui.abinit.org/)
-- [Pseudopotentials & PAW data](https://www.abinit.org/pseudopotential.html)
-- [Abinit Forum](https://discourse.abinit.org/)
-- [Input Variables](https://docs.abinit.org/variables/#A)
-- [Tutorials](https://docs.abinit.org/tutorial/)
-- [Topics](https://docs.abinit.org/topics/features/)
-
-#### 5.2 MD
-- [LAMMPS](https://www.lammps.org/#gsc.tab=0)
-
-#### 5.3 建模
-- [ASE (Atomic Simulation Environment)](https://wiki.fysik.dtu.dk/ase/index.html)
-- [jmol](https://jmol.sourceforge.net/)
-
-#### 5.4 绘图
-- [gnuplot](http://www.gnuplot.info/)
-
-#### 5.5 机器学习
-- [scikit-learn](https://scikit-learn.org/stable/) 
+// 平滑滚动
+document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href').slice(1);
+    document.getElementById(targetId).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+</script> 
