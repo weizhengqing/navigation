@@ -1,0 +1,281 @@
+---
+---
+
+@import "minima";
+
+
+.site-header {
+  border-top: 5px solid #424242;
+  border-bottom: 1px solid #e8e8e8;
+  min-height: 55.95px;
+  position: relative;
+}
+
+.site-nav {
+  float: right;
+  line-height: 54px;
+  position: relative;
+  
+  // 默认隐藏汉堡菜单触发器
+  .nav-trigger {
+    display: none;
+  }
+
+  // 默认隐藏菜单图标
+  .menu-icon {
+    display: none;
+  }
+  
+  // 导航链接的基本样式
+  .page-link {
+    color: #111;
+    line-height: 1.5;
+    margin-right: 20px;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // 移动端样式（屏幕宽度小于600px时生效）
+  @media screen and (max-width: 600px) {
+    position: absolute;
+    top: 9px;
+    right: 15px;
+    background-color: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    text-align: right;
+
+    // 汉堡菜单按钮样式
+    label[for="nav-trigger"] {
+      display: block;
+      float: right;
+      width: 36px;
+      height: 36px;
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    // 汉堡菜单图标样式
+    .menu-icon {
+      display: block;
+      float: right;
+      width: 36px;
+      height: 26px;
+      line-height: 0;
+      padding-top: 10px;
+      text-align: center;
+    }
+
+    // 默认隐藏菜单内容
+    input ~ .trigger {
+      clear: both;
+      display: none;
+    }
+
+    // 点击汉堡菜单后显示菜单内容
+    input:checked ~ .trigger {
+      display: block;
+      padding-bottom: 5px;
+      background: white;
+      border-radius: 5px;
+    }
+
+    // 移动端导航链接样式
+    .page-link {
+      display: block;
+      padding: 5px 10px;
+      margin: 0;
+      text-align: right;  // 确保所有链接右对齐
+      line-height: 2;     // 统一行高
+      border-bottom: 1px solid #e8e8e8;  // 添加分隔线
+
+      // 最后一个链接移除底部边框
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.site-title {
+  font-weight: bold;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+// 项目页面样式
+.project-container {
+  margin-bottom: 40px;
+  
+  img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 20px 0;
+  }
+  
+  h2 {
+    margin-top: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+    
+    span {
+      background: #f0f0f0;
+      padding: 4px 10px;
+      border-radius: 15px;
+      font-size: 14px;
+    }
+  }
+}
+
+.project-links {
+  margin-top: 15px;
+  
+  a {
+    display: inline-block;
+    margin-right: 15px;
+    padding: 5px 15px;
+    border: 1px solid #0366d6;
+    border-radius: 4px;
+    color: #0366d6;
+    
+    &:hover {
+      background: #0366d6;
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
+
+.nav-container {
+  .nav-section {
+    margin-bottom: 30px;
+    
+    h2 {
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+    
+    .nav-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+      
+      a {
+        display: block;
+        padding: 10px;
+        background: #f5f5f5;
+        border-radius: 4px;
+        
+        &:hover {
+          background: #e0e0e0;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.post-list {
+  list-style: none;
+  padding-left: 0;
+  
+  li {
+    margin-bottom: 30px;
+    
+    .post-meta {
+      color: #666;
+      font-size: 14px;
+    }
+    
+    .post-link {
+      font-size: 20px;
+      font-weight: bold;
+      
+      &:hover {
+        text-decoration: none;
+        color: #0366d6;
+      }
+    }
+  }
+}
+
+// 调整页面标题大小
+.post-header {
+  .post-title {
+    font-size: 26px;  // 原来可能是32px左右
+    margin-bottom: 15px;
+  }
+}
+
+// 统一所有post, pages 页面的标题大小
+.post-content, .page-content {
+  h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  h2 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+  
+  h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  h4 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  h5 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  h6 {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+}
+
+.social-media-list {
+  li {
+    display: inline-block;
+    margin-right: 10px;
+    
+    a {
+      display: flex;
+      align-items: center;
+      color: #666;
+      
+      &:hover {
+        color: #A6CE39;  // ORCID 的品牌绿色
+        text-decoration: none;
+      }
+      
+      .svg-icon {
+        width: 16px;
+        height: 16px;
+        margin-right: 5px;
+      }
+    }
+  }
+} 

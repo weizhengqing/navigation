@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-12-25T20:54:11+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">ZWei</title><subtitle>专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。</subtitle><entry><title type="html">安装Jekyll教程</title><link href="http://localhost:4000/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll.html" rel="alternate" type="text/html" title="安装Jekyll教程" /><published>2024-12-24T00:00:00+01:00</published><updated>2024-12-24T00:00:00+01:00</updated><id>http://localhost:4000/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll.html"><![CDATA[<h1 id="安装-jekyll-完整指南">安装 Jekyll 完整指南</h1>
+
+<p>本文将指导你如何在 macOS 系统上正确安装和配置 Jekyll 博客系统。我们将使用 rbenv 来管理 Ruby 版本，这是目前最推荐的方式。</p>
+
+<h2 id="1-环境准备">1. 环境准备</h2>
+
+<h3 id="安装-homebrew">安装 Homebrew</h3>
+
+<p>如果你还没有安装 Homebrew，请先运行以下命令：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/bin/bash <span class="nt">-c</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="si">)</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<h3 id="安装和配置-rbenv">安装和配置 rbenv</h3>
+
+<p>1) 使用 Homebrew 安装 rbenv：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>rbenv
+rbenv init
+</code></pre></div></div>
+
+<p>2) 配置 Shell 环境：将以下配置添加到你的 Shell 配置文件中（根据你使用的 Shell 选择）：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 添加到 ~/.zshrc（如果使用 zsh）或 ~/.bash_profile（如果使用 bash）</span>
+<span class="nb">eval</span> <span class="s2">"</span><span class="si">$(</span>rbenv init -<span class="si">)</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<p>3) 使配置生效:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 如果使用 zsh</span>
+<span class="nb">source</span> ~/.zshrc
+
+<span class="c"># 如果使用 bash</span>
+<span class="nb">source</span> ~/.bash_profile
+</code></pre></div></div>
+
+<h2 id="2-安装-ruby">2. 安装 Ruby</h2>
+
+<p>1) 查看可用的 Ruby 版本：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rbenv <span class="nb">install</span> <span class="nt">-l</span>
+</code></pre></div></div>
+
+<p>2) 安装并配置 Ruby：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 安装最新稳定版 Ruby</span>
+rbenv <span class="nb">install </span>3.2.2
+
+<span class="c"># 设置全局 Ruby 版本</span>
+rbenv global 3.2.2
+
+<span class="c"># 验证安装（如显示旧版本，需重新加载 Shell 配置）</span>
+ruby <span class="nt">-v</span>
+</code></pre></div></div>
+
+<h2 id="3-安装-jekyll">3. 安装 Jekyll</h2>
+
+<p>安装 Jekyll 和 Bundler：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>jekyll bundler
+</code></pre></div></div>
+
+<h2 id="4-创建新博客">4. 创建新博客</h2>
+
+<p>1) 创建新的 Jekyll 站点：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jekyll new myblog
+</code></pre></div></div>
+
+<p>2) 进入项目目录：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>myblog
+</code></pre></div></div>
+
+<p>3) 安装依赖：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">install</span>
+</code></pre></div></div>
+
+<p>4) 启动本地服务器：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+
+<p>完成以上步骤后，你可以通过访问 <code class="language-plaintext highlighter-rouge">http://localhost:4000</code> 查看你的博客站点。</p>
+
+<h2 id="常见问题解决">常见问题解决</h2>
+
+<p>如果在安装过程中遇到权限相关的问题，请确保：</p>
+
+<ol>
+  <li>已正确配置 rbenv</li>
+  <li>Shell 配置文件已被正确加载</li>
+  <li>使用的是 rbenv 管理的 Ruby 版本而非系统版本</li>
+</ol>
+
+<h2 id="注意事项">注意事项</h2>
+
+<ul>
+  <li>避免使用 <code class="language-plaintext highlighter-rouge">sudo gem install</code>，这可能会导致权限问题</li>
+  <li>确保在执行 Jekyll 命令前已经切换到项目目录</li>
+  <li>定期更新 Ruby 和 Jekyll 版本以获取最新的功能和安全修复</li>
+</ul>
+
+<h2 id="主题文件位置">主题文件位置</h2>
+
+<p>如果你使用的是默认的 minima 主题，主题文件可以在以下位置找到：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/.rbenv/versions/[ruby-version]/lib/ruby/gems/[gems-version]/gems/minima-[theme-version]
+</code></pre></div></div>
+
+<p>例如：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/my_host_name/.rbenv/versions/3.3.6/lib/ruby/gems/3.3.0/gems/minima-2.5.2
+</code></pre></div></div>
+
+<p>你可以在这里找到并修改主题相关的文件，包括布局、样式等。</p>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[安装 Jekyll 完整指南]]></summary></entry></feed>

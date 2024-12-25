@@ -1,0 +1,17 @@
+<ul class="social-media-list">
+    {%- if site.github_username -%}
+    <li>
+      <a href="https://github.com/{{ site.github_username }}">
+        <svg class="svg-icon"><use xlink:href="{{ '/assets/minima-social-icons.svg#github' | relative_url }}"></use></svg>
+      </a>
+    </li>
+    {%- endif -%}
+    
+    {%- if site.orcid_username -%}
+    <li>
+      <a href="https://orcid.org/{{ site.orcid_username }}">
+        <svg class="svg-icon"><use xlink:href="{{ '/assets/minima-social-icons.svg#orcid' | relative_url }}"></use></svg>
+      </a>
+    </li>
+    {%- endif -%}
+</ul>

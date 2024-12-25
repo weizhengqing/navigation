@@ -1,0 +1,45 @@
+---
+layout: default
+---
+
+<div class="home">
+  <!-- 如果页面有标题，显示页面标题 -->
+  {%- if page.title -%}
+    <h1 class="page-heading">{{ page.title }}</h1>
+  {%- endif -%}
+
+  <!-- 显示页面主体内容 -->
+  {{ content }}
+
+  <!-- 如果有博客文章，显示文章列表 -->
+  {%- if site.posts.size > 0 -%}
+    <!-- 文章列表标题，默认显示为 "Posts" -->
+    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
+    <!-- 文章列表开始 -->
+    <ul class="post-list">
+      <!-- 遍历所有文章 -->
+      {%- for post in site.posts -%}
+      <li>
+        <!-- 设置日期显示格式 -->
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        <!-- 显示文章发布日期 -->
+        <span class="post-meta">{{ post.date | date: date_format }}</span>
+        <!-- 文章标题和链接 -->
+        <h3>
+          <a class="post-link" href="{{ post.url | relative_url }}">
+            {{ post.title | escape }}
+          </a>
+        </h3>
+        <!-- 如果设置显示摘要，则显示文章摘要 -->
+        {%- if site.show_excerpts -%}
+          {{ post.excerpt }}
+        {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ul>
+
+    <!-- RSS订阅链接（已注释掉） -->
+    <!-- <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p> -->
+  {%- endif -%}
+
+</div>

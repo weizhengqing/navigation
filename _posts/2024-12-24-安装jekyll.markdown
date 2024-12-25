@@ -1,0 +1,134 @@
+---
+layout: post
+title: "安装Jekyll教程"
+date: 2024-12-24
+category: jekyll
+---
+
+# 安装 Jekyll 完整指南
+
+本文将指导你如何在 macOS 系统上正确安装和配置 Jekyll 博客系统。我们将使用 rbenv 来管理 Ruby 版本，这是目前最推荐的方式。
+
+## 1. 环境准备
+
+### 安装 Homebrew
+
+如果你还没有安装 Homebrew，请先运行以下命令：
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+### 安装和配置 rbenv
+
+1) 使用 Homebrew 安装 rbenv：
+
+```bash
+brew install rbenv
+rbenv init
+```
+
+2) 配置 Shell 环境：将以下配置添加到你的 Shell 配置文件中（根据你使用的 Shell 选择）：
+
+```bash
+# 添加到 ~/.zshrc（如果使用 zsh）或 ~/.bash_profile（如果使用 bash）
+eval "$(rbenv init -)"
+```
+
+3) 使配置生效:
+
+```bash
+# 如果使用 zsh
+source ~/.zshrc
+
+# 如果使用 bash
+source ~/.bash_profile
+```
+
+## 2. 安装 Ruby
+
+1) 查看可用的 Ruby 版本：
+
+```bash
+rbenv install -l
+```
+
+2) 安装并配置 Ruby：
+
+```bash
+# 安装最新稳定版 Ruby
+rbenv install 3.2.2
+
+# 设置全局 Ruby 版本
+rbenv global 3.2.2
+
+# 验证安装（如显示旧版本，需重新加载 Shell 配置）
+ruby -v
+```
+
+## 3. 安装 Jekyll
+
+安装 Jekyll 和 Bundler：
+
+```bash
+gem install jekyll bundler
+```
+
+## 4. 创建新博客
+
+1) 创建新的 Jekyll 站点：
+
+```bash
+jekyll new myblog
+```
+
+2) 进入项目目录：
+
+```bash
+cd myblog
+```
+
+3) 安装依赖：
+
+```bash
+bundle install
+```
+
+4) 启动本地服务器：
+
+```bash
+bundle exec jekyll serve
+```
+
+完成以上步骤后，你可以通过访问 `http://localhost:4000` 查看你的博客站点。
+
+## 常见问题解决
+
+如果在安装过程中遇到权限相关的问题，请确保：
+
+1. 已正确配置 rbenv
+2. Shell 配置文件已被正确加载
+3. 使用的是 rbenv 管理的 Ruby 版本而非系统版本
+
+## 注意事项
+
+- 避免使用 `sudo gem install`，这可能会导致权限问题
+- 确保在执行 Jekyll 命令前已经切换到项目目录
+- 定期更新 Ruby 和 Jekyll 版本以获取最新的功能和安全修复
+
+## 主题文件位置
+
+如果你使用的是默认的 minima 主题，主题文件可以在以下位置找到：
+
+```bash
+~/.rbenv/versions/[ruby-version]/lib/ruby/gems/[gems-version]/gems/minima-[theme-version]
+```
+
+例如：
+```bash
+/Users/my_host_name/.rbenv/versions/3.3.6/lib/ruby/gems/3.3.0/gems/minima-2.5.2
+```
+
+你可以在这里找到并修改主题相关的文件，包括布局、样式等。
+
+
