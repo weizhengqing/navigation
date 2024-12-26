@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2024-12-26T04:21:28+01:00</updated><id>/feed.xml</id><title type="html">ZWei</title><subtitle>专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。</subtitle><entry><title type="html">安装Jekyll教程并且上传到Github Page</title><link href="/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll.html" rel="alternate" type="text/html" title="安装Jekyll教程并且上传到Github Page" /><published>2024-12-24T00:00:00+01:00</published><updated>2024-12-24T00:00:00+01:00</updated><id>/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll</id><content type="html" xml:base="/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll.html"><![CDATA[<h1 id="安装-jekyll-完整指南">安装 Jekyll 完整指南</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-12-26T22:42:40+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">ZWei</title><subtitle>专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。</subtitle><entry><title type="html">AI工具在学术研究中应用</title><link href="http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8.html" rel="alternate" type="text/html" title="AI工具在学术研究中应用" /><published>2024-12-26T00:00:00+01:00</published><updated>2024-12-26T00:00:00+01:00</updated><id>http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8</id><content type="html" xml:base="http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8.html"><![CDATA[<p>自ChatGPT发布以来，人工智能辅助工具在学术研究领域取得了显著突破，为科研工作提供了多维度的支持。本文将系统性地探讨主流AI模型在学术研究中的应用场景，包括代码开发、文献分析、学术写作、跨语言转换以及文本重构等方面。</p>
+
+<p>主流大语言模型(LLM)评析：</p>
+<ul>
+  <li>Claude 3.5 Sonnet: 在代码生成领域展现出卓越的性能表现。</li>
+  <li>DeepSeek Coder v3: 具备强大的代码生成能力，并在PDF文档理解和深度分析方面表现突出，特别适合学术文献综述工作。</li>
+  <li>Qwen 2.5 32B: 具有优秀的代码生成能力，可通过Ollama框架实现本地部署，降低了使用成本。</li>
+  <li>LLaMA 3.1 7B: 轻量级模型，适合本地部署和实验性应用，对计算资源要求相对较低。</li>
+  <li>LLaMA 3.2 70B: 参数规模庞大，对计算硬件要求较高，需要专业级计算设施支持。</li>
+  <li>ChatGPT: 经过长期观察，其性能相较于新一代AI模型已显示出一定局限性。</li>
+</ul>
+
+<p>智能开发环境(IDE)集成解决方案：</p>
+<ul>
+  <li>Cursor: 提供卓越的代码辅助功能，对静态网站开发、Python编程提供全方位支持。具有扩展应用潜力，可用于机器学习、密度泛函理论(DFT)计算以及分子动力学模拟等科研场景。</li>
+  <li>GitHub Copilot: 作为成熟的AI编程助手，通过GitHub Education计划向学生群体提供免费使用权限，但在某些应用场景下的表现与Cursor相比尚有提升空间。</li>
+</ul>]]></content><author><name></name></author><category term="AI tools" /><summary type="html"><![CDATA[自ChatGPT发布以来，人工智能辅助工具在学术研究领域取得了显著突破，为科研工作提供了多维度的支持。本文将系统性地探讨主流AI模型在学术研究中的应用场景，包括代码开发、文献分析、学术写作、跨语言转换以及文本重构等方面。]]></summary></entry><entry><title type="html">安装Jekyll教程并且上传到Github Page</title><link href="http://localhost:4000/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll.html" rel="alternate" type="text/html" title="安装Jekyll教程并且上传到Github Page" /><published>2024-12-24T00:00:00+01:00</published><updated>2024-12-24T00:00:00+01:00</updated><id>http://localhost:4000/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll.html"><![CDATA[<h1 id="安装-jekyll-完整指南">安装 Jekyll 完整指南</h1>
 
 <p>本文将指导你如何在 macOS 系统上正确安装和配置 Jekyll 博客系统。我们将使用 rbenv 来管理 Ruby 版本，这是目前最推荐的方式。</p>
 
