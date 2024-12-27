@@ -3,21 +3,21 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Ollama 模型Tokens输出测试与局域网内设备使用配置 | ZWei</title>
+<title>Ollama模型Tokens输出测试与局域网内设备使用配置 | ZWei</title>
 <meta name="generator" content="Jekyll v4.3.4" />
-<meta property="og:title" content="Ollama 模型Tokens输出测试与局域网内设备使用配置" />
+<meta property="og:title" content="Ollama模型Tokens输出测试与局域网内设备使用配置" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="这篇文章介绍如何在局域网内其他设备如手机，平板上使用主机的ollama开源模型。" />
-<meta property="og:description" content="这篇文章介绍如何在局域网内其他设备如手机，平板上使用主机的ollama开源模型。" />
-<link rel="canonical" href="http://localhost:4000/ai%20tools/2024/12/27/Ollama-%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html" />
-<meta property="og:url" content="http://localhost:4000/ai%20tools/2024/12/27/Ollama-%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html" />
+<meta name="description" content="本文介绍如何在局域网内通过手机、平板等设备访问运行在主机上的Ollama开源模型。" />
+<meta property="og:description" content="本文介绍如何在局域网内通过手机、平板等设备访问运行在主机上的Ollama开源模型。" />
+<link rel="canonical" href="http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html" />
+<meta property="og:url" content="http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html" />
 <meta property="og:site_name" content="ZWei" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2024-12-27T00:00:00+01:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Ollama 模型Tokens输出测试与局域网内设备使用配置" />
+<meta property="twitter:title" content="Ollama模型Tokens输出测试与局域网内设备使用配置" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-12-27T00:00:00+01:00","datePublished":"2024-12-27T00:00:00+01:00","description":"这篇文章介绍如何在局域网内其他设备如手机，平板上使用主机的ollama开源模型。","headline":"Ollama 模型Tokens输出测试与局域网内设备使用配置","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/ai%20tools/2024/12/27/Ollama-%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html"},"url":"http://localhost:4000/ai%20tools/2024/12/27/Ollama-%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-12-27T00:00:00+01:00","datePublished":"2024-12-27T00:00:00+01:00","description":"本文介绍如何在局域网内通过手机、平板等设备访问运行在主机上的Ollama开源模型。","headline":"Ollama模型Tokens输出测试与局域网内设备使用配置","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html"},"url":"http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="ZWei" /><link rel="stylesheet" href="/assets/css/copy-button.css">
 </head>
@@ -50,14 +50,14 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Ollama 模型Tokens输出测试与局域网内设备使用配置</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Ollama模型Tokens输出测试与局域网内设备使用配置</h1>
     <p class="post-meta">
       <time class="dt-published" datetime="2024-12-27T00:00:00+01:00" itemprop="datePublished">Dec 27, 2024
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>这篇文章介绍如何在局域网内其他设备如手机，平板上使用主机的ollama开源模型。</p>
+    <p>本文介绍如何在局域网内通过手机、平板等设备访问运行在主机上的Ollama开源模型。</p>
 
 <h2 id="不同开源模型输出的tokens速度测试">不同开源模型输出的tokens速度测试</h2>
 
@@ -125,10 +125,21 @@ ollama serve
 
 <h3 id="客户端支持">客户端支持</h3>
 <ul>
-  <li>桌面端：open-webui</li>
+  <li>桌面端：Open WebUI</li>
   <li>iPhone：Enchanted</li>
 </ul>
 
+<h2 id="通过docker部署open-webui">通过Docker部署Open WebUI</h2>
+<p>在主机上我们直接采用 Docker 部署 Open WebUI，因为已经部署了 Ollama，采用如下命令：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="nt">-p</span> 3000:8080 <span class="nt">--add-host</span><span class="o">=</span>host.docker.internal:host-gateway <span class="nt">-v</span> open-webui:/app/backend/data <span class="nt">--name</span> open-webui <span class="nt">--restart</span> always ghcr.io/open-webui/open-webui:main
+</code></pre></div></div>
+<p>其中：<code class="language-plaintext highlighter-rouge">--add-host=host.docker.internal:host-gateway</code> 是为了添加一个主机名映射，将 <code class="language-plaintext highlighter-rouge">host.docker.internal</code> 指向主机的网关，方便容器访问宿主机服务。</p>
+
+<p>假设你之前没有安装过 Ollama，也可以采用如下镜像（打包安装 Ollama + Open WebUI）：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="nt">-p</span> 3000:8080 <span class="nt">-v</span> ollama:/root/.ollama <span class="nt">-v</span> open-webui:/app/backend/data <span class="nt">--name</span> &lt;container_name&gt; ghcr.io/open-webui/open-webui:ollama
+</code></pre></div></div>
 <h2 id="enchanted配置指南">Enchanted配置指南</h2>
 
 <h3 id="设置步骤">设置步骤</h3>
@@ -164,7 +175,11 @@ ollama serve
 
 <p>注意：首次配置Enchanted后可能看不到模型列表，关闭并重启应用后即可正常显示和使用。</p>
 
-  </div><a class="u-url" href="/ai%20tools/2024/12/27/Ollama-%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html" hidden></a>
+<h2 id="lm-studio-使用开源ai大模型">LM Studio 使用开源AI大模型</h2>
+
+<p>还可以通过LM Studio使用开源大模型，在LM Studio中使用方法比较简单，直接在发现页下载模型文件，模型标注MLX是为Apple Silicon的新的framework，在苹果芯片机器上运行比原生模型速度要快很多。</p>
+
+  </div><a class="u-url" href="/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html" hidden></a>
 </article>
 
       </div>
