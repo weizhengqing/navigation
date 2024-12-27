@@ -1,20 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-12-26T22:42:40+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">ZWei</title><subtitle>专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。</subtitle><entry><title type="html">AI工具在学术研究中应用</title><link href="http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8.html" rel="alternate" type="text/html" title="AI工具在学术研究中应用" /><published>2024-12-26T00:00:00+01:00</published><updated>2024-12-26T00:00:00+01:00</updated><id>http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8</id><content type="html" xml:base="http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8.html"><![CDATA[<p>自ChatGPT发布以来，人工智能辅助工具在学术研究领域取得了显著突破，为科研工作提供了多维度的支持。本文将系统性地探讨主流AI模型在学术研究中的应用场景，包括代码开发、文献分析、学术写作、跨语言转换以及文本重构等方面。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-12-27T20:11:50+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">ZWei</title><subtitle>专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。</subtitle><entry><title type="html">Ollama 模型Tokens输出测试与局域网内设备使用配置</title><link href="http://localhost:4000/ai%20tools/2024/12/27/Ollama-%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html" rel="alternate" type="text/html" title="Ollama 模型Tokens输出测试与局域网内设备使用配置" /><published>2024-12-27T00:00:00+01:00</published><updated>2024-12-27T00:00:00+01:00</updated><id>http://localhost:4000/ai%20tools/2024/12/27/Ollama%20%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE</id><content type="html" xml:base="http://localhost:4000/ai%20tools/2024/12/27/Ollama-%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html"><![CDATA[<p>这篇文章介绍如何在局域网内其他设备如手机，平板上使用主机的ollama开源模型。</p>
+
+<h2 id="不同开源模型输出的tokens速度测试">不同开源模型输出的tokens速度测试</h2>
+
+<p>使用 <code class="language-plaintext highlighter-rouge">--verbose</code> 参数可以实时查看每秒输出的tokens，例如：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ollama run <span class="nt">--verbose</span> qwen2.5-coder:32b
+</code></pre></div></div>
+<h3 id="qwen25-coder32b">qwen2.5-coder:32b</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>总时长: 2m13.328514583s
+加载时长: 25.161ms
+提示词评估数量: 33 tokens
+提示词评估时长: 10.819s
+提示词评估速率: 3.05 tokens/s
+生成数量: 611 tokens
+生成时长: 2m2.318s
+生成速率: 5.00 tokens/s
+</code></pre></div></div>
+
+<h3 id="qwen25-coder7b">qwen2.5-coder:7b</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>总时长: 14.339346583s
+加载时长: 26.574958ms
+提示词评估数量: 33 tokens
+提示词评估时长: 2.44s
+提示词评估速率: 13.52 tokens/s
+生成数量: 246 tokens
+生成时长: 11.708s
+生成速率: 21.01 tokens/s
+</code></pre></div></div>
+
+<h3 id="llama318b">llama3.1:8b</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>总时长: 28.566681417s
+加载时长: 27.195334ms
+提示词评估数量: 14 tokens
+提示词评估时长: 2.426s
+提示词评估速率: 5.77 tokens/s
+生成数量: 515 tokens
+生成时长: 26.112s
+生成速率: 19.72 tokens/s
+</code></pre></div></div>
+
+<h3 id="qwen2514b-instruct-q8_0">qwen2.5:14b-instruct-q8_0</h3>
+<p>注：q8_0为精度设置，相比q4具有更高精度。</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>总时长: 1m25.738078416s
+加载时长: 27.547791ms
+提示词评估数量: 33 tokens
+提示词评估时长: 399ms
+提示词评估速率: 82.71 tokens/s
+生成数量: 542 tokens
+生成时长: 1m25.308s
+生成速率: 6.35 tokens/s
+</code></pre></div></div>
+
+<h2 id="局域网内主机ollama-配置说明">局域网内主机Ollama 配置说明</h2>
+
+<h3 id="内存管理">内存管理</h3>
+<p>默认情况下，Ollama在闲置5分钟后会释放所有模型。若需保持模型常驻内存，可设置：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">OLLAMA_KEEP_ALIVE</span><span class="o">=</span><span class="nt">-1</span>
+</code></pre></div></div>
+
+<h3 id="网络设置">网络设置</h3>
+<p>默认情况下，Ollama仅监听localhost (127.0.0.1)。要允许局域网设备访问，需修改监听地址：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">OLLAMA_HOST</span><span class="o">=</span>0.0.0.0:11434
+ollama serve
+</code></pre></div></div>
+<p>其中0.0.0.0表示监听所有网络接口，11434为默认端口。</p>
+
+<h3 id="客户端支持">客户端支持</h3>
+<ul>
+  <li>桌面端：open-webui</li>
+  <li>iPhone：Enchanted</li>
+</ul>
+
+<h2 id="enchanted配置指南">Enchanted配置指南</h2>
+
+<h3 id="设置步骤">设置步骤</h3>
+<ol>
+  <li>获取PC的IP地址
+    <ul>
+      <li>Windows：使用<code class="language-plaintext highlighter-rouge">ipconfig</code>命令</li>
+      <li>macOS/Linux：使用<code class="language-plaintext highlighter-rouge">ifconfig</code>命令</li>
+    </ul>
+  </li>
+  <li>启动Ollama服务
+    <ul>
+      <li>确保已运行<code class="language-plaintext highlighter-rouge">ollama serve</code></li>
+    </ul>
+  </li>
+  <li>配置手机端
+    <ul>
+      <li>在Enchanted中输入服务器地址：<code class="language-plaintext highlighter-rouge">&lt;PC的IP地址&gt;:11434</code></li>
+      <li>示例：<code class="language-plaintext highlighter-rouge">192.168.1.100:11434</code></li>
+    </ul>
+  </li>
+  <li>检查防火墙
+    <ul>
+      <li>确保PC防火墙允许11434端口的入站连接</li>
+    </ul>
+  </li>
+  <li>测试连接
+    <ul>
+      <li>访问配置的地址确认连接状态</li>
+    </ul>
+  </li>
+</ol>
+
+<p>注意：首次配置Enchanted后可能看不到模型列表，关闭并重启应用后即可正常显示和使用。</p>]]></content><author><name></name></author><category term="AI tools" /><summary type="html"><![CDATA[这篇文章介绍如何在局域网内其他设备如手机，平板上使用主机的ollama开源模型。]]></summary></entry><entry><title type="html">AI工具在学术研究中应用</title><link href="http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8.html" rel="alternate" type="text/html" title="AI工具在学术研究中应用" /><published>2024-12-26T00:00:00+01:00</published><updated>2024-12-26T00:00:00+01:00</updated><id>http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8</id><content type="html" xml:base="http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8.html"><![CDATA[<p>自ChatGPT发布以来，人工智能辅助工具在学术研究领域取得了显著突破，为科研工作提供了多维度的支持。本文将系统性地探讨主流AI模型在学术研究中的应用场景，包括代码开发、文献分析、学术写作、文本翻译以及文本重述等方面。</p>
 
 <p>主流大语言模型(LLM)评析：</p>
 <ul>
   <li>Claude 3.5 Sonnet: 在代码生成领域展现出卓越的性能表现。</li>
-  <li>DeepSeek Coder v3: 具备强大的代码生成能力，并在PDF文档理解和深度分析方面表现突出，特别适合学术文献综述工作。</li>
-  <li>Qwen 2.5 32B: 具有优秀的代码生成能力，可通过Ollama框架实现本地部署，降低了使用成本。</li>
-  <li>LLaMA 3.1 7B: 轻量级模型，适合本地部署和实验性应用，对计算资源要求相对较低。</li>
-  <li>LLaMA 3.2 70B: 参数规模庞大，对计算硬件要求较高，需要专业级计算设施支持。</li>
-  <li>ChatGPT: 经过长期观察，其性能相较于新一代AI模型已显示出一定局限性。</li>
+  <li>DeepSeek Coder v3: 具备强大的代码生成能力，并在PDF文档理解和深度分析方面表现突出，特别适合学术文献综述工作（不开启深度思考）。还可以开启深度思考进行推理。主打免费。</li>
+  <li>Qwen 2.5 32B: 具有优秀的代码生成能力，可通过Ollama框架实现本地部署，降低了使用成本。本地部署后只能在Terminal中使用。通过docker安装open-webui，可以实现本地网页端使用，界面和Chatgpt类似，非常酷。</li>
+  <li>LLaMA 3.1 7B: 轻量级模型，本地部署和实验性应用，对计算资源要求相对较低，装在电脑上玩一玩。</li>
+  <li>LLaMA 3.2 70B: 参数规模庞大，对计算硬件要求较高，我的Macmini-M4跑不动。</li>
+  <li>ChatGPT: 用了一年多，已放弃，其性能相较于新的AI模型已显示出一定局限性。</li>
 </ul>
 
 <p>智能开发环境(IDE)集成解决方案：</p>
 <ul>
-  <li>Cursor: 提供卓越的代码辅助功能，对静态网站开发、Python编程提供全方位支持。具有扩展应用潜力，可用于机器学习、密度泛函理论(DFT)计算以及分子动力学模拟等科研场景。</li>
-  <li>GitHub Copilot: 作为成熟的AI编程助手，通过GitHub Education计划向学生群体提供免费使用权限，但在某些应用场景下的表现与Cursor相比尚有提升空间。</li>
-</ul>]]></content><author><name></name></author><category term="AI tools" /><summary type="html"><![CDATA[自ChatGPT发布以来，人工智能辅助工具在学术研究领域取得了显著突破，为科研工作提供了多维度的支持。本文将系统性地探讨主流AI模型在学术研究中的应用场景，包括代码开发、文献分析、学术写作、跨语言转换以及文本重构等方面。]]></summary></entry><entry><title type="html">安装Jekyll教程并且上传到Github Page</title><link href="http://localhost:4000/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll.html" rel="alternate" type="text/html" title="安装Jekyll教程并且上传到Github Page" /><published>2024-12-24T00:00:00+01:00</published><updated>2024-12-24T00:00:00+01:00</updated><id>http://localhost:4000/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll.html"><![CDATA[<h1 id="安装-jekyll-完整指南">安装 Jekyll 完整指南</h1>
+  <li>Cursor: 提供卓越的AI代码辅助功能，用来静态网站开发、Python编程，还可以写Latex。具有扩展应用潜力，后续将尝试用于机器学习、密度泛函理论(DFT)计算以及分子动力学模拟等写代码科研场景。</li>
+  <li>GitHub Copilot: 作为成熟的AI编程助手，通过GitHub Education计划向学生群体提供免费使用权限，但感觉表现与Cursor相比尚有提升空间。</li>
+</ul>]]></content><author><name></name></author><category term="AI tools" /><summary type="html"><![CDATA[自ChatGPT发布以来，人工智能辅助工具在学术研究领域取得了显著突破，为科研工作提供了多维度的支持。本文将系统性地探讨主流AI模型在学术研究中的应用场景，包括代码开发、文献分析、学术写作、文本翻译以及文本重述等方面。]]></summary></entry><entry><title type="html">安装Jekyll教程并且上传到Github Page</title><link href="http://localhost:4000/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll.html" rel="alternate" type="text/html" title="安装Jekyll教程并且上传到Github Page" /><published>2024-12-24T00:00:00+01:00</published><updated>2024-12-24T00:00:00+01:00</updated><id>http://localhost:4000/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll.html"><![CDATA[<h1 id="安装-jekyll-完整指南">安装 Jekyll 完整指南</h1>
 
 <p>本文将指导你如何在 macOS 系统上正确安装和配置 Jekyll 博客系统。我们将使用 rbenv 来管理 Ruby 版本，这是目前最推荐的方式。</p>
 
