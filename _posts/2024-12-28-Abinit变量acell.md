@@ -7,7 +7,7 @@ category: ABINIT variables
 
 # 理解ABINIT中的`acell`变量
 
-在ABINIT软件中，`acell`是一个非常重要的变量，它用于定义晶格矢量的缩放比例。本文将通俗易懂地解释`acell`的含义及其在计算中的作用。
+在ABINIT软件中，`acell`是一个非常重要的变量，它用于定义晶格矢量的缩放比例。本文将解释`acell`的含义及其在计算中的作用。
 
 ## 什么是`acell`？
 
