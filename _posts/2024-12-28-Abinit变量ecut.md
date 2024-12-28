@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ecut"
+title: "Abinit变量ecut"
 date: 2024-12-28
 category: ABINIT variables
 ---
@@ -10,9 +10,9 @@ category: ABINIT variables
 
 在平面波计算中，能量截断 (`ecut`) 是一个关键参数，用于控制给定 k 点的平面波数量。平面波的动能必须低于 `ecut` 才能被包含在计算中。这个约束条件在倒易空间中表示为：
 
-\[
+$$
 \frac{1}{2} \left( \frac{2\pi}{a} \right)^2 (k + G)^2 < \text{ecut}
-\]
+$$
 
 其中，\( G \) 是倒易空间中的向量。所有位于以 k 点为中心的基球内的平面波都将被包含在基组中（除非定义了 `dillatmx`）。
 
