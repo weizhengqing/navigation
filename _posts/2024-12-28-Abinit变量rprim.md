@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "rprim"
+title: "Abinit变量rprim"
 date: 2024-12-28
 category: ABINIT variables
 ---

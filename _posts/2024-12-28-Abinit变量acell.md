@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "acell"
+title: "Abinit变量acell"
 date: 2024-12-28
 category: ABINIT variables
 ---
