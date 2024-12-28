@@ -40,17 +40,15 @@ category: ABINIT variables
 ## `rprim`的具体作用
 
 `rprim`定义了三个原始平移矢量的方向，而`acell`和`scalecart`则分别用于缩放这些矢量的长度和方向。具体来说，实际晶格矢量的计算公式为：
-```
-R1p(i) = scalecart(i) x rprim(i,1) x acell(1)  
-R2p(i) = scalecart(i) x rprim(i,2) x acell(2)  
-R3p(i) = scalecart(i) x rprim(i,3) x acell(3)
-```
+
+$$\begin{align*}R_{1p}(i) &= \text{scalecart}(i) \times \text{rprim}(i,1) \times \text{acell}(1) \\R_{2p}(i) &= \text{scalecart}(i) \times \text{rprim}(i,2) \times \text{acell}(2) \\R_{3p}(i) &= \text{scalecart}(i) \times \text{rprim}(i,3) \times \text{acell}(3)\end{align*}$$
+
 其中，`i=1,2,3`分别对应x、y、z三个方向。
 
 ## 注意事项
 
 1. **输入顺序**: `rprim`的输入顺序是Fortran数组的顺序，即前三个数是第一个矢量的坐标，接下来三个是第二个矢量的坐标，最后三个是第三个矢量的坐标。
-2. **混合积为正**: `rprim`定义的三个矢量的混合积（即 `$(R_1 \times R_2) \cdot R_3$`）必须为正数，否则需要交换一对矢量。
+2. **混合积为正**: `rprim`定义的三个矢量的混合积（即 \\((R_1 \\times R_2) \\cdot R_3\\)）必须为正数，否则需要交换一对矢量。
 3. **替代变量**: 对于六方晶格等特殊结构，可以使用`angdeg`变量来定义原始矢量的方向，以避免手动输入复杂的`rprim`值。
 4. **常见错误**: 初学者在使用`acell`和`scalecart`时容易混淆。例如，在定义体心四方晶格时，错误地使用`acell`会导致晶格矢量方向错误。
 

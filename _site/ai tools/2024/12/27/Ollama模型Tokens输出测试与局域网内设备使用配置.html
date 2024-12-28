@@ -20,8 +20,25 @@
 {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-12-27T00:00:00+01:00","datePublished":"2024-12-27T00:00:00+01:00","description":"本文介绍如何在局域网内通过手机、平板等设备访问运行在主机上的Ollama开源模型。","headline":"Ollama模型Tokens输出测试与局域网内设备使用配置","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html"},"url":"http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="ZWei" /><link rel="stylesheet" href="/assets/css/copy-button.css">
-</head>
-<body><!-- 网站头部区域 -->
+  
+   <!-- 添加 MathJax 支持，之前网页上数学公式不显示，现价这段代码后能够正常显示。 -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      TeX: {
+        equationNumbers: { autoNumber: "AMS" }
+      }
+    });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head><body><!-- 网站头部区域 -->
 <header class="site-header">
   <!-- wrapper类用于控制内容宽度和居中 -->
   <div class="wrapper">
@@ -177,7 +194,21 @@ ollama serve
 
 <h2 id="lm-studio-使用开源ai大模型">LM Studio 使用开源AI大模型</h2>
 
-<p>还可以通过LM Studio使用开源大模型，在LM Studio中使用方法比较简单，直接在发现页下载模型文件，模型标注MLX是为Apple Silicon的新的framework，在苹果芯片机器上运行比原生模型速度要快很多。</p>
+<p>LM Studio提供了便捷的开源大模型使用方式。在其发现页面可以直接下载和管理模型文件，支持多种主流开源模型。特别值得注意的是带有MLX标记的模型，这些模型使用了苹果公司专门为Apple Silicon开发的机器学习框架MLX进行优化。在M系列芯片的Mac设备上，MLX优化版本相比原生模型可提升2-3倍的推理速度。</p>
+
+<p>使用步骤：</p>
+<ol>
+  <li>下载并安装LM Studio</li>
+  <li>在Discover页面选择合适的模型（推荐选择MLX标记的版本）</li>
+  <li>下载完成后，点击Run可直接启动本地服务</li>
+  <li>默认服务地址为 http://localhost:1234</li>
+</ol>
+
+<p>MLX优化版性能参考：</p>
+<ul>
+  <li>MLX优化版Mistral 7B在M2芯片上可达到25-30 tokens/s</li>
+  <li>原生版本速度约为8-12 tokens/s</li>
+</ul>
 
   </div><a class="u-url" href="/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html" hidden></a>
 </article>

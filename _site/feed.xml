@@ -1,4 +1,141 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-12-27T22:16:08+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">ZWei</title><subtitle>专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。</subtitle><entry><title type="html">Ollama模型Tokens输出测试与局域网内设备使用配置</title><link href="http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html" rel="alternate" type="text/html" title="Ollama模型Tokens输出测试与局域网内设备使用配置" /><published>2024-12-27T00:00:00+01:00</published><updated>2024-12-27T00:00:00+01:00</updated><id>http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE</id><content type="html" xml:base="http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html"><![CDATA[<p>本文介绍如何在局域网内通过手机、平板等设备访问运行在主机上的Ollama开源模型。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-12-28T22:37:17+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">ZWei</title><subtitle>专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。</subtitle><entry><title type="html">Abinit变量acell</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell.html" rel="alternate" type="text/html" title="Abinit变量acell" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell.html"><![CDATA[<h1 id="理解abinit中的acell变量">理解ABINIT中的<code class="language-plaintext highlighter-rouge">acell</code>变量</h1>
+
+<p>在ABINIT软件中，<code class="language-plaintext highlighter-rouge">acell</code>是一个非常重要的变量，它用于定义晶格矢量的缩放比例。本文将解释<code class="language-plaintext highlighter-rouge">acell</code>的含义及其在计算中的作用。</p>
+
+<h2 id="什么是acell">什么是<code class="language-plaintext highlighter-rouge">acell</code>？</h2>
+
+<p><code class="language-plaintext highlighter-rouge">acell</code>是ABINIT中的一个实数型变量，具有三个维度（即<code class="language-plaintext highlighter-rouge">acell(3)</code>）。它用于指定无量纲的原始平移矢量（<code class="language-plaintext highlighter-rouge">rprim</code>）的缩放比例。简单来说，<code class="language-plaintext highlighter-rouge">acell</code>决定了晶格的基本矢量在空间中的实际长度。</p>
+
+<h2 id="acell的特性"><code class="language-plaintext highlighter-rouge">acell</code>的特性</h2>
+
+<ul>
+  <li><strong>EVOLVING</strong>: 该变量在计算过程中可能会发生变化。</li>
+  <li><strong>LENGTH</strong>: <code class="language-plaintext highlighter-rouge">acell</code>具有长度特性，默认单位为Bohr（1 Bohr = 0.5291772108 Å），但也可以指定为Å。</li>
+</ul>
+
+<h2 id="acell的默认值"><code class="language-plaintext highlighter-rouge">acell</code>的默认值</h2>
+
+<p><code class="language-plaintext highlighter-rouge">acell</code>的默认值为<code class="language-plaintext highlighter-rouge">3 * 1</code>，即三个方向上的缩放比例均为1。</p>
+
+<h2 id="acell的使用场景"><code class="language-plaintext highlighter-rouge">acell</code>的使用场景</h2>
+
+<p><code class="language-plaintext highlighter-rouge">acell</code>在ABINIT的测试和教程中非常常用。在所有的ABINIT测试中，<code class="language-plaintext highlighter-rouge">acell</code>被使用了1218次（共1245次测试），在教程中也被使用了147次（共159个教程）。</p>
+
+<h2 id="acell与其它变量的关系"><code class="language-plaintext highlighter-rouge">acell</code>与其它变量的关系</h2>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">rprim</code></strong>: <code class="language-plaintext highlighter-rouge">acell</code>用于缩放<code class="language-plaintext highlighter-rouge">rprim</code>，即原始平移矢量。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">scalecart</code></strong>: 如果你想缩放笛卡尔坐标，可以使用<code class="language-plaintext highlighter-rouge">scalecart</code>变量。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">%rprimd</code></strong>: <code class="language-plaintext highlighter-rouge">acell</code>与内部变量<code class="language-plaintext highlighter-rouge">%rprimd</code>相关联。</li>
+</ul>
+
+<h2 id="注意事项">注意事项</h2>
+
+<p>需要注意的是，<code class="language-plaintext highlighter-rouge">acell</code>并不是常规正交基矢量的长度，而是原始矢量的缩放因子。如果你需要缩放笛卡尔坐标，应使用<code class="language-plaintext highlighter-rouge">scalecart</code>变量。</p>
+
+<h2 id="总结">总结</h2>
+
+<p><code class="language-plaintext highlighter-rouge">acell</code>是ABINIT中用于定义晶格矢量缩放比例的关键变量。通过调整<code class="language-plaintext highlighter-rouge">acell</code>，用户可以控制晶格的基本矢量在空间中的实际长度，从而影响整个计算的结果。理解<code class="language-plaintext highlighter-rouge">acell</code>的含义及其与其它变量的关系，对于正确使用ABINIT进行材料模拟至关重要。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[理解ABINIT中的acell变量]]></summary></entry><entry><title type="html">Abinit变量ecut</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html" rel="alternate" type="text/html" title="Abinit变量ecut" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html"><![CDATA[<h1 id="能量截断-energy-cutoff-在平面波计算中的应用">能量截断 (Energy Cutoff) 在平面波计算中的应用</h1>
+
+<h2 id="概述">概述</h2>
+
+<p>在平面波计算中，能量截断 (<code class="language-plaintext highlighter-rouge">ecut</code>) 是一个关键参数，用于控制给定 k 点的平面波数量。平面波的动能必须低于 <code class="language-plaintext highlighter-rouge">ecut</code> 才能被包含在计算中。这个约束条件在倒易空间中表示为：</p>
+
+\[\frac{1}{2} \left( \frac{2\pi}{a} \right)^2 (k + G)^2 &lt; \text{ecut}\]
+
+<p>其中，( G ) 是倒易空间中的向量。所有位于以 k 点为中心的基球内的平面波都将被包含在基组中（除非定义了 <code class="language-plaintext highlighter-rouge">dillatmx</code>）。</p>
+
+<h2 id="参数特性">参数特性</h2>
+
+<ul>
+  <li><strong>变量类型</strong>: 实数</li>
+  <li><strong>维度</strong>: 标量</li>
+  <li><strong>默认值</strong>: 无</li>
+  <li><strong>单位</strong>: 默认单位为 Hartree (Ha)，也可以使用 Rydberg (Ry)、电子伏特 (eV) 或开尔文 (Kelvin)。1 Ha = 27.2113845 eV。</li>
+</ul>
+
+<h2 id="重要性">重要性</h2>
+
+<p><code class="language-plaintext highlighter-rouge">ecut</code> 是影响计算质量的单一参数。通常，<code class="language-plaintext highlighter-rouge">ecut</code> 越大，计算结果越收敛。在几何结构固定的情况下，由于问题的变分性质，总能量必须随着 <code class="language-plaintext highlighter-rouge">ecut</code> 的增加而降低。通常需要运行多个不同 <code class="language-plaintext highlighter-rouge">ecut</code> 的计算，以研究达到可靠结果所需的收敛性。</p>
+
+<h2 id="时间反转对称性">时间反转对称性</h2>
+
+<p>对于坐标由 0 或 ½ 构建的 k 点，已经实现了时间反转对称性，该对称性链接了倒易空间中波函数系数。如果激活了输入变量 <code class="language-plaintext highlighter-rouge">istwfk</code>（默认模式），则可以将显式处理的平面波数量 (<code class="language-plaintext highlighter-rouge">npw</code>) 减少一半。尽管如此，最终结果应与“完整”平面波集相同。</p>
+
+<h2 id="结论">结论</h2>
+
+<p><code class="language-plaintext highlighter-rouge">ecut</code> 是平面波计算中至关重要的参数，直接影响计算的精度和收敛性。通过合理设置 <code class="language-plaintext highlighter-rouge">ecut</code>，可以确保计算结果的可靠性和准确性。建议在实际计算中，通过多次试验不同的 <code class="language-plaintext highlighter-rouge">ecut</code> 值，以确定最佳的参数设置。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[能量截断 (Energy Cutoff) 在平面波计算中的应用]]></summary></entry><entry><title type="html">Abinit变量rprim</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim.html" rel="alternate" type="text/html" title="Abinit变量rprim" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim.html"><![CDATA[<h1 id="理解abinit中的rprim变量">理解ABINIT中的<code class="language-plaintext highlighter-rouge">rprim</code>变量</h1>
+
+<p>在ABINIT软件中，<code class="language-plaintext highlighter-rouge">rprim</code>是一个用于定义实空间原始平移矢量的关键变量。本文将解释<code class="language-plaintext highlighter-rouge">rprim</code>的含义、特性及其在计算中的作用。</p>
+
+<h2 id="什么是rprim">什么是<code class="language-plaintext highlighter-rouge">rprim</code>？</h2>
+
+<p><code class="language-plaintext highlighter-rouge">rprim</code>是ABINIT中的一个实数型变量，维度为<code class="language-plaintext highlighter-rouge">(3,3)</code>，即一个3x3的矩阵。它用于定义实空间中三个无量纲的原始平移矢量。这些矢量会被<code class="language-plaintext highlighter-rouge">acell</code>和<code class="language-plaintext highlighter-rouge">scalecart</code>变量缩放，最终得到实际的晶格矢量。</p>
+
+<h2 id="rprim的特性"><code class="language-plaintext highlighter-rouge">rprim</code>的特性</h2>
+
+<ul>
+  <li><strong>EVOLVING</strong>: 该变量在计算过程中可能会发生变化，但仅在<code class="language-plaintext highlighter-rouge">ionmov == 2</code>或<code class="language-plaintext highlighter-rouge">22</code>且<code class="language-plaintext highlighter-rouge">optcell/=0</code>时才会变化，否则它是固定的。</li>
+</ul>
+
+<h2 id="rprim的默认值"><code class="language-plaintext highlighter-rouge">rprim</code>的默认值</h2>
+
+<p><code class="language-plaintext highlighter-rouge">rprim</code>的默认值为单位矩阵：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> [1, 0, 0],  
+ [0, 1, 0],  
+ [0, 0, 1]
+</code></pre></div></div>
+<p>这意味着默认情况下，三个原始平移矢量是笛卡尔坐标系中的单位矢量。</p>
+
+<h2 id="rprim的使用场景"><code class="language-plaintext highlighter-rouge">rprim</code>的使用场景</h2>
+
+<p><code class="language-plaintext highlighter-rouge">rprim</code>在ABINIT的测试和教程中非常常用。在所有的ABINIT测试中，<code class="language-plaintext highlighter-rouge">rprim</code>被使用了1000次（共1245次测试），在教程中也被使用了130次（共159个教程）。</p>
+
+<h2 id="rprim与其它变量的关系"><code class="language-plaintext highlighter-rouge">rprim</code>与其它变量的关系</h2>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">acell</code></strong>: <code class="language-plaintext highlighter-rouge">rprim</code>定义的矢量会被<code class="language-plaintext highlighter-rouge">acell</code>缩放，以得到实际的长度。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">scalecart</code></strong>: <code class="language-plaintext highlighter-rouge">rprim</code>定义的矢量还会被<code class="language-plaintext highlighter-rouge">scalecart</code>沿笛卡尔坐标轴拉伸。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">%rprimd</code></strong>: 最终的实际晶格矢量存储在内部变量<code class="language-plaintext highlighter-rouge">%rprimd</code>中。</li>
+</ul>
+
+<h2 id="rprim的具体作用"><code class="language-plaintext highlighter-rouge">rprim</code>的具体作用</h2>
+
+<p><code class="language-plaintext highlighter-rouge">rprim</code>定义了三个原始平移矢量的方向，而<code class="language-plaintext highlighter-rouge">acell</code>和<code class="language-plaintext highlighter-rouge">scalecart</code>则分别用于缩放这些矢量的长度和方向。具体来说，实际晶格矢量的计算公式为：</p>
+
+\[\begin{align*}R_{1p}(i) &amp;= \text{scalecart}(i) \times \text{rprim}(i,1) \times \text{acell}(1) \\R_{2p}(i) &amp;= \text{scalecart}(i) \times \text{rprim}(i,2) \times \text{acell}(2) \\R_{3p}(i) &amp;= \text{scalecart}(i) \times \text{rprim}(i,3) \times \text{acell}(3)\end{align*}\]
+
+<p>其中，<code class="language-plaintext highlighter-rouge">i=1,2,3</code>分别对应x、y、z三个方向。</p>
+
+<h2 id="注意事项">注意事项</h2>
+
+<ol>
+  <li><strong>输入顺序</strong>: <code class="language-plaintext highlighter-rouge">rprim</code>的输入顺序是Fortran数组的顺序，即前三个数是第一个矢量的坐标，接下来三个是第二个矢量的坐标，最后三个是第三个矢量的坐标。</li>
+  <li><strong>混合积为正</strong>: <code class="language-plaintext highlighter-rouge">rprim</code>定义的三个矢量的混合积（即 \((R_1 \times R_2) \cdot R_3\)）必须为正数，否则需要交换一对矢量。</li>
+  <li><strong>替代变量</strong>: 对于六方晶格等特殊结构，可以使用<code class="language-plaintext highlighter-rouge">angdeg</code>变量来定义原始矢量的方向，以避免手动输入复杂的<code class="language-plaintext highlighter-rouge">rprim</code>值。</li>
+  <li><strong>常见错误</strong>: 初学者在使用<code class="language-plaintext highlighter-rouge">acell</code>和<code class="language-plaintext highlighter-rouge">scalecart</code>时容易混淆。例如，在定义体心四方晶格时，错误地使用<code class="language-plaintext highlighter-rouge">acell</code>会导致晶格矢量方向错误。</li>
+</ol>
+
+<h2 id="示例">示例</h2>
+
+<p>以下是一个体心四方晶格的正确定义方式：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rprim   1        0       0  
+        0        1       0  
+        1/2      1/2     1/2  
+scalecart  "a"  "a"  "c"  
+acell 3*1    ! 默认值
+</code></pre></div></div>
+<p>而以下方式是错误的：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rprim   1       0       0  
+        0       1       0  
+        1/2     1/2     1/2  
+acell  "a"  "a"  "c"    ! 错误  
+scalecart 3*1    ! 默认值
+</code></pre></div></div>
+
+<h2 id="总结">总结</h2>
+
+<p><code class="language-plaintext highlighter-rouge">rprim</code>是ABINIT中用于定义晶格原始平移矢量的关键变量。通过<code class="language-plaintext highlighter-rouge">rprim</code>、<code class="language-plaintext highlighter-rouge">acell</code>和<code class="language-plaintext highlighter-rouge">scalecart</code>的配合，用户可以灵活地定义晶格的结构。理解<code class="language-plaintext highlighter-rouge">rprim</code>的含义及其与其它变量的关系，对于正确使用ABINIT进行材料模拟至关重要。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[理解ABINIT中的rprim变量]]></summary></entry><entry><title type="html">Ollama模型Tokens输出测试与局域网内设备使用配置</title><link href="http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html" rel="alternate" type="text/html" title="Ollama模型Tokens输出测试与局域网内设备使用配置" /><published>2024-12-27T00:00:00+01:00</published><updated>2024-12-27T00:00:00+01:00</updated><id>http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE</id><content type="html" xml:base="http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html"><![CDATA[<p>本文介绍如何在局域网内通过手机、平板等设备访问运行在主机上的Ollama开源模型。</p>
 
 <h2 id="不同开源模型输出的tokens速度测试">不同开源模型输出的tokens速度测试</h2>
 
@@ -118,7 +255,21 @@ ollama serve
 
 <h2 id="lm-studio-使用开源ai大模型">LM Studio 使用开源AI大模型</h2>
 
-<p>还可以通过LM Studio使用开源大模型，在LM Studio中使用方法比较简单，直接在发现页下载模型文件，模型标注MLX是为Apple Silicon的新的framework，在苹果芯片机器上运行比原生模型速度要快很多。</p>]]></content><author><name></name></author><category term="AI tools" /><summary type="html"><![CDATA[本文介绍如何在局域网内通过手机、平板等设备访问运行在主机上的Ollama开源模型。]]></summary></entry><entry><title type="html">AI工具在学术研究中应用</title><link href="http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8.html" rel="alternate" type="text/html" title="AI工具在学术研究中应用" /><published>2024-12-26T00:00:00+01:00</published><updated>2024-12-26T00:00:00+01:00</updated><id>http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8</id><content type="html" xml:base="http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8.html"><![CDATA[<p>自ChatGPT发布以来，人工智能辅助工具在学术研究领域取得了显著突破，为科研工作提供了多维度的支持。本文将系统性地探讨主流AI模型在学术研究中的应用场景，包括代码开发、文献分析、学术写作、文本翻译以及文本重述等方面。</p>
+<p>LM Studio提供了便捷的开源大模型使用方式。在其发现页面可以直接下载和管理模型文件，支持多种主流开源模型。特别值得注意的是带有MLX标记的模型，这些模型使用了苹果公司专门为Apple Silicon开发的机器学习框架MLX进行优化。在M系列芯片的Mac设备上，MLX优化版本相比原生模型可提升2-3倍的推理速度。</p>
+
+<p>使用步骤：</p>
+<ol>
+  <li>下载并安装LM Studio</li>
+  <li>在Discover页面选择合适的模型（推荐选择MLX标记的版本）</li>
+  <li>下载完成后，点击Run可直接启动本地服务</li>
+  <li>默认服务地址为 http://localhost:1234</li>
+</ol>
+
+<p>MLX优化版性能参考：</p>
+<ul>
+  <li>MLX优化版Mistral 7B在M2芯片上可达到25-30 tokens/s</li>
+  <li>原生版本速度约为8-12 tokens/s</li>
+</ul>]]></content><author><name></name></author><category term="AI tools" /><summary type="html"><![CDATA[本文介绍如何在局域网内通过手机、平板等设备访问运行在主机上的Ollama开源模型。]]></summary></entry><entry><title type="html">AI工具在学术研究中应用</title><link href="http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8.html" rel="alternate" type="text/html" title="AI工具在学术研究中应用" /><published>2024-12-26T00:00:00+01:00</published><updated>2024-12-26T00:00:00+01:00</updated><id>http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8</id><content type="html" xml:base="http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8.html"><![CDATA[<p>自ChatGPT发布以来，人工智能辅助工具在学术研究领域取得了显著突破，为科研工作提供了多维度的支持。本文将系统性地探讨主流AI模型在学术研究中的应用场景，包括代码开发、文献分析、学术写作、文本翻译以及文本重述等方面。</p>
 
 <p>主流大语言模型(LLM)评析：</p>
 <ul>

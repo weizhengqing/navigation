@@ -19,8 +19,25 @@
 {"@context":"https://schema.org","@type":"WebPage","description":"专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。","headline":"项目","url":"http://localhost:4000/projects/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="ZWei" /><link rel="stylesheet" href="/assets/css/copy-button.css">
-</head>
-<body><!-- 网站头部区域 -->
+  
+   <!-- 添加 MathJax 支持，之前网页上数学公式不显示，现价这段代码后能够正常显示。 -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      TeX: {
+        equationNumbers: { autoNumber: "AMS" }
+      }
+    });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head><body><!-- 网站头部区域 -->
 <header class="site-header">
   <!-- wrapper类用于控制内容宽度和居中 -->
   <div class="wrapper">
@@ -53,55 +70,7 @@
   </header>
 
   <div class="post-content">
-    <h1 id="个人项目作品集">个人项目作品集</h1>
-
-<h2 id="项目一xxx项目">项目一：XXX项目</h2>
-<ul>
-  <li><strong>技术栈</strong>：React, Node.js, MongoDB</li>
-  <li><strong>项目描述</strong>：这是一个XXX项目，主要实现了XXX功能…</li>
-  <li><strong>主要功能</strong>：
-    <ul>
-      <li>功能点1</li>
-      <li>功能点2</li>
-      <li>功能点3</li>
-    </ul>
-  </li>
-  <li><strong>项目链接</strong>：<a href="https://github.com/your-username/project1">GitHub</a></li>
-  <li><strong>在线演示</strong>：<a href="https://your-demo-link.com">Demo</a></li>
-</ul>
-
-<hr />
-
-<h2 id="项目二xxx系统">项目二：XXX系统</h2>
-<ul>
-  <li><strong>开发时间</strong>：2023.10 - 2024.01</li>
-  <li><strong>技术栈</strong>：Vue.js, Spring Boot, MySQL</li>
-  <li><strong>项目描述</strong>：一个XXX系统，解决了XXX问题…</li>
-  <li><strong>核心特点</strong>：
-    <ul>
-      <li>特点1</li>
-      <li>特点2</li>
-      <li>特点3</li>
-    </ul>
-  </li>
-  <li><strong>项目链接</strong>：<a href="https://github.com/your-username/project2">GitHub</a></li>
-</ul>
-
-<hr />
-
-<h2 id="开源贡献">开源贡献</h2>
-
-<h3 id="项目一xxx框架">项目一：XXX框架</h3>
-<ul>
-  <li>贡献内容：修复了XXX bug，优化了XXX功能</li>
-  <li>PR链接：<a href="https://github.com/some-org/some-repo/pull/123">Pull Request #123</a></li>
-</ul>
-
-<h3 id="项目二xxx工具">项目二：XXX工具</h3>
-<ul>
-  <li>贡献内容：新增XXX特性</li>
-  <li>PR链接：<a href="https://github.com/some-org/some-repo/pull/456">Pull Request #456</a></li>
-</ul>
+    <p>正在建设中…</p>
 
   </div>
 

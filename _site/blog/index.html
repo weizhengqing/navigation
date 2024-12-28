@@ -19,8 +19,25 @@
 {"@context":"https://schema.org","@type":"WebPage","description":"专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。","headline":"博客","url":"http://localhost:4000/blog/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="ZWei" /><link rel="stylesheet" href="/assets/css/copy-button.css">
-</head>
-<body><!-- 网站头部区域 -->
+  
+   <!-- 添加 MathJax 支持，之前网页上数学公式不显示，现价这段代码后能够正常显示。 -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      TeX: {
+        equationNumbers: { autoNumber: "AMS" }
+      }
+    });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head><body><!-- 网站头部区域 -->
 <header class="site-header">
   <!-- wrapper类用于控制内容宽度和居中 -->
   <div class="wrapper">
@@ -54,6 +71,20 @@
 
   <div class="post-content">
     
+<h2 id="abinit-variables">ABINIT variables</h2>
+
+<ul>
+  <li>
+    <p>2024-12-28 » <a href="/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim.html">Abinit变量rprim</a></p>
+  </li>
+  <li>
+    <p>2024-12-28 » <a href="/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html">Abinit变量ecut</a></p>
+  </li>
+  <li>
+    <p>2024-12-28 » <a href="/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell.html">Abinit变量acell</a></p>
+  </li>
+</ul>
+
 <h2 id="ai-tools">AI tools</h2>
 
 <ul>

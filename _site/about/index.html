@@ -19,8 +19,25 @@
 {"@context":"https://schema.org","@type":"WebSite","description":"专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。","headline":"简介","name":"ZWei","url":"http://localhost:4000/about/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="ZWei" /><link rel="stylesheet" href="/assets/css/copy-button.css">
-</head>
-<body><!-- 网站头部区域 -->
+  
+   <!-- 添加 MathJax 支持，之前网页上数学公式不显示，现价这段代码后能够正常显示。 -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      TeX: {
+        equationNumbers: { autoNumber: "AMS" }
+      }
+    });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head><body><!-- 网站头部区域 -->
 <header class="site-header">
   <!-- wrapper类用于控制内容宽度和居中 -->
   <div class="wrapper">
@@ -53,22 +70,7 @@
   </header>
 
   <div class="post-content">
-    <p>专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。</p>
-
-<!--
-修改记录：
-日期：2024-01-02
-作者：Claude
-修改原因：
-1. 将文件从根目录移动到 _pages 目录
-2. 将后缀从 .markdown 改为 .md
-3. 保持与其他页面组织结构一致
-修改内容：
-1. 文件路径改为 _pages/about.md
-2. 保留原有的 front matter
-3. 简化内容为中文描述
-目的：统一页面管理，优化目录结构
--->
+    <p>这是一个致力于理论计算、材料科学与机器学习交叉领域的学术博客。</p>
 
   </div>
 
