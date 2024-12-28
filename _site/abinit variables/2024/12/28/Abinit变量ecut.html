@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.4" />
 <meta property="og:title" content="Abinit变量ecut" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="能量截断 (Energy Cutoff) 在平面波计算中的应用" />
-<meta property="og:description" content="能量截断 (Energy Cutoff) 在平面波计算中的应用" />
+<meta name="description" content="理解ABINIT中的能量截断(Energy Cutoff)ecut变量 概述" />
+<meta property="og:description" content="理解ABINIT中的能量截断(Energy Cutoff)ecut变量 概述" />
 <link rel="canonical" href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html" />
 <meta property="og:url" content="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html" />
 <meta property="og:site_name" content="ZWei" />
@@ -17,26 +17,26 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Abinit变量ecut" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-12-28T00:00:00+01:00","datePublished":"2024-12-28T00:00:00+01:00","description":"能量截断 (Energy Cutoff) 在平面波计算中的应用","headline":"Abinit变量ecut","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html"},"url":"http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-12-28T00:00:00+01:00","datePublished":"2024-12-28T00:00:00+01:00","description":"理解ABINIT中的能量截断(Energy Cutoff)ecut变量 概述","headline":"Abinit变量ecut","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html"},"url":"http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="ZWei" /><link rel="stylesheet" href="/assets/css/copy-button.css">
   
-   <!-- 添加 MathJax 支持，之前网页上数学公式不显示，现价这段代码后能够正常显示。 -->
+   <!-- 添加 MathJax 支持，之前网页上数学公式不显示，现这段代码后能够正常显示。 -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
         displayMath: [['$$','$$'], ['\\[','\\]']],
-        processEscapes: true,
-        processEnvironments: true
+        processEscapes: true
       },
       TeX: {
-        equationNumbers: { autoNumber: "AMS" }
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
       }
     });
   </script>
+   <!-- MathJax.js本来是个网页，我下载到了本地，然后修改了路径，现在可以正常显示了。 -->
   <script type="text/javascript" async
-    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
 </head><body><!-- 网站头部区域 -->
 <header class="site-header">
@@ -74,8 +74,7 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <h1 id="能量截断-energy-cutoff-在平面波计算中的应用">能量截断 (Energy Cutoff) 在平面波计算中的应用</h1>
-
+    <h1 id="理解abinit中的能量截断energy-cutoffecut变量">理解ABINIT中的能量截断(Energy Cutoff)<code class="language-plaintext highlighter-rouge">ecut</code>变量</h1>
 <h2 id="概述">概述</h2>
 
 <p>在平面波计算中，能量截断 (<code class="language-plaintext highlighter-rouge">ecut</code>) 是一个关键参数，用于控制给定 k 点的平面波数量。平面波的动能必须低于 <code class="language-plaintext highlighter-rouge">ecut</code> 才能被包含在计算中。这个约束条件在倒易空间中表示为：</p>

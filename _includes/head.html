@@ -10,21 +10,21 @@
   {%- endif -%}
   <link rel="stylesheet" href="{{ '/assets/css/copy-button.css' | relative_url }}">
   
-   <!-- 添加 MathJax 支持，之前网页上数学公式不显示，现价这段代码后能够正常显示。 -->
+   <!-- 添加 MathJax 支持，之前网页上数学公式不显示，现这段代码后能够正常显示。 -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
         displayMath: [['$$','$$'], ['\\[','\\]']],
-        processEscapes: true,
-        processEnvironments: true
+        processEscapes: true
       },
       TeX: {
-        equationNumbers: { autoNumber: "AMS" }
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
       }
     });
   </script>
+   <!-- MathJax.js本来是个网页，我下载到了本地，然后修改了路径，现在可以正常显示了。 -->
   <script type="text/javascript" async
-    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
 </head>

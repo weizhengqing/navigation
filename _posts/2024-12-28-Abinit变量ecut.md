@@ -4,8 +4,7 @@ title: "Abinit变量ecut"
 date: 2024-12-28
 category: ABINIT variables
 ---
-# 能量截断 (Energy Cutoff) 在平面波计算中的应用
-
+# 理解ABINIT中的能量截断(Energy Cutoff)`ecut`变量
 ## 概述
 
 在平面波计算中，能量截断 (`ecut`) 是一个关键参数，用于控制给定 k 点的平面波数量。平面波的动能必须低于 `ecut` 才能被包含在计算中。这个约束条件在倒易空间中表示为：
