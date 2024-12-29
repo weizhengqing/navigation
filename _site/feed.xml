@@ -1,4 +1,91 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-12-29T01:42:54+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">ZWei</title><subtitle>专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。</subtitle><entry><title type="html">量子力学的历史背景</title><link href="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%8E%86%E5%8F%B2%E8%83%8C%E6%99%AF.html" rel="alternate" type="text/html" title="量子力学的历史背景" /><published>2024-12-29T00:00:00+01:00</published><updated>2024-12-29T00:00:00+01:00</updated><id>http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%8E%86%E5%8F%B2%E8%83%8C%E6%99%AF</id><content type="html" xml:base="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%8E%86%E5%8F%B2%E8%83%8C%E6%99%AF.html"><![CDATA[<p>量子力学的发展始于1900年，当时普朗克研究了加热固体发出的光。为了理解这一发展，我们首先需要讨论光的性质。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-12-29T17:20:14+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">ZWei</title><subtitle>专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。</subtitle><entry><title type="html">粒子在一维盒子中</title><link href="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E7%B2%92%E5%AD%90%E5%9C%A8%E4%B8%80%E7%BB%B4%E7%9B%92%E5%AD%90%E4%B8%AD.html" rel="alternate" type="text/html" title="粒子在一维盒子中" /><published>2024-12-29T00:00:00+01:00</published><updated>2024-12-29T00:00:00+01:00</updated><id>http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E7%B2%92%E5%AD%90%E5%9C%A8%E4%B8%80%E7%BB%B4%E7%9B%92%E5%AD%90%E4%B8%AD</id><content type="html" xml:base="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E7%B2%92%E5%AD%90%E5%9C%A8%E4%B8%80%E7%BB%B4%E7%9B%92%E5%AD%90%E4%B8%AD.html"><![CDATA[<p>本节将求解一维盒子中粒子的时间无关薛定谔方程。这里的“一维盒子”指的是粒子在x轴上受到一个势能函数的作用，该势能在长度为l的线段外处处为无穷大，而在线段内势能为零。虽然这种系统在物理上可能显得不现实，但该模型可以成功地应用于某些共轭分子；参见问题2.17。我们将坐标原点放在线段的左端（图2.1）。</p>
+
+<h2 id="区域划分">区域划分</h2>
+
+<p>我们需要考虑三个区域。在区域I和III中，势能V等于无穷大，时间无关薛定谔方程（1.19）为：</p>
+
+\[-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} = (E - \infty)\psi\]
+
+<p>忽略E与无穷大相比，我们得到：</p>
+
+\[\frac{d^2\psi}{dx^2} = \infty\psi, \quad \psi = \frac{1}{\infty}\frac{d^2\psi}{dx^2}\]
+
+<p>因此，我们得出结论，盒子外的ψ为零：</p>
+
+\[\psi_I = 0, \quad \psi_{III} = 0 \tag{2.9}\]
+
+<p>对于区域II，x在零到l之间，势能V为零，薛定谔方程（1.19）变为：</p>
+
+\[\frac{d^2\psi_{II}}{dx^2} + \frac{2m}{\hbar^2}E\psi_{II} = 0 \tag{2.10}\]
+
+<p>其中m是粒子的质量，E是粒子的能量。我们认识到（2.10）是一个常系数的线性齐次二阶微分方程。辅助方程（2.7）给出：</p>
+
+\[\begin{align}
+&amp; s^2 + 2mE\hbar^{-2} = 0 \\
+&amp; s = \pm (-2mE)^{1/2}\hbar^{-1} \tag{2.11} \\
+&amp; s = \pm i(2mE)^{1/2}/\hbar \tag{2.12}
+\end{align}\]
+
+<p>其中i = √(-1)。使用（2.8），我们得到：</p>
+
+\[\psi_{II} = c_1e^{i(2mE)^{1/2}x/\hbar} + c_2e^{-i(2mE)^{1/2}x/\hbar} \tag{2.13}\]
+
+<p>暂时令：</p>
+
+<p>\(\theta \equiv (2mE)^{1/2}x/\hbar\)
+\(\psi_{II} = c_1e^{i\theta} + c_2e^{-i\theta}\)</p>
+
+<p>我们有 $e^{i\theta} = \cos \theta + i \sin \theta$ [方程（1.28）] 和 $e^{-i\theta} = \cos(-\theta) + i \sin(-\theta) = \cos \theta - i \sin \theta$，因为：</p>
+
+\[\cos(-\theta) = \cos \theta \quad \text{且} \quad \sin(-\theta) = -\sin \theta \tag{2.14}\]
+
+<p>因此，</p>
+
+\[\begin{align}
+\psi_{\Pi} &amp;= c_{1}\cos\theta + ic_{1}\sin\theta + c_{2}\cos\theta - ic_{2}\sin\theta \\
+&amp;= (c_{1} + c_{2})\cos\theta + (ic_{1} - ic_{2})\sin\theta \\
+&amp;= A\cos\theta + B\sin\theta
+\end{align}\]
+
+<p>其中 $A$ 和 $B$ 是新的任意常数。因此，</p>
+
+\[\psi_{\Pi} = A\cos[\hbar^{-1}(2mE)^{1/2}x]\,+\,B\sin[\hbar^{-1}(2mE)^{1/2}x] \tag{2.15}\]
+
+<p>现在我们通过应用边界条件来找到 $A$ 和 $B$。假设波函数是连续的似乎是合理的；也就是说，它不会在值上发生突然跳跃（见图3.4）。如果 $\psi$ 在点 $x = 0$ 处连续，那么 $\psi_I$ 和 $\psi_{II}$ 必须在 $x = 0$ 处趋近于相同的值：</p>
+
+\[\begin{align}
+\lim_{x \to 0} \psi_I &amp;= \lim_{x \to 0} \psi_{II} \\
+0 &amp;= \lim_{x \to 0} \{A \cos [\hbar^{-1}(2mE)^{1/2}x] + B \sin [\hbar^{-1}(2mE)^{1/2}x]\} \\
+0 &amp;= A
+\end{align}\]
+
+<p>因为</p>
+
+\[\sin 0 = 0 \quad \text{且} \quad \cos 0 = 1 \tag{2.16}\]
+
+<p>当 $A = 0$ 时，方程 (2.15) 变为</p>
+
+\[\psi_{II} = B \sin [(2\pi/h)(2mE)^{1/2}x] \tag{2.17}\]
+
+<p>在 $x = l$ 处应用连续性条件，我们得到</p>
+
+\[B \sin [(2\pi/h)(2mE)^{1/2}l] = 0  \tag{2.18}\]
+
+<p>$B$ 不能为零，因为这将使波函数在所有地方都为零——我们将得到一个空盒子。因此，</p>
+
+\[\sin [(2\pi/h)(2mE)^{1/2}l] = 0\]
+
+<p>正弦函数的零点出现在 $0, \pm \pi, \pm 2\pi, \pm 3\pi, \ldots = \pm n\pi$。因此，</p>
+
+\[(2\pi/h)(2mE)^{1/2}l = \pm n\pi  \tag{2.19}\]
+
+<p>值 $n = 0$ 是一个特殊情况。从 (2.19) 中，$n = 0$ 对应于 $E = 0$。对于 $E = 0$，辅助方程的根 (2.12) 相等，且 (2.13) 不是薛定谔方程的完整解。为了找到完整的解，我们回到 (2.10)，对于 $E = 0$，它读作 $d^2 \psi_{II}/dx^2 = 0$。积分得到 $d \psi_{II}/dx = c$ 和 $\psi_{II} = cx + d$，其中 $c$ 和 $d$ 是常数。边界条件 $\psi_{II} = 0$ 在 $x = 0$ 处给出 $d = 0$，而在 $x = l$ 处的条件则给出 $c = 0$。因此，$\psi_{II} = 0$ 对于 $E = 0$，所以 $E = 0$ 不是一个允许的能量值。因此，$n = 0$ 是不允许的。</p>
+
+<p>解 (2.19) 得到 $E$，我们有</p>
+
+\[E = \frac{n^2 h^2}{8ml^2} \quad n = 1, 2, 3, \ldots \tag{2.20}\]
+
+<p>只有能量值 (2.20) 允许 $\psi$ 满足在 $x = l$ 处的连续性边界条件。边界条件的应用迫使我们得出结论，能量值是量子化的（图2.2）。这与经典结果形成鲜明对比，经典结果认为盒子中的粒子可以具有任何非负能量。注意，粒子的能量有一个大于零的最小值。最低能量的状态称为基态。能量高于基态能量的状态称为激发态。（在经典力学中，盒子中粒子的最低可能能量为零。经典粒子在盒子内静止不动，动能为零，势能为零。）</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[本节将求解一维盒子中粒子的时间无关薛定谔方程。这里的“一维盒子”指的是粒子在x轴上受到一个势能函数的作用，该势能在长度为l的线段外处处为无穷大，而在线段内势能为零。虽然这种系统在物理上可能显得不现实，但该模型可以成功地应用于某些共轭分子；参见问题2.17。我们将坐标原点放在线段的左端（图2.1）。]]></summary></entry><entry><title type="html">量子力学的历史背景</title><link href="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%8E%86%E5%8F%B2%E8%83%8C%E6%99%AF.html" rel="alternate" type="text/html" title="量子力学的历史背景" /><published>2024-12-29T00:00:00+01:00</published><updated>2024-12-29T00:00:00+01:00</updated><id>http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%8E%86%E5%8F%B2%E8%83%8C%E6%99%AF</id><content type="html" xml:base="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%8E%86%E5%8F%B2%E8%83%8C%E6%99%AF.html"><![CDATA[<p>量子力学的发展始于1900年，当时普朗克研究了加热固体发出的光。为了理解这一发展，我们首先需要讨论光的性质。</p>
 
 <h2 id="光的波动性">光的波动性</h2>
 
@@ -61,7 +148,68 @@
 <hr />
 <p>本文参考自：</p>
 
-<p>Levine, Ira N. “Quantum Chemistry, 58.” PHI Learning Pri. Ltd. Delhi (2013): 461-462.</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[量子力学的发展始于1900年，当时普朗克研究了加热固体发出的光。为了理解这一发展，我们首先需要讨论光的性质。]]></summary></entry><entry><title type="html">Abinit变量rprim</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim.html" rel="alternate" type="text/html" title="Abinit变量rprim" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim.html"><![CDATA[<h1 id="理解abinit中的rprim变量">理解ABINIT中的<code class="language-plaintext highlighter-rouge">rprim</code>变量</h1>
+<p>Levine, Ira N. “Quantum Chemistry, 58.” PHI Learning Pri. Ltd. Delhi (2013): 461-462.</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[量子力学的发展始于1900年，当时普朗克研究了加热固体发出的光。为了理解这一发展，我们首先需要讨论光的性质。]]></summary></entry><entry><title type="html">量子力学中的微分方程</title><link href="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E4%B8%AD%E7%9A%84%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B.html" rel="alternate" type="text/html" title="量子力学中的微分方程" /><published>2024-12-29T00:00:00+01:00</published><updated>2024-12-29T00:00:00+01:00</updated><id>http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E4%B8%AD%E7%9A%84%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B</id><content type="html" xml:base="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E4%B8%AD%E7%9A%84%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B.html"><![CDATA[<p>在量子力学中，研究一个粒子在一维系统中的稳态波函数和能级是通过求解时间无关的薛定谔方程（1.19）来实现的。在本章中，我们将对一个非常简单的系统——一维盒子中的粒子（第2.2节）——求解时间无关的薛定谔方程。由于薛定谔方程是一个微分方程，我们首先讨论微分方程。</p>
+
+<h2 id="微分方程">微分方程</h2>
+
+<p>本节仅讨论常微分方程，即只有一个自变量的微分方程。[偏微分方程则有多个自变量。例如，时间相关的薛定谔方程（1.16）中，$t$ 和 $x$ 是自变量。] 常微分方程是涉及自变量 $x$、因变量 $y(x)$ 以及 $y$ 的一阶、二阶、……、$n$ 阶导数（$y’,y’’,\ldots,y^{(n)}$）的关系式。例如：</p>
+
+\[y'' + 2x(y')^2 + y^2 \sin x = 3e^x \tag{2.1}\]
+
+<p>微分方程的阶数是方程中最高导数的阶数。因此，（2.1）式是一个三阶方程。</p>
+
+<p>一种特殊的微分方程是线性微分方程，其形式为：</p>
+
+\[A_n(x)y^{(n)} + A_{n-1}(x)y^{(n-1)} + \cdots + A_1(x)y' + A_0(x)y = g(x) \tag{2.2}\]
+
+<p>其中 $A$ 和 $g$（其中一些可能为零）仅是 $x$ 的函数。在 $n$ 阶线性微分方程（2.2）中，$y$ 及其导数以一次幂出现。不能写成（2.2）形式的微分方程是非线性的。如果（2.2）中的 $g(x) = 0$，则线性微分方程是齐次的；否则是非齐次的。一维薛定谔方程（1.19）是一个线性齐次二阶微分方程。</p>
+
+<p>通过除以 $y’’$ 的系数，我们可以将每个线性齐次二阶微分方程写成以下形式：</p>
+
+\[y'' + P(x)y' + Q(x)y = 0 \tag{2.3}\]
+
+<p>假设 $y_1$ 和 $y_2$ 是两个独立的函数，每个都满足（2.3）。这里的独立意味着 $y_2$ 不是 $y_1$ 的简单倍数。那么线性齐次微分方程（2.3）的通解为：</p>
+
+\[y = c_1y_1 + c_2y_2 \tag{2.4}\]
+
+<h2 id="微分方程的通解与常系数线性齐次方程">微分方程的通解与常系数线性齐次方程</h2>
+
+<p>在求解微分方程时，我们经常需要找到方程的通解。通解通常包含一些任意常数，这些常数可以通过边界条件来确定。边界条件是指在某些点上指定 $y$ 或其导数的值。例如，如果 $y$ 表示一根固定在两点的振动弦的位移，我们知道在这两点上 $y$ 必须为零。</p>
+
+<p>对于一个线性齐次二阶微分方程，如果 $y_1$ 和 $y_2$ 是两个独立的解，那么方程的通解可以表示为：</p>
+
+\[y = c_1 y_1 + c_2 y_2 \tag{2.4}\]
+
+<p>其中 $c_1$ 和 $c_2$ 是任意常数。通过将（2.4）代入方程（2.3）的左边，可以验证这一点：</p>
+
+\[\begin{align}
+c_1 y_1'' + c_2 y_2'' &amp; + P(x) c_1 y_1' + P(x) c_2 y_2'  \\
+&amp; + Q(x) c_1 y_1 + Q(x) c_2 y_2 = c_1 [y_1'' + P(x) y_1' + Q(x) y_1] \\
+&amp; + c_2 [y_2'' + P(x) y_2' + Q(x) y_2] = c_1 \cdot 0 + c_2 \cdot 0 = 0 \tag{2.5}
+\end{align}\]
+
+<p>这里利用了 $y_1$ 和 $y_2$ 满足方程（2.3）的事实。</p>
+
+<h2 id="常系数线性齐次方程">常系数线性齐次方程</h2>
+
+<p>一个重要的特殊情况是常系数的线性齐次二阶微分方程：</p>
+
+\[y'' + p y' + q y = 0 \tag{2.6}\]
+
+<p>其中 $p$ 和 $q$ 是常数。为了求解（2.6），我们假设解的形式为 $y = e^{sx}$。指数函数在求导时会重复自身，因此是一个合适的选择。将 $y = e^{sx}$ 代入（2.6）得到：</p>
+
+<p>\(s^2 e^{sx} + p s e^{sx} + q e^{sx} = 0\)
+\(s^2 + p s + q = 0 \tag{2.7}\)</p>
+
+<p>方程（2.7）称为辅助方程。它是一个二次方程，有两个根 $s_1$ 和 $s_2$。如果 $s_1$ 和 $s_2$ 不相等，它们将给出方程（2.6）的两个独立解。因此，方程（2.6）的通解为：</p>
+
+\[y = c_1 e^{s_1 x} + c_2 e^{s_2 x} \tag{2.8}\]
+
+<p>例如，对于方程 $y’’ + 6y’ - 7y = 0$，辅助方程是 $s^2 + 6s - 7 = 0$。使用求根公式得到 $s_1 = 1$ 和 $s_2 = -7$，因此通解为 $c_1 e^x + c_2 e^{-7x}$。</p>
+
+<hr />
+<p>本文参考自：
+Levine, Ira N. “Quantum Chemistry, 58.” PHI Learning Pri. Ltd. Delhi (2013): 461-462.</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[在量子力学中，研究一个粒子在一维系统中的稳态波函数和能级是通过求解时间无关的薛定谔方程（1.19）来实现的。在本章中，我们将对一个非常简单的系统——一维盒子中的粒子（第2.2节）——求解时间无关的薛定谔方程。由于薛定谔方程是一个微分方程，我们首先讨论微分方程。]]></summary></entry><entry><title type="html">Abinit变量rprim</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim.html" rel="alternate" type="text/html" title="Abinit变量rprim" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim.html"><![CDATA[<h1 id="理解abinit中的rprim变量">理解ABINIT中的<code class="language-plaintext highlighter-rouge">rprim</code>变量</h1>
 
 <p>在ABINIT软件中，<code class="language-plaintext highlighter-rouge">rprim</code>是一个用于定义实空间原始平移矢量的关键变量。本文将解释<code class="language-plaintext highlighter-rouge">rprim</code>的含义、特性及其在计算中的作用。</p>
 
@@ -253,7 +401,35 @@ E = \langle\psi_{1}|\hat{H}_{0}|\psi_{1}\rangle\langle\psi_{2}|\psi_{2} \rangle+
 <hr />
 <p>本文参考自：</p>
 
-<p>[1] Giustino, Feliciano. Materials modelling using density functional theory: properties and predictions. Oxford University Press, 2014.</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[我们将详细介绍Hartree-Fock方程的推导过程。为了使形式尽可能简单，我们考虑两个电子的情况，并且暂时忽略自旋。在最后，我们将指出如何将以下推导推广到任意数量且带有自旋自由度的电子。]]></summary></entry><entry><title type="html">Abinit变量acell</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell.html" rel="alternate" type="text/html" title="Abinit变量acell" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell.html"><![CDATA[<h1 id="理解abinit中的acell变量">理解ABINIT中的<code class="language-plaintext highlighter-rouge">acell</code>变量</h1>
+<p>[1] Giustino, Feliciano. Materials modelling using density functional theory: properties and predictions. Oxford University Press, 2014.</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[我们将详细介绍Hartree-Fock方程的推导过程。为了使形式尽可能简单，我们考虑两个电子的情况，并且暂时忽略自旋。在最后，我们将指出如何将以下推导推广到任意数量且带有自旋自由度的电子。]]></summary></entry><entry><title type="html">Abinit变量ecut</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html" rel="alternate" type="text/html" title="Abinit变量ecut" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html"><![CDATA[<h1 id="理解abinit中的能量截断energy-cutoffecut变量">理解ABINIT中的能量截断(Energy Cutoff)<code class="language-plaintext highlighter-rouge">ecut</code>变量</h1>
+<h2 id="概述">概述</h2>
+
+<p>在平面波计算中，能量截断 (<code class="language-plaintext highlighter-rouge">ecut</code>) 是一个关键参数，用于控制给定 k 点的平面波数量。平面波的动能必须低于 <code class="language-plaintext highlighter-rouge">ecut</code> 才能被包含在计算中。这个约束条件在倒易空间中表示为：</p>
+
+\[\frac{1}{2} \left( \frac{2\pi}{a} \right)^2 (k + G)^2 &lt; \text{ecut}\]
+
+<p>其中，( G ) 是倒易空间中的向量。所有位于以 k 点为中心的基球内的平面波都将被包含在基组中（除非定义了 <code class="language-plaintext highlighter-rouge">dillatmx</code>）。</p>
+
+<h2 id="参数特性">参数特性</h2>
+
+<ul>
+  <li><strong>变量类型</strong>: 实数</li>
+  <li><strong>维度</strong>: 标量</li>
+  <li><strong>默认值</strong>: 无</li>
+  <li><strong>单位</strong>: 默认单位为 Hartree (Ha)，也可以使用 Rydberg (Ry)、电子伏特 (eV) 或开尔文 (Kelvin)。1 Ha = 27.2113845 eV。</li>
+</ul>
+
+<h2 id="重要性">重要性</h2>
+
+<p><code class="language-plaintext highlighter-rouge">ecut</code> 是影响计算质量的单一参数。通常，<code class="language-plaintext highlighter-rouge">ecut</code> 越大，计算结果越收敛。在几何结构固定的情况下，由于问题的变分性质，总能量必须随着 <code class="language-plaintext highlighter-rouge">ecut</code> 的增加而降低。通常需要运行多个不同 <code class="language-plaintext highlighter-rouge">ecut</code> 的计算，以研究达到可靠结果所需的收敛性。</p>
+
+<h2 id="时间反转对称性">时间反转对称性</h2>
+
+<p>对于坐标由 0 或 ½ 构建的 k 点，已经实现了时间反转对称性，该对称性链接了倒易空间中波函数系数。如果激活了输入变量 <code class="language-plaintext highlighter-rouge">istwfk</code>（默认模式），则可以将显式处理的平面波数量 (<code class="language-plaintext highlighter-rouge">npw</code>) 减少一半。尽管如此，最终结果应与“完整”平面波集相同。</p>
+
+<h2 id="结论">结论</h2>
+
+<p><code class="language-plaintext highlighter-rouge">ecut</code> 是平面波计算中至关重要的参数，直接影响计算的精度和收敛性。通过合理设置 <code class="language-plaintext highlighter-rouge">ecut</code>，可以确保计算结果的可靠性和准确性。建议在实际计算中，通过多次试验不同的 <code class="language-plaintext highlighter-rouge">ecut</code> 值，以确定最佳的参数设置。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[理解ABINIT中的能量截断(Energy Cutoff)ecut变量 概述]]></summary></entry><entry><title type="html">Abinit变量acell</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell.html" rel="alternate" type="text/html" title="Abinit变量acell" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell.html"><![CDATA[<h1 id="理解abinit中的acell变量">理解ABINIT中的<code class="language-plaintext highlighter-rouge">acell</code>变量</h1>
 
 <p>在ABINIT软件中，<code class="language-plaintext highlighter-rouge">acell</code>是一个非常重要的变量，它用于定义晶格矢量的缩放比例。本文将解释<code class="language-plaintext highlighter-rouge">acell</code>的含义及其在计算中的作用。</p>
 
@@ -290,35 +466,7 @@ E = \langle\psi_{1}|\hat{H}_{0}|\psi_{1}\rangle\langle\psi_{2}|\psi_{2} \rangle+
 
 <h2 id="总结">总结</h2>
 
-<p><code class="language-plaintext highlighter-rouge">acell</code>是ABINIT中用于定义晶格矢量缩放比例的关键变量。通过调整<code class="language-plaintext highlighter-rouge">acell</code>，用户可以控制晶格的基本矢量在空间中的实际长度，从而影响整个计算的结果。理解<code class="language-plaintext highlighter-rouge">acell</code>的含义及其与其它变量的关系，对于正确使用ABINIT进行材料模拟至关重要。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[理解ABINIT中的acell变量]]></summary></entry><entry><title type="html">Abinit变量ecut</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html" rel="alternate" type="text/html" title="Abinit变量ecut" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html"><![CDATA[<h1 id="理解abinit中的能量截断energy-cutoffecut变量">理解ABINIT中的能量截断(Energy Cutoff)<code class="language-plaintext highlighter-rouge">ecut</code>变量</h1>
-<h2 id="概述">概述</h2>
-
-<p>在平面波计算中，能量截断 (<code class="language-plaintext highlighter-rouge">ecut</code>) 是一个关键参数，用于控制给定 k 点的平面波数量。平面波的动能必须低于 <code class="language-plaintext highlighter-rouge">ecut</code> 才能被包含在计算中。这个约束条件在倒易空间中表示为：</p>
-
-\[\frac{1}{2} \left( \frac{2\pi}{a} \right)^2 (k + G)^2 &lt; \text{ecut}\]
-
-<p>其中，( G ) 是倒易空间中的向量。所有位于以 k 点为中心的基球内的平面波都将被包含在基组中（除非定义了 <code class="language-plaintext highlighter-rouge">dillatmx</code>）。</p>
-
-<h2 id="参数特性">参数特性</h2>
-
-<ul>
-  <li><strong>变量类型</strong>: 实数</li>
-  <li><strong>维度</strong>: 标量</li>
-  <li><strong>默认值</strong>: 无</li>
-  <li><strong>单位</strong>: 默认单位为 Hartree (Ha)，也可以使用 Rydberg (Ry)、电子伏特 (eV) 或开尔文 (Kelvin)。1 Ha = 27.2113845 eV。</li>
-</ul>
-
-<h2 id="重要性">重要性</h2>
-
-<p><code class="language-plaintext highlighter-rouge">ecut</code> 是影响计算质量的单一参数。通常，<code class="language-plaintext highlighter-rouge">ecut</code> 越大，计算结果越收敛。在几何结构固定的情况下，由于问题的变分性质，总能量必须随着 <code class="language-plaintext highlighter-rouge">ecut</code> 的增加而降低。通常需要运行多个不同 <code class="language-plaintext highlighter-rouge">ecut</code> 的计算，以研究达到可靠结果所需的收敛性。</p>
-
-<h2 id="时间反转对称性">时间反转对称性</h2>
-
-<p>对于坐标由 0 或 ½ 构建的 k 点，已经实现了时间反转对称性，该对称性链接了倒易空间中波函数系数。如果激活了输入变量 <code class="language-plaintext highlighter-rouge">istwfk</code>（默认模式），则可以将显式处理的平面波数量 (<code class="language-plaintext highlighter-rouge">npw</code>) 减少一半。尽管如此，最终结果应与“完整”平面波集相同。</p>
-
-<h2 id="结论">结论</h2>
-
-<p><code class="language-plaintext highlighter-rouge">ecut</code> 是平面波计算中至关重要的参数，直接影响计算的精度和收敛性。通过合理设置 <code class="language-plaintext highlighter-rouge">ecut</code>，可以确保计算结果的可靠性和准确性。建议在实际计算中，通过多次试验不同的 <code class="language-plaintext highlighter-rouge">ecut</code> 值，以确定最佳的参数设置。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[理解ABINIT中的能量截断(Energy Cutoff)ecut变量 概述]]></summary></entry><entry><title type="html">Ollama模型Tokens输出测试与局域网内设备使用配置</title><link href="http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html" rel="alternate" type="text/html" title="Ollama模型Tokens输出测试与局域网内设备使用配置" /><published>2024-12-27T00:00:00+01:00</published><updated>2024-12-27T00:00:00+01:00</updated><id>http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE</id><content type="html" xml:base="http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html"><![CDATA[<p>本文介绍如何在局域网内通过手机、平板等设备访问运行在主机上的Ollama开源模型。</p>
+<p><code class="language-plaintext highlighter-rouge">acell</code>是ABINIT中用于定义晶格矢量缩放比例的关键变量。通过调整<code class="language-plaintext highlighter-rouge">acell</code>，用户可以控制晶格的基本矢量在空间中的实际长度，从而影响整个计算的结果。理解<code class="language-plaintext highlighter-rouge">acell</code>的含义及其与其它变量的关系，对于正确使用ABINIT进行材料模拟至关重要。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[理解ABINIT中的acell变量]]></summary></entry><entry><title type="html">Ollama模型Tokens输出测试与局域网内设备使用配置</title><link href="http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html" rel="alternate" type="text/html" title="Ollama模型Tokens输出测试与局域网内设备使用配置" /><published>2024-12-27T00:00:00+01:00</published><updated>2024-12-27T00:00:00+01:00</updated><id>http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE</id><content type="html" xml:base="http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html"><![CDATA[<p>本文介绍如何在局域网内通过手机、平板等设备访问运行在主机上的Ollama开源模型。</p>
 
 <h2 id="不同开源模型输出的tokens速度测试">不同开源模型输出的tokens速度测试</h2>
 
