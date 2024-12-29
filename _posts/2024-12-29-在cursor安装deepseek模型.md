@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "如何在Cursor IDE中安装DeepSeek模型"
+title: "如何在Cursor中安装DeepSeek模型"
 date: 2024-12-29
-category: AI工具
+category: AI tools
 ---
 Cursor作为一款集成AI功能的IDE，使用体验非常丝滑。然而，当赠送的额度用完后，还希望能够继续使用AI功能。DeepSeek作为一款很棒的AI模型，特别其v3版本在网页端表现优异。本文将介绍如何在Cursor中通过API使用DeepSeek模型。
 
