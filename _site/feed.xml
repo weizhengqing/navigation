@@ -1,69 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-12-29T00:02:55+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">ZWei</title><subtitle>专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。</subtitle><entry><title type="html">Abinit变量acell</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell.html" rel="alternate" type="text/html" title="Abinit变量acell" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell.html"><![CDATA[<h1 id="理解abinit中的acell变量">理解ABINIT中的<code class="language-plaintext highlighter-rouge">acell</code>变量</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-12-29T01:42:54+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">ZWei</title><subtitle>专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。</subtitle><entry><title type="html">量子力学的历史背景</title><link href="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%8E%86%E5%8F%B2%E8%83%8C%E6%99%AF.html" rel="alternate" type="text/html" title="量子力学的历史背景" /><published>2024-12-29T00:00:00+01:00</published><updated>2024-12-29T00:00:00+01:00</updated><id>http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%8E%86%E5%8F%B2%E8%83%8C%E6%99%AF</id><content type="html" xml:base="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%8E%86%E5%8F%B2%E8%83%8C%E6%99%AF.html"><![CDATA[<p>量子力学的发展始于1900年，当时普朗克研究了加热固体发出的光。为了理解这一发展，我们首先需要讨论光的性质。</p>
 
-<p>在ABINIT软件中，<code class="language-plaintext highlighter-rouge">acell</code>是一个非常重要的变量，它用于定义晶格矢量的缩放比例。本文将解释<code class="language-plaintext highlighter-rouge">acell</code>的含义及其在计算中的作用。</p>
+<h2 id="光的波动性">光的波动性</h2>
 
-<h2 id="什么是acell">什么是<code class="language-plaintext highlighter-rouge">acell</code>？</h2>
+<p>1803年，托马斯·杨通过观察光通过两个相邻小孔时的衍射和干涉现象，提供了光具有波动性的有力证据。衍射是波绕过障碍物的现象，而干涉则是两个相同频率的波结合，形成一个新的波，其每一点的扰动是各波在该点扰动的代数和或矢量和。</p>
 
-<p><code class="language-plaintext highlighter-rouge">acell</code>是ABINIT中的一个实数型变量，具有三个维度（即<code class="language-plaintext highlighter-rouge">acell(3)</code>）。它用于指定无量纲的原始平移矢量（<code class="language-plaintext highlighter-rouge">rprim</code>）的缩放比例。简单来说，<code class="language-plaintext highlighter-rouge">acell</code>决定了晶格的基本矢量在空间中的实际长度。</p>
+<h2 id="电磁波理论">电磁波理论</h2>
 
-<h2 id="acell的特性"><code class="language-plaintext highlighter-rouge">acell</code>的特性</h2>
+<p>1864年，詹姆斯·克拉克·麦克斯韦发表了四个方程，即麦克斯韦方程组，统一了电和磁的定律。这些方程预测，加速的电荷会以电磁波的形式辐射能量，电磁波由振荡的电场和磁场组成。麦克斯韦方程预测的这些波的速度与实验测得的光速相同，因此麦克斯韦得出结论：光是一种电磁波。</p>
 
-<ul>
-  <li><strong>EVOLVING</strong>: 该变量在计算过程中可能会发生变化。</li>
-  <li><strong>LENGTH</strong>: <code class="language-plaintext highlighter-rouge">acell</code>具有长度特性，默认单位为Bohr（1 Bohr = 0.5291772108 Å），但也可以指定为Å。</li>
-</ul>
+<p>1888年，海因里希·赫兹检测到了由加速电荷在火花中产生的无线电波，这进一步证实了光确实是电磁波。</p>
 
-<h2 id="acell的默认值"><code class="language-plaintext highlighter-rouge">acell</code>的默认值</h2>
+<h2 id="电磁波的特性">电磁波的特性</h2>
 
-<p><code class="language-plaintext highlighter-rouge">acell</code>的默认值为<code class="language-plaintext highlighter-rouge">3 * 1</code>，即三个方向上的缩放比例均为1。</p>
+<p>所有电磁波在真空中的传播速度为 $c = 2.998 \times 10^8 \, \text{m/s}$。电磁波的频率 $\nu$ 和波长 $\lambda$ 之间的关系为：</p>
 
-<h2 id="acell的使用场景"><code class="language-plaintext highlighter-rouge">acell</code>的使用场景</h2>
+\[\lambda \nu = c\]
 
-<p><code class="language-plaintext highlighter-rouge">acell</code>在ABINIT的测试和教程中非常常用。在所有的ABINIT测试中，<code class="language-plaintext highlighter-rouge">acell</code>被使用了1218次（共1245次测试），在教程中也被使用了147次（共159个教程）。</p>
+<p>根据频率的不同，电磁波被分为不同的类型，按频率从低到高依次为：无线电波、微波、红外辐射、可见光、紫外辐射、X射线和伽马射线。我们通常用“光”来泛指任何类型的电磁辐射。</p>
 
-<h2 id="acell与其它变量的关系"><code class="language-plaintext highlighter-rouge">acell</code>与其它变量的关系</h2>
+<h2 id="黑体辐射">黑体辐射</h2>
 
-<ul>
-  <li><strong><code class="language-plaintext highlighter-rouge">rprim</code></strong>: <code class="language-plaintext highlighter-rouge">acell</code>用于缩放<code class="language-plaintext highlighter-rouge">rprim</code>，即原始平移矢量。</li>
-  <li><strong><code class="language-plaintext highlighter-rouge">scalecart</code></strong>: 如果你想缩放笛卡尔坐标，可以使用<code class="language-plaintext highlighter-rouge">scalecart</code>变量。</li>
-  <li><strong><code class="language-plaintext highlighter-rouge">%rprimd</code></strong>: <code class="language-plaintext highlighter-rouge">acell</code>与内部变量<code class="language-plaintext highlighter-rouge">%rprimd</code>相关联。</li>
-</ul>
+<p>在1890年代，物理学家测量了在不同温度下加热的黑体发出的各种频率的光的强度。黑体是一种能够吸收所有照射在其上的光的物体。1896年，物理学家维恩提出了一个描述黑体辐射与光频率和黑体温度之间关系的方程：</p>
 
-<h2 id="注意事项">注意事项</h2>
+\[I = \frac{a\nu^{3}}{e^{b\nu/T}}\]
 
-<p>需要注意的是，<code class="language-plaintext highlighter-rouge">acell</code>并不是常规正交基矢量的长度，而是原始矢量的缩放因子。如果你需要缩放笛卡尔坐标，应使用<code class="language-plaintext highlighter-rouge">scalecart</code>变量。</p>
+<p>其中，$a$ 和 $b$ 是经验常数，$Id\nu$ 表示在频率范围 $\nu$ 到 $\nu + d\nu$ 内，黑体每单位时间和单位表面积辐射的能量。维恩的公式与1896年可用的黑体辐射数据吻合得很好，但他的理论解释被认为不够令人满意。</p>
 
-<h2 id="总结">总结</h2>
+<h2 id="普朗克的量子假说">普朗克的量子假说</h2>
 
-<p><code class="language-plaintext highlighter-rouge">acell</code>是ABINIT中用于定义晶格矢量缩放比例的关键变量。通过调整<code class="language-plaintext highlighter-rouge">acell</code>，用户可以控制晶格的基本矢量在空间中的实际长度，从而影响整个计算的结果。理解<code class="language-plaintext highlighter-rouge">acell</code>的含义及其与其它变量的关系，对于正确使用ABINIT进行材料模拟至关重要。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[理解ABINIT中的acell变量]]></summary></entry><entry><title type="html">Abinit变量ecut</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html" rel="alternate" type="text/html" title="Abinit变量ecut" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html"><![CDATA[<h1 id="理解abinit中的能量截断energy-cutoffecut变量">理解ABINIT中的能量截断(Energy Cutoff)<code class="language-plaintext highlighter-rouge">ecut</code>变量</h1>
-<h2 id="概述">概述</h2>
+<p>在1900年，物理学家马克斯·普朗克提出了一个公式来解释黑体辐射现象。这个公式是：$I = \frac{a w^3}{e^{b v / T} - 1}$，其中 $I$ 是辐射强度，$w$ 是频率，$T$ 是温度，$a$ 和 $b$ 是常数。这个公式与实验数据非常吻合。</p>
 
-<p>在平面波计算中，能量截断 (<code class="language-plaintext highlighter-rouge">ecut</code>) 是一个关键参数，用于控制给定 k 点的平面波数量。平面波的动能必须低于 <code class="language-plaintext highlighter-rouge">ecut</code> 才能被包含在计算中。这个约束条件在倒易空间中表示为：</p>
+<p>为了找到这个公式的理论依据，普朗克假设黑体中的辐射发射器和吸收器是谐振的电荷（“谐振子”），并且这些谐振子的能量是量子化的。也就是说，能量只能以离散的“能量元素”形式存在，每个能量元素的大小为 $h v$，这意味着能量只能以 $h v$ 的整数倍存在，其中 $h$ 是一个新的物理常数，后来被称为普朗克常数。普朗克发现 $h = 6.6 \times 10^{-34}$ 焦耳·秒。</p>
 
-\[\frac{1}{2} \left( \frac{2\pi}{a} \right)^2 (k + G)^2 &lt; \text{ecut}\]
+<p>普朗克的工作通常被认为是量子力学的开端。然而，历史学家们一直在争论普朗克是否真的认为能量量子化是物理现实，还是仅仅是一个数学近似。</p>
 
-<p>其中，( G ) 是倒易空间中的向量。所有位于以 k 点为中心的基球内的平面波都将被包含在基组中（除非定义了 <code class="language-plaintext highlighter-rouge">dillatmx</code>）。</p>
+<h2 id="爱因斯坦的光电效应理论">爱因斯坦的光电效应理论</h2>
 
-<h2 id="参数特性">参数特性</h2>
+<p>1905年，阿尔伯特·爱因斯坦将能量量子化的概念应用到光电效应中。光电效应是指光照射在金属表面时，会发射出电子。根据经典电磁理论，光的能量与其强度成正比，与频率无关。因此，人们预期电子的动能会随着光强度的增加而增加，但与光的频率无关。</p>
 
-<ul>
-  <li><strong>变量类型</strong>: 实数</li>
-  <li><strong>维度</strong>: 标量</li>
-  <li><strong>默认值</strong>: 无</li>
-  <li><strong>单位</strong>: 默认单位为 Hartree (Ha)，也可以使用 Rydberg (Ry)、电子伏特 (eV) 或开尔文 (Kelvin)。1 Ha = 27.2113845 eV。</li>
-</ul>
+<p>然而，实验观察到电子的动能与光的频率成正比，而与光的强度无关。爱因斯坦提出，光是由粒子状的光子组成的，每个光子的能量为 $h \nu$，其中 $\nu$ 是光的频率。当光子被金属中的电子吸收时，部分能量用于克服金属的束缚力，剩余的能量转化为电子的动能。能量守恒定律给出 $h \nu = \Phi + T$，其中 $\Phi$ 是金属的功函数，$T$ 是电子的最大动能。</p>
 
-<h2 id="重要性">重要性</h2>
+<p>光电效应表明，光不仅表现出波动性（如衍射实验所示），还能表现出粒子性。1907年，爱因斯坦将能量量子化的概念应用到固体中原子的振动中。他假设每个原子在每个方向（$x, y, z$）上的振动能量只能是$h \nu_{\text{vib}}$ 的整数倍，其中$\nu_{\text{vib}}$ 是元素的特征振动频率。通过统计力学，爱因斯坦推导出了固体在恒定体积下的热容量$C_v$ 的表达式，并与金刚石的实验数据吻合良好。</p>
 
-<p><code class="language-plaintext highlighter-rouge">ecut</code> 是影响计算质量的单一参数。通常，<code class="language-plaintext highlighter-rouge">ecut</code> 越大，计算结果越收敛。在几何结构固定的情况下，由于问题的变分性质，总能量必须随着 <code class="language-plaintext highlighter-rouge">ecut</code> 的增加而降低。通常需要运行多个不同 <code class="language-plaintext highlighter-rouge">ecut</code> 的计算，以研究达到可靠结果所需的收敛性。</p>
+<h2 id="原子结构的探索">原子结构的探索</h2>
 
-<h2 id="时间反转对称性">时间反转对称性</h2>
+<p>19世纪末，对放电管和天然放射性的研究揭示了原子和分子由带电粒子组成。电子带负电，质子带正电，且质量是电子的1836倍。1932年发现的中子不带电，质量略大于质子。1909年，卢瑟福、盖革和马斯登通过将α粒子束穿过金属箔并观察其偏转，发现大多数α粒子几乎不受偏转，但少数发生了大角度偏转，甚至被反弹回来。卢瑟福由此得出结论，原子的正电荷集中在一个微小而重的原子核中。</p>
 
-<p>对于坐标由 0 或 ½ 构建的 k 点，已经实现了时间反转对称性，该对称性链接了倒易空间中波函数系数。如果激活了输入变量 <code class="language-plaintext highlighter-rouge">istwfk</code>（默认模式），则可以将显式处理的平面波数量 (<code class="language-plaintext highlighter-rouge">npw</code>) 减少一半。尽管如此，最终结果应与“完整”平面波集相同。</p>
+<h2 id="卢瑟福原子模型与玻尔的量子化">卢瑟福原子模型与玻尔的量子化</h2>
 
-<h2 id="结论">结论</h2>
+<p>1911年，卢瑟福提出了行星模型，认为电子围绕原子核旋转。然而，根据经典电磁理论，加速的带电粒子会辐射能量，导致电子螺旋式坠入原子核，使原子不稳定。1913年，尼尔斯·玻尔提出，氢原子中的电子能量是量子化的，电子只能在某些允许的轨道上运动。当电子从一个轨道跃迁到另一个轨道时，会吸收或发射光子，其频率满足$E_{\text{upper}} - E_{\text{lower}} = h \nu$。玻尔的理论成功解释了氢原子光谱，但无法解释氦光谱和分子中的化学键。</p>
 
-<p><code class="language-plaintext highlighter-rouge">ecut</code> 是平面波计算中至关重要的参数，直接影响计算的精度和收敛性。通过合理设置 <code class="language-plaintext highlighter-rouge">ecut</code>，可以确保计算结果的可靠性和准确性。建议在实际计算中，通过多次试验不同的 <code class="language-plaintext highlighter-rouge">ecut</code> 值，以确定最佳的参数设置。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[理解ABINIT中的能量截断(Energy Cutoff)ecut变量 概述]]></summary></entry><entry><title type="html">Abinit变量rprim</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim.html" rel="alternate" type="text/html" title="Abinit变量rprim" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim.html"><![CDATA[<h1 id="理解abinit中的rprim变量">理解ABINIT中的<code class="language-plaintext highlighter-rouge">rprim</code>变量</h1>
+<h2 id="德布罗意与波粒二象性">德布罗意与波粒二象性</h2>
+
+<p>1923年，路易·德布罗意提出电子可能具有波动性，其波长$\lambda = \frac{h}{mv}$，其中$p$ 是动量。1927年，戴维森和革默通过实验证实了电子的波动性。1932年，斯特恩用氦原子和氢分子也观察到了类似现象，表明波动性不仅限于电子，而是微观粒子的普遍特性。</p>
+
+<h2 id="波粒二象性的哲学思考">波粒二象性的哲学思考</h2>
+
+<p>电子和光子都表现出波粒二象性，但它们本质不同。光子以光速$c$ 传播且无静止质量，而电子速度低于$c$ 且有静止质量。经典物理学的概念无法准确描述微观世界的现象。</p>
+
+<hr />
+<p>本文参考自：</p>
+
+<p>Levine, Ira N. “Quantum Chemistry, 58.” PHI Learning Pri. Ltd. Delhi (2013): 461-462.</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[量子力学的发展始于1900年，当时普朗克研究了加热固体发出的光。为了理解这一发展，我们首先需要讨论光的性质。]]></summary></entry><entry><title type="html">Abinit变量rprim</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim.html" rel="alternate" type="text/html" title="Abinit变量rprim" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim.html"><![CDATA[<h1 id="理解abinit中的rprim变量">理解ABINIT中的<code class="language-plaintext highlighter-rouge">rprim</code>变量</h1>
 
 <p>在ABINIT软件中，<code class="language-plaintext highlighter-rouge">rprim</code>是一个用于定义实空间原始平移矢量的关键变量。本文将解释<code class="language-plaintext highlighter-rouge">rprim</code>的含义、特性及其在计算中的作用。</p>
 
@@ -255,7 +253,72 @@ E = \langle\psi_{1}|\hat{H}_{0}|\psi_{1}\rangle\langle\psi_{2}|\psi_{2} \rangle+
 <hr />
 <p>本文参考自：</p>
 
-<p>[1] Giustino, Feliciano. Materials modelling using density functional theory: properties and predictions. Oxford University Press, 2014.</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[我们将详细介绍Hartree-Fock方程的推导过程。为了使形式尽可能简单，我们考虑两个电子的情况，并且暂时忽略自旋。在最后，我们将指出如何将以下推导推广到任意数量且带有自旋自由度的电子。]]></summary></entry><entry><title type="html">Ollama模型Tokens输出测试与局域网内设备使用配置</title><link href="http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html" rel="alternate" type="text/html" title="Ollama模型Tokens输出测试与局域网内设备使用配置" /><published>2024-12-27T00:00:00+01:00</published><updated>2024-12-27T00:00:00+01:00</updated><id>http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE</id><content type="html" xml:base="http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html"><![CDATA[<p>本文介绍如何在局域网内通过手机、平板等设备访问运行在主机上的Ollama开源模型。</p>
+<p>[1] Giustino, Feliciano. Materials modelling using density functional theory: properties and predictions. Oxford University Press, 2014.</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[我们将详细介绍Hartree-Fock方程的推导过程。为了使形式尽可能简单，我们考虑两个电子的情况，并且暂时忽略自旋。在最后，我们将指出如何将以下推导推广到任意数量且带有自旋自由度的电子。]]></summary></entry><entry><title type="html">Abinit变量acell</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell.html" rel="alternate" type="text/html" title="Abinit变量acell" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell.html"><![CDATA[<h1 id="理解abinit中的acell变量">理解ABINIT中的<code class="language-plaintext highlighter-rouge">acell</code>变量</h1>
+
+<p>在ABINIT软件中，<code class="language-plaintext highlighter-rouge">acell</code>是一个非常重要的变量，它用于定义晶格矢量的缩放比例。本文将解释<code class="language-plaintext highlighter-rouge">acell</code>的含义及其在计算中的作用。</p>
+
+<h2 id="什么是acell">什么是<code class="language-plaintext highlighter-rouge">acell</code>？</h2>
+
+<p><code class="language-plaintext highlighter-rouge">acell</code>是ABINIT中的一个实数型变量，具有三个维度（即<code class="language-plaintext highlighter-rouge">acell(3)</code>）。它用于指定无量纲的原始平移矢量（<code class="language-plaintext highlighter-rouge">rprim</code>）的缩放比例。简单来说，<code class="language-plaintext highlighter-rouge">acell</code>决定了晶格的基本矢量在空间中的实际长度。</p>
+
+<h2 id="acell的特性"><code class="language-plaintext highlighter-rouge">acell</code>的特性</h2>
+
+<ul>
+  <li><strong>EVOLVING</strong>: 该变量在计算过程中可能会发生变化。</li>
+  <li><strong>LENGTH</strong>: <code class="language-plaintext highlighter-rouge">acell</code>具有长度特性，默认单位为Bohr（1 Bohr = 0.5291772108 Å），但也可以指定为Å。</li>
+</ul>
+
+<h2 id="acell的默认值"><code class="language-plaintext highlighter-rouge">acell</code>的默认值</h2>
+
+<p><code class="language-plaintext highlighter-rouge">acell</code>的默认值为<code class="language-plaintext highlighter-rouge">3 * 1</code>，即三个方向上的缩放比例均为1。</p>
+
+<h2 id="acell的使用场景"><code class="language-plaintext highlighter-rouge">acell</code>的使用场景</h2>
+
+<p><code class="language-plaintext highlighter-rouge">acell</code>在ABINIT的测试和教程中非常常用。在所有的ABINIT测试中，<code class="language-plaintext highlighter-rouge">acell</code>被使用了1218次（共1245次测试），在教程中也被使用了147次（共159个教程）。</p>
+
+<h2 id="acell与其它变量的关系"><code class="language-plaintext highlighter-rouge">acell</code>与其它变量的关系</h2>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">rprim</code></strong>: <code class="language-plaintext highlighter-rouge">acell</code>用于缩放<code class="language-plaintext highlighter-rouge">rprim</code>，即原始平移矢量。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">scalecart</code></strong>: 如果你想缩放笛卡尔坐标，可以使用<code class="language-plaintext highlighter-rouge">scalecart</code>变量。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">%rprimd</code></strong>: <code class="language-plaintext highlighter-rouge">acell</code>与内部变量<code class="language-plaintext highlighter-rouge">%rprimd</code>相关联。</li>
+</ul>
+
+<h2 id="注意事项">注意事项</h2>
+
+<p>需要注意的是，<code class="language-plaintext highlighter-rouge">acell</code>并不是常规正交基矢量的长度，而是原始矢量的缩放因子。如果你需要缩放笛卡尔坐标，应使用<code class="language-plaintext highlighter-rouge">scalecart</code>变量。</p>
+
+<h2 id="总结">总结</h2>
+
+<p><code class="language-plaintext highlighter-rouge">acell</code>是ABINIT中用于定义晶格矢量缩放比例的关键变量。通过调整<code class="language-plaintext highlighter-rouge">acell</code>，用户可以控制晶格的基本矢量在空间中的实际长度，从而影响整个计算的结果。理解<code class="language-plaintext highlighter-rouge">acell</code>的含义及其与其它变量的关系，对于正确使用ABINIT进行材料模拟至关重要。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[理解ABINIT中的acell变量]]></summary></entry><entry><title type="html">Abinit变量ecut</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html" rel="alternate" type="text/html" title="Abinit变量ecut" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html"><![CDATA[<h1 id="理解abinit中的能量截断energy-cutoffecut变量">理解ABINIT中的能量截断(Energy Cutoff)<code class="language-plaintext highlighter-rouge">ecut</code>变量</h1>
+<h2 id="概述">概述</h2>
+
+<p>在平面波计算中，能量截断 (<code class="language-plaintext highlighter-rouge">ecut</code>) 是一个关键参数，用于控制给定 k 点的平面波数量。平面波的动能必须低于 <code class="language-plaintext highlighter-rouge">ecut</code> 才能被包含在计算中。这个约束条件在倒易空间中表示为：</p>
+
+\[\frac{1}{2} \left( \frac{2\pi}{a} \right)^2 (k + G)^2 &lt; \text{ecut}\]
+
+<p>其中，( G ) 是倒易空间中的向量。所有位于以 k 点为中心的基球内的平面波都将被包含在基组中（除非定义了 <code class="language-plaintext highlighter-rouge">dillatmx</code>）。</p>
+
+<h2 id="参数特性">参数特性</h2>
+
+<ul>
+  <li><strong>变量类型</strong>: 实数</li>
+  <li><strong>维度</strong>: 标量</li>
+  <li><strong>默认值</strong>: 无</li>
+  <li><strong>单位</strong>: 默认单位为 Hartree (Ha)，也可以使用 Rydberg (Ry)、电子伏特 (eV) 或开尔文 (Kelvin)。1 Ha = 27.2113845 eV。</li>
+</ul>
+
+<h2 id="重要性">重要性</h2>
+
+<p><code class="language-plaintext highlighter-rouge">ecut</code> 是影响计算质量的单一参数。通常，<code class="language-plaintext highlighter-rouge">ecut</code> 越大，计算结果越收敛。在几何结构固定的情况下，由于问题的变分性质，总能量必须随着 <code class="language-plaintext highlighter-rouge">ecut</code> 的增加而降低。通常需要运行多个不同 <code class="language-plaintext highlighter-rouge">ecut</code> 的计算，以研究达到可靠结果所需的收敛性。</p>
+
+<h2 id="时间反转对称性">时间反转对称性</h2>
+
+<p>对于坐标由 0 或 ½ 构建的 k 点，已经实现了时间反转对称性，该对称性链接了倒易空间中波函数系数。如果激活了输入变量 <code class="language-plaintext highlighter-rouge">istwfk</code>（默认模式），则可以将显式处理的平面波数量 (<code class="language-plaintext highlighter-rouge">npw</code>) 减少一半。尽管如此，最终结果应与“完整”平面波集相同。</p>
+
+<h2 id="结论">结论</h2>
+
+<p><code class="language-plaintext highlighter-rouge">ecut</code> 是平面波计算中至关重要的参数，直接影响计算的精度和收敛性。通过合理设置 <code class="language-plaintext highlighter-rouge">ecut</code>，可以确保计算结果的可靠性和准确性。建议在实际计算中，通过多次试验不同的 <code class="language-plaintext highlighter-rouge">ecut</code> 值，以确定最佳的参数设置。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[理解ABINIT中的能量截断(Energy Cutoff)ecut变量 概述]]></summary></entry><entry><title type="html">Ollama模型Tokens输出测试与局域网内设备使用配置</title><link href="http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html" rel="alternate" type="text/html" title="Ollama模型Tokens输出测试与局域网内设备使用配置" /><published>2024-12-27T00:00:00+01:00</published><updated>2024-12-27T00:00:00+01:00</updated><id>http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE</id><content type="html" xml:base="http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html"><![CDATA[<p>本文介绍如何在局域网内通过手机、平板等设备访问运行在主机上的Ollama开源模型。</p>
 
 <h2 id="不同开源模型输出的tokens速度测试">不同开源模型输出的tokens速度测试</h2>
 
