@@ -1,4 +1,524 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-12-29T17:20:14+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">ZWei</title><subtitle>专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。</subtitle><entry><title type="html">粒子在一维盒子中</title><link href="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E7%B2%92%E5%AD%90%E5%9C%A8%E4%B8%80%E7%BB%B4%E7%9B%92%E5%AD%90%E4%B8%AD.html" rel="alternate" type="text/html" title="粒子在一维盒子中" /><published>2024-12-29T00:00:00+01:00</published><updated>2024-12-29T00:00:00+01:00</updated><id>http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E7%B2%92%E5%AD%90%E5%9C%A8%E4%B8%80%E7%BB%B4%E7%9B%92%E5%AD%90%E4%B8%AD</id><content type="html" xml:base="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E7%B2%92%E5%AD%90%E5%9C%A8%E4%B8%80%E7%BB%B4%E7%9B%92%E5%AD%90%E4%B8%AD.html"><![CDATA[<p>本节将求解一维盒子中粒子的时间无关薛定谔方程。这里的“一维盒子”指的是粒子在x轴上受到一个势能函数的作用，该势能在长度为l的线段外处处为无穷大，而在线段内势能为零。虽然这种系统在物理上可能显得不现实，但该模型可以成功地应用于某些共轭分子；参见问题2.17。我们将坐标原点放在线段的左端（图2.1）。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-02T23:19:22+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">ZWei</title><subtitle>专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。</subtitle><entry><title type="html">Abinit变量istwfk</title><link href="http://localhost:4000/abinit%20variables/2025/01/02/Abinit%E5%8F%98%E9%87%8Fistwfk.html" rel="alternate" type="text/html" title="Abinit变量istwfk" /><published>2025-01-02T00:00:00+01:00</published><updated>2025-01-02T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2025/01/02/Abinit%E5%8F%98%E9%87%8Fistwfk</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2025/01/02/Abinit%E5%8F%98%E9%87%8Fistwfk.html"><![CDATA[<p>在ABINIT软件中，<code class="language-plaintext highlighter-rouge">istwfk</code> 是一个用于控制每个k点波函数存储方式的参数。它决定了是否利用时间反演对称性来优化波函数在倒空间中的存储，从而减少计算所需的平面波数量。</p>
+
+<hr />
+
+<h3 id="istwfk-的详细说明"><code class="language-plaintext highlighter-rouge">istwfk</code> 的详细说明</h3>
+
+<ol>
+  <li><strong>参数类型</strong>：
+    <ul>
+      <li><strong>变量类型</strong>：整数（integer）</li>
+      <li><strong>维度</strong>：<code class="language-plaintext highlighter-rouge">(nkpt)</code>，其中 <code class="language-plaintext highlighter-rouge">nkpt</code> 是k点的数量。</li>
+    </ul>
+  </li>
+  <li><strong>默认值</strong>：
+    <ul>
+      <li><strong>默认值</strong>：0</li>
+      <li><strong>特殊情况</strong>：
+        <ul>
+          <li>对于响应函数（RF）计算，<code class="language-plaintext highlighter-rouge">istwfk</code> 会被强制设置为1，适用于所有k点。</li>
+          <li>对于自旋轨道耦合计算（<code class="language-plaintext highlighter-rouge">nspinor = 2</code>），<code class="language-plaintext highlighter-rouge">istwfk</code> 也会被强制设置为1，适用于所有k点。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>作用</strong>：
+    <ul>
+      <li>控制每个k点的波函数在倒空间中的存储方式。</li>
+      <li>对于基态（GS）计算，波函数系数存储在 <code class="language-plaintext highlighter-rouge">cg</code> 数组中，每个k点和每个能带对应一个段 <code class="language-plaintext highlighter-rouge">cg(1:2, 1:npw)</code>，其中 <code class="language-plaintext highlighter-rouge">npw</code> 是平面波的数量。</li>
+      <li>如果k点坐标仅由0和1/2组成（例如 <code class="language-plaintext highlighter-rouge">(0, 0, 0)</code>、<code class="language-plaintext highlighter-rouge">(½, 0, 0)</code> 等），可以利用时间反演对称性来减少需要显式处理的平面波数量，从而使用实数到复数的FFT（见 <code class="language-plaintext highlighter-rouge">fftalg</code>）。</li>
+    </ul>
+  </li>
+  <li><strong>选项说明</strong>：
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">istwfk = 1</code></strong>：<strong>不使用</strong>时间反演对称性。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">istwfk = 2</code></strong>：对 <code class="language-plaintext highlighter-rouge">k = (0, 0, 0)</code> 使用时间反演对称性。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">istwfk = 3</code></strong>：对 <code class="language-plaintext highlighter-rouge">k = (½, 0, 0)</code> 使用时间反演对称性。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">istwfk = 4</code></strong>：对 <code class="language-plaintext highlighter-rouge">k = (0, 0, ½)</code> 使用时间反演对称性。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">istwfk = 5</code></strong>：对 <code class="language-plaintext highlighter-rouge">k = (½, 0, ½)</code> 使用时间反演对称性。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">istwfk = 6</code></strong>：对 <code class="language-plaintext highlighter-rouge">k = (0, ½, 0)</code> 使用时间反演对称性。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">istwfk = 7</code></strong>：对 <code class="language-plaintext highlighter-rouge">k = (½, ½, 0)</code> 使用时间反演对称性。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">istwfk = 8</code></strong>：对 <code class="language-plaintext highlighter-rouge">k = (0, ½, ½)</code> 使用时间反演对称性。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">istwfk = 9</code></strong>：对 <code class="language-plaintext highlighter-rouge">k = (½, ½, ½)</code> 使用时间反演对称性。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">istwfk = 0</code></strong>：<strong>自动选择</strong>。对于每个k点，如果允许使用时间反演对称性，则自动选择适当的选项；否则，设置为 <code class="language-plaintext highlighter-rouge">istwfk = 1</code>。</li>
+    </ul>
+  </li>
+  <li><strong>响应函数（RF）计算的限制</strong>：
+    <ul>
+      <li>对于RF计算，除了 <code class="language-plaintext highlighter-rouge">cg</code> 数组外，还有 <code class="language-plaintext highlighter-rouge">cgq</code> 和 <code class="language-plaintext highlighter-rouge">cg1</code> 数组。</li>
+      <li>要利用时间反演对称性减少这些数组的平面波数量，q向量必须为 <code class="language-plaintext highlighter-rouge">(0, 0, 0)</code>。</li>
+      <li>目前，时间反演对称性<strong>不能</strong>用于RF计算。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="示例">示例</h3>
+
+<p>假设你有一个k点列表，其中包含 <code class="language-plaintext highlighter-rouge">(0, 0, 0)</code> 和 <code class="language-plaintext highlighter-rouge">(½, 0, 0)</code>，你可以在输入文件中设置：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>istwfk 2 3
+</code></pre></div></div>
+
+<p>这表示：</p>
+<ul>
+  <li>对 <code class="language-plaintext highlighter-rouge">k = (0, 0, 0)</code> 使用时间反演对称性（<code class="language-plaintext highlighter-rouge">istwfk = 2</code>）。</li>
+  <li>对 <code class="language-plaintext highlighter-rouge">k = (½, 0, 0)</code> 使用时间反演对称性（<code class="language-plaintext highlighter-rouge">istwfk = 3</code>）。</li>
+</ul>
+
+<p>如果希望ABINIT自动选择，可以设置为：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>istwfk 0
+</code></pre></div></div>
+<hr />
+
+<h3 id="问什么是响应函数计算什么是时间反演对称性">问：什么是响应函数计算？什么是时间反演对称性？</h3>
+
+<hr />
+<h3 id="1-响应函数计算response-function-calculation">1. <strong>响应函数计算（Response Function Calculation）</strong></h3>
+
+<p>响应函数计算是研究材料对外部微扰（如电场、磁场或声子扰动）的线性响应的理论方法。它在密度泛函理论（DFT）框架下用于计算材料的电子、光学和晶格动力学性质。</p>
+
+<h4 id="核心概念"><strong>核心概念</strong>：</h4>
+<ul>
+  <li><strong>微扰理论</strong>：假设外部微扰足够小，系统的响应可以通过线性近似来描述。</li>
+  <li><strong>响应函数</strong>：描述系统对外部微扰的响应，例如：
+    <ul>
+      <li><strong>介电函数</strong>：材料对电场的响应。</li>
+      <li><strong>磁化率</strong>：材料对磁场的响应。</li>
+      <li><strong>声子谱</strong>：晶格对原子位移的响应。</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="应用"><strong>应用</strong>：</h4>
+<ul>
+  <li><strong>光学性质</strong>：计算材料的吸收光谱、折射率等。</li>
+  <li><strong>晶格动力学</strong>：计算声子谱和声子态密度。</li>
+  <li><strong>电子激发</strong>：研究电子-电子相互作用和激发态性质。</li>
+</ul>
+
+<h4 id="abinit中的响应函数计算"><strong>ABINIT中的响应函数计算</strong>：</h4>
+<ul>
+  <li>在ABINIT中，响应函数计算通过特定的输入参数和数据集实现。</li>
+  <li>涉及的关键变量包括 <code class="language-plaintext highlighter-rouge">irdwfk</code>、<code class="language-plaintext highlighter-rouge">getwfk</code> 和 <code class="language-plaintext highlighter-rouge">istwfk</code>。</li>
+  <li>响应函数计算通常需要更多的计算资源和存储空间，因为需要处理额外的波函数和矩阵元。</li>
+</ul>
+
+<hr />
+
+<h3 id="2-时间反演对称性time-reversal-symmetry">2. <strong>时间反演对称性（Time-Reversal Symmetry）</strong></h3>
+
+<p>时间反演对称性是物理学中的一种对称性，描述系统在时间反演操作下的行为。时间反演操作是将时间 $t$ 替换为 $-t$。</p>
+
+<h4 id="核心概念-1"><strong>核心概念</strong>：</h4>
+<ul>
+  <li><strong>时间反演操作</strong>：将系统的运动方向反转，例如将粒子的速度反向。</li>
+  <li><strong>时间反演对称性</strong>：如果系统在时间反演操作下保持不变，则称其具有时间反演对称性。</li>
+  <li>
+    <p><strong>数学表示</strong>：在量子力学中，时间反演算符 $\mathcal{T}$ 作用于波函数 $\psi(\mathbf{r}, t)$ 时，满足：</p>
+
+\[\mathcal{T} \psi(\mathbf{r}, t) = \psi^*(\mathbf{r}, -t)\]
+
+    <p>其中 $\psi^*$ 是波函数的复共轭。</p>
+  </li>
+</ul>
+
+<h4 id="在固体物理中的应用"><strong>在固体物理中的应用</strong>：</h4>
+<ul>
+  <li><strong>k空间对称性</strong>：在倒空间中，时间反演对称性将波矢 $\mathbf{k}$ 映射为 $-\mathbf{k}$。</li>
+  <li><strong>平面波减少</strong>：对于某些k点（如 $\mathbf{k} = (0, 0, 0)$ 或 $\mathbf{k} = (\frac{1}{2}, 0, 0)$），可以利用时间反演对称性将平面波数量减半，从而减少计算量。</li>
+  <li><strong>自旋轨道耦合</strong>：在自旋轨道耦合系统中，时间反演对称性可能导致能级简并（Kramers简并）。</li>
+</ul>
+
+<h4 id="在abinit中的应用"><strong>在ABINIT中的应用</strong>：</h4>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">istwfk</code> 参数</strong>：控制是否利用时间反演对称性来优化波函数的存储和计算。</li>
+  <li><strong>限制</strong>：
+    <ul>
+      <li>对于响应函数计算，时间反演对称性通常不能使用（<code class="language-plaintext highlighter-rouge">istwfk</code> 被强制设置为1）。</li>
+      <li>对于自旋轨道耦合计算，时间反演对称性也不能使用（<code class="language-plaintext highlighter-rouge">istwfk</code> 被强制设置为1）。</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[在ABINIT软件中，istwfk 是一个用于控制每个k点波函数存储方式的参数。它决定了是否利用时间反演对称性来优化波函数在倒空间中的存储，从而减少计算所需的平面波数量。]]></summary></entry><entry><title type="html">Abinit中的文件名</title><link href="http://localhost:4000/abinit%20tutorials/2025/01/01/Abinit%E6%96%87%E4%BB%B6%E5%90%8D.html" rel="alternate" type="text/html" title="Abinit中的文件名" /><published>2025-01-01T00:00:00+01:00</published><updated>2025-01-01T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20tutorials/2025/01/01/Abinit%E6%96%87%E4%BB%B6%E5%90%8D</id><content type="html" xml:base="http://localhost:4000/abinit%20tutorials/2025/01/01/Abinit%E6%96%87%E4%BB%B6%E5%90%8D.html"><![CDATA[<p>在ABINIT中，文件名的生成方式有两种：一种是ABINIT自动生成，另一种是基于输入变量（如 <code class="language-plaintext highlighter-rouge">output_file</code>、<code class="language-plaintext highlighter-rouge">pseudos</code>、<code class="language-plaintext highlighter-rouge">indata_prefix</code>、<code class="language-plaintext highlighter-rouge">outdata_prefix</code> 或 <code class="language-plaintext highlighter-rouge">tmpdata_prefix</code>）构建。以下是关于ABINIT文件名的详细说明：</p>
+
+<hr />
+
+<h3 id="1-output_file">1. <strong><code class="language-plaintext highlighter-rouge">output_file</code></strong></h3>
+<ul>
+  <li><strong>作用</strong>：指定主输出文件的文件名。</li>
+  <li><strong>说明</strong>：
+    <ul>
+      <li>主输出文件包含格式化的输出信息。</li>
+      <li>错误消息和其他诊断信息不会写入此文件，而是发送到单元06（终端或日志文件）。</li>
+      <li>单元06的输出可以在运行成功时忽略，主输出文件则以更美观的格式记录运行信息。</li>
+    </ul>
+  </li>
+  <li><strong>示例</strong>：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>output_file "my_output.out"
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="2-pseudos">2. <strong><code class="language-plaintext highlighter-rouge">pseudos</code></strong></h3>
+<ul>
+  <li><strong>作用</strong>：指定伪势文件的文件名。</li>
+  <li><strong>说明</strong>：
+    <ul>
+      <li>伪势文件是格式化的输入文件。</li>
+      <li>必须为系统中的每种原子类型提供一个文件名，顺序与 <code class="language-plaintext highlighter-rouge">typat</code> 中列出的原子类型一致。</li>
+    </ul>
+  </li>
+  <li><strong>示例</strong>：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pseudos "H.psp8, O.psp8"
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="3-abi-或-indata_prefix">3. <strong><code class="language-plaintext highlighter-rouge">abi</code> 或 <code class="language-plaintext highlighter-rouge">indata_prefix</code></strong></h3>
+<ul>
+  <li><strong>作用</strong>：构建读取文件的文件名。</li>
+  <li><strong>说明</strong>：
+    <ul>
+      <li>其他由代码读取的文件名基于根名称 <code class="language-plaintext highlighter-rouge">abi</code> 或 <code class="language-plaintext highlighter-rouge">indata_prefix</code> 构建。</li>
+      <li>在多数据集模式下，根名称会附加 <code class="language-plaintext highlighter-rouge">_DS</code> 和数据集索引。</li>
+    </ul>
+  </li>
+  <li><strong>常见文件</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">abi_WFK</code>：包含输入波函数系数的文件（<code class="language-plaintext highlighter-rouge">irdwfk=1</code> 时读取）。</li>
+      <li><code class="language-plaintext highlighter-rouge">abi_WFQ</code>：包含输入波函数系数的文件（用于响应函数计算）。</li>
+      <li><code class="language-plaintext highlighter-rouge">abi_1WFxx</code>：包含一阶波函数的文件（<code class="language-plaintext highlighter-rouge">xx</code> 是扰动索引）。</li>
+      <li><code class="language-plaintext highlighter-rouge">abi_DEN</code>：包含密度的文件。</li>
+      <li><code class="language-plaintext highlighter-rouge">abi_HES</code>：包含近似Hessian矩阵的文件（用于Broyden最小化初始化）。</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="4-abo-或-outdata_prefix">4. <strong><code class="language-plaintext highlighter-rouge">abo</code> 或 <code class="language-plaintext highlighter-rouge">outdata_prefix</code></strong></h3>
+<ul>
+  <li><strong>作用</strong>：构建写入文件的文件名。</li>
+  <li><strong>说明</strong>：
+    <ul>
+      <li>其他由代码写入的文件名基于根名称 <code class="language-plaintext highlighter-rouge">abo</code> 或 <code class="language-plaintext highlighter-rouge">outdata_prefix</code> 构建。</li>
+      <li>在多数据集模式下，根名称会附加 <code class="language-plaintext highlighter-rouge">_DS</code> 和数据集索引。</li>
+    </ul>
+  </li>
+  <li><strong>常见文件</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">abo_WFK</code>：包含输出波函数系数的文件（<code class="language-plaintext highlighter-rouge">nqpt=0</code>）。</li>
+      <li><code class="language-plaintext highlighter-rouge">abo_WFQ</code>：包含输出波函数系数的文件（<code class="language-plaintext highlighter-rouge">nqpt=1</code>）。</li>
+      <li><code class="language-plaintext highlighter-rouge">abo_1WFxx</code>：包含一阶波函数的文件。</li>
+      <li><code class="language-plaintext highlighter-rouge">abo_DDB</code>：导数数据库文件（由响应函数数据集生成）。</li>
+      <li><code class="language-plaintext highlighter-rouge">abo_DEN</code>：包含密度的文件。</li>
+      <li><code class="language-plaintext highlighter-rouge">abo_TIMx_DEN</code>：包含密度的文件（<code class="language-plaintext highlighter-rouge">ionmov/=0</code> 时生成）。</li>
+      <li><code class="language-plaintext highlighter-rouge">abo_POT</code>：包含Kohn-Sham势的文件。</li>
+      <li><code class="language-plaintext highlighter-rouge">abo_TIMx_POT</code>：包含Kohn-Sham势的文件（<code class="language-plaintext highlighter-rouge">ionmov/=0</code> 时生成）。</li>
+      <li><code class="language-plaintext highlighter-rouge">abo_DOS</code>：包含态密度的文件。</li>
+      <li><code class="language-plaintext highlighter-rouge">abo_TIMx_DOS</code>：包含态密度的文件（<code class="language-plaintext highlighter-rouge">prtdos=2</code> 且 <code class="language-plaintext highlighter-rouge">ionmov=1</code> 或 <code class="language-plaintext highlighter-rouge">2</code> 时生成）。</li>
+      <li><code class="language-plaintext highlighter-rouge">abo_GEO</code>：包含几何分析（键长和键角）的文件。</li>
+      <li><code class="language-plaintext highlighter-rouge">abo_TIMx_GEO</code>：包含几何分析的文件（<code class="language-plaintext highlighter-rouge">ionmov=1</code> 或 <code class="language-plaintext highlighter-rouge">2</code> 时生成）。</li>
+      <li><code class="language-plaintext highlighter-rouge">abo_KSS</code>：包含输出波函数系数的文件（用于GW计算）。</li>
+      <li><code class="language-plaintext highlighter-rouge">abo_EIG</code>：包含电子本征值的文件（用于绘制能带结构）。</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="5-tmp-或-tmpdata_prefix">5. <strong><code class="language-plaintext highlighter-rouge">tmp</code> 或 <code class="language-plaintext highlighter-rouge">tmpdata_prefix</code></strong></h3>
+<ul>
+  <li><strong>作用</strong>：构建临时文件的文件名。</li>
+  <li><strong>说明</strong>：
+    <ul>
+      <li>临时文件基于根名称 <code class="language-plaintext highlighter-rouge">tmp</code> 或 <code class="language-plaintext highlighter-rouge">tmpdata_prefix</code> 构建。</li>
+      <li>通常应选择本地磁盘（而非远程NFS磁盘）来存储临时文件。</li>
+    </ul>
+  </li>
+  <li><strong>示例</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">tmp_STATUS</code>：记录计算进度的文件，更新频率很高。</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="6-文件名中的-timx">6. <strong>文件名中的 <code class="language-plaintext highlighter-rouge">TIMx</code></strong></h3>
+<ul>
+  <li><strong>作用</strong>：在 <code class="language-plaintext highlighter-rouge">ionmov/=0</code> 时，为每次SCF循环生成的文件提供不同的名称。</li>
+  <li><strong>说明</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">x</code> 的取值规则：
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">ionmov==1</code>：初始化阶段有4次SCF调用，<code class="language-plaintext highlighter-rouge">x</code> 为 <code class="language-plaintext highlighter-rouge">A</code>、<code class="language-plaintext highlighter-rouge">B</code>、<code class="language-plaintext highlighter-rouge">C</code>、<code class="language-plaintext highlighter-rouge">D</code>，之后为 <code class="language-plaintext highlighter-rouge">1</code>、<code class="language-plaintext highlighter-rouge">2</code>、<code class="language-plaintext highlighter-rouge">3</code>…。</li>
+          <li>其他 <code class="language-plaintext highlighter-rouge">ionmov</code> 情况：初始化阶段有1次SCF调用，<code class="language-plaintext highlighter-rouge">x</code> 为 <code class="language-plaintext highlighter-rouge">0</code>，之后为 <code class="language-plaintext highlighter-rouge">1</code>、<code class="language-plaintext highlighter-rouge">2</code>、<code class="language-plaintext highlighter-rouge">3</code>…。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="总结">总结</h3>
+<p>ABINIT中的文件名生成规则非常灵活，用户可以通过 <code class="language-plaintext highlighter-rouge">output_file</code>、<code class="language-plaintext highlighter-rouge">pseudos</code>、<code class="language-plaintext highlighter-rouge">indata_prefix</code>、<code class="language-plaintext highlighter-rouge">outdata_prefix</code> 和 <code class="language-plaintext highlighter-rouge">tmpdata_prefix</code> 等参数自定义文件名。理解这些规则有助于更好地管理输入和输出文件，特别是在多数据集模式或复杂计算任务中。</p>]]></content><author><name></name></author><category term="ABINIT tutorials" /><summary type="html"><![CDATA[在ABINIT中，文件名的生成方式有两种：一种是ABINIT自动生成，另一种是基于输入变量（如 output_file、pseudos、indata_prefix、outdata_prefix 或 tmpdata_prefix）构建。以下是关于ABINIT文件名的详细说明：]]></summary></entry><entry><title type="html">Abinit变量restartxf</title><link href="http://localhost:4000/abinit%20variables/2025/01/01/Abinit%E5%8F%98%E9%87%8Frestartxf.html" rel="alternate" type="text/html" title="Abinit变量restartxf" /><published>2025-01-01T00:00:00+01:00</published><updated>2025-01-01T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2025/01/01/Abinit%E5%8F%98%E9%87%8Frestartxf</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2025/01/01/Abinit%E5%8F%98%E9%87%8Frestartxf.html"><![CDATA[<p>在ABINIT软件中，<code class="language-plaintext highlighter-rouge">restartxf</code> 是一个用于控制分子动力学（Molecular Dynamics, MD）或结构优化（Structural Optimization）任务重启行为的参数。它允许用户从历史文件（如 <code class="language-plaintext highlighter-rouge">HIST.nc</code>）中恢复计算，而不是从头开始。</p>
+
+<h3 id="restartxf-的详细说明"><code class="language-plaintext highlighter-rouge">restartxf</code> 的详细说明</h3>
+
+<ol>
+  <li><strong>参数类型</strong>：
+    <ul>
+      <li><strong>变量类型</strong>：整数（integer）</li>
+      <li><strong>维度</strong>：标量（scalar）</li>
+    </ul>
+  </li>
+  <li><strong>默认值</strong>：
+    <ul>
+      <li><strong>默认值</strong>：0</li>
+    </ul>
+  </li>
+  <li><strong>使用场景</strong>：
+    <ul>
+      <li>用于控制分子动力学或结构优化任务的重启行为。</li>
+    </ul>
+  </li>
+  <li><strong>选项说明</strong>：
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">restartxf = 0</code></strong>（默认值）：
+        <ul>
+          <li>不启用重启功能，代码将从头开始进行分子动力学或结构优化计算。</li>
+        </ul>
+      </li>
+      <li><strong><code class="language-plaintext highlighter-rouge">restartxf = -1</code></strong>（新选项）：
+        <ul>
+          <li>使用 <code class="language-plaintext highlighter-rouge">HIST.nc</code> 文件重建部分计算。它将使用 <code class="language-plaintext highlighter-rouge">HIST.nc</code> 文件中存储的力和应力来重建不同的配置，而不是调用自洽场（SCF）过程。</li>
+          <li>从开始就使用 <code class="language-plaintext highlighter-rouge">restartxf = -1</code> 是无害的，唯一条件是保持输入文件不变，以便使用相同的预测器，并预测与 <code class="language-plaintext highlighter-rouge">HIST.nc</code> 文件中记录的结构相同的结构。</li>
+          <li>此选项将始终计算额外的 <code class="language-plaintext highlighter-rouge">ntime</code> 次迭代，与之前恢复的迭代次数无关。</li>
+        </ul>
+      </li>
+      <li><strong><code class="language-plaintext highlighter-rouge">restartxf = -2</code></strong>（新选项）：
+        <ul>
+          <li>读取 <code class="language-plaintext highlighter-rouge">HIST.nc</code> 文件并选择具有最低能量的原子位置和晶胞参数。忽略所有历史记录，并使用这些值开始计算。在这种情况下，原始的原子坐标和晶胞参数无关紧要。</li>
+        </ul>
+      </li>
+      <li><strong><code class="language-plaintext highlighter-rouge">restartxf = -3</code></strong>（新选项）：
+        <ul>
+          <li>仅读取 <code class="language-plaintext highlighter-rouge">HIST.nc</code> 文件中最后所需的原子位置和晶胞参数，以重启分子动力学或结构优化。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>注意事项</strong>：
+    <ul>
+      <li>你可以使用 <code class="language-plaintext highlighter-rouge">restartxf = -1</code>、<code class="language-plaintext highlighter-rouge">-2</code> 或 <code class="language-plaintext highlighter-rouge">-3</code> 来重启不使用随机数的预测器的计算。</li>
+      <li>你可以使用 <code class="language-plaintext highlighter-rouge">restartxf = -1</code>、<code class="language-plaintext highlighter-rouge">-2</code> 或 <code class="language-plaintext highlighter-rouge">-3</code> 来重启未完成的计算。<code class="language-plaintext highlighter-rouge">HIST.nc</code> 文件在每次迭代时都会写入，因此你总是可以从中恢复。</li>
+      <li>你可以利用 <code class="language-plaintext highlighter-rouge">irdwfk</code> 或 <code class="language-plaintext highlighter-rouge">getwfk</code> 的适当值来获得一个良好的波函数以继续你的工作。</li>
+      <li>在ABINITv8之前，允许使用 <code class="language-plaintext highlighter-rouge">restartxf</code> 的正值，但这些选项已被弃用。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="示例">示例</h3>
+
+<p>假设你有一个未完成的分子动力学计算，并且你希望从 <code class="language-plaintext highlighter-rouge">HIST.nc</code> 文件中恢复计算，你可以在输入文件中添加以下行：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>restartxf -1
+</code></pre></div></div>
+
+<p>这样，ABINIT将使用 <code class="language-plaintext highlighter-rouge">HIST.nc</code> 文件中的信息来重建计算，并继续进行计算。</p>
+
+<h3 id="总结">总结</h3>
+
+<p><code class="language-plaintext highlighter-rouge">restartxf</code> 参数为用户提供了灵活的重启选项，允许他们从历史文件中恢复分子动力学或结构优化计算。这对于处理未完成的计算或优化计算过程非常有用。通过选择合适的 <code class="language-plaintext highlighter-rouge">restartxf</code> 值，用户可以有效地管理和继续他们的计算任务。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[在ABINIT软件中，restartxf 是一个用于控制分子动力学（Molecular Dynamics, MD）或结构优化（Structural Optimization）任务重启行为的参数。它允许用户从历史文件（如 HIST.nc）中恢复计算，而不是从头开始。]]></summary></entry><entry><title type="html">Abinit变量ngfft</title><link href="http://localhost:4000/abinit%20variables/2025/01/01/Abinit%E5%8F%98%E9%87%8Fngfft.html" rel="alternate" type="text/html" title="Abinit变量ngfft" /><published>2025-01-01T00:00:00+01:00</published><updated>2025-01-01T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2025/01/01/Abinit%E5%8F%98%E9%87%8Fngfft</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2025/01/01/Abinit%E5%8F%98%E9%87%8Fngfft.html"><![CDATA[<p>在ABINIT软件中，<code class="language-plaintext highlighter-rouge">ngfft</code> 是一个用于定义快速傅里叶变换（FFT）网格大小的参数。它决定了在三个维度上FFT网格的点数，直接影响计算的精度和效率。</p>
+
+<hr />
+
+<h3 id="ngfft-的详细说明"><code class="language-plaintext highlighter-rouge">ngfft</code> 的详细说明</h3>
+
+<ol>
+  <li><strong>参数类型</strong>：
+    <ul>
+      <li><strong>变量类型</strong>：整数（integer）</li>
+      <li><strong>维度</strong>：3维数组（<code class="language-plaintext highlighter-rouge">(3)</code>）</li>
+    </ul>
+  </li>
+  <li><strong>默认值</strong>：
+    <ul>
+      <li><strong>默认值</strong>：<code class="language-plaintext highlighter-rouge">[0, 0, 0]</code></li>
+      <li>如果未提供 <code class="language-plaintext highlighter-rouge">ngfft</code> 或其值为 <code class="language-plaintext highlighter-rouge">[0, 0, 0]</code>，ABINIT会根据 <code class="language-plaintext highlighter-rouge">acell</code>、<code class="language-plaintext highlighter-rouge">rprim</code> 和 <code class="language-plaintext highlighter-rouge">ecut</code> 自动选择最优的 <code class="language-plaintext highlighter-rouge">ngfft</code> 值。这是推荐的做法。</li>
+    </ul>
+  </li>
+  <li><strong>作用</strong>：
+    <ul>
+      <li>定义FFT网格在三个维度上的点数。</li>
+      <li>每个维度的点数必须是2、3、5的乘积，以与ABINIT中FFT的基数兼容。</li>
+      <li>总FFT点数为：<code class="language-plaintext highlighter-rouge">ngfft(1) × ngfft(2) × ngfft(3) = %nfft</code>。</li>
+    </ul>
+  </li>
+  <li><strong>优化与近似</strong>：
+    <ul>
+      <li>如果手动设置 <code class="language-plaintext highlighter-rouge">ngfft</code> 的值小于推荐值（例如通过设置 <code class="language-plaintext highlighter-rouge">boxcutmin</code> 小于2.0），代码会运行得更快，但方程会通过低通傅里叶滤波器进行近似。</li>
+      <li>代码会输出一个参数 <code class="language-plaintext highlighter-rouge">boxcut</code>，表示FFT盒子边长与倒空间向量基球直径的最小比值：
+        <ul>
+          <li>当 <code class="language-plaintext highlighter-rouge">boxcut &lt; 2</code> 时，使用了傅里叶滤波器近似。</li>
+          <li>当 <code class="language-plaintext highlighter-rouge">boxcut &lt; 1.5</code> 时，近似可能过于粗糙，结果可能不准确，建议测试更大的 <code class="language-plaintext highlighter-rouge">ngfft</code> 值。</li>
+          <li>当 <code class="language-plaintext highlighter-rouge">boxcut &gt; 2</code> 时，可以减少 <code class="language-plaintext highlighter-rouge">ngfft</code> 而不损失精度。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>内部存储</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">ngfft</code> 在内部是一个大小为18的数组，其中：
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">ngfft(1:3)</code>：存储用户定义的或自动选择的FFT网格点数。</li>
+          <li><code class="language-plaintext highlighter-rouge">ngfft(4:6)</code>：存储稍大（修改后）的值，以提高FFT效率。</li>
+          <li><code class="language-plaintext highlighter-rouge">ngfft(7)</code>：存储 <code class="language-plaintext highlighter-rouge">fftalg</code>（FFT算法选择）。</li>
+          <li><code class="language-plaintext highlighter-rouge">ngfft(8)</code>：存储 <code class="language-plaintext highlighter-rouge">fftcache</code>（FFT缓存设置）。</li>
+          <li><code class="language-plaintext highlighter-rouge">ngfft(9)</code>：指示FFT并行化是否激活（0：未激活，1：激活）。</li>
+          <li><code class="language-plaintext highlighter-rouge">ngfft(10)</code>：FFT组的处理器数量。</li>
+          <li><code class="language-plaintext highlighter-rouge">ngfft(11)</code>：处理器在组中的索引。</li>
+          <li><code class="language-plaintext highlighter-rouge">ngfft(12)</code>：<code class="language-plaintext highlighter-rouge">n2proc</code>，倒空间中每个处理器处理的x-z平面数量。</li>
+          <li><code class="language-plaintext highlighter-rouge">ngfft(13)</code>：<code class="language-plaintext highlighter-rouge">n3proc</code>，实空间中每个处理器处理的x-y平面数量。</li>
+          <li><code class="language-plaintext highlighter-rouge">ngfft(14)</code>：<code class="language-plaintext highlighter-rouge">mpi_comm_fft</code>，负责FFT并行化的MPI通信器句柄。</li>
+          <li><code class="language-plaintext highlighter-rouge">ngfft(15:18)</code>：尚未使用。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>存储点数</strong>：
+    <ul>
+      <li>在实空间中，每个处理器存储的点数为：<code class="language-plaintext highlighter-rouge">n1 × n2 × n3proc</code>。</li>
+      <li>在倒空间中，每个处理器存储的点数为：<code class="language-plaintext highlighter-rouge">n1 × n2proc × n3</code>。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="示例">示例</h3>
+
+<p>假设你希望手动设置FFT网格点数，可以在输入文件中添加以下行：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ngfft 24 24 24
+</code></pre></div></div>
+
+<p>这将设置FFT网格在每个维度上的点数为24。</p>
+
+<hr />
+
+<h3 id="问abinit怎样根据-acellrprim-和-ecut-计算并自动选择最优的-ngfft-值的">问：ABINIT怎样根据 acell、rprim 和 ecut 计算并自动选择最优的 ngfft 值的？</h3>
+
+<hr />
+
+<p>当未提供 <code class="language-plaintext highlighter-rouge">ngfft</code> 或其值为 <code class="language-plaintext highlighter-rouge">[0, 0, 0]</code> 时，ABINIT会根据以下输入参数自动计算最优的 <code class="language-plaintext highlighter-rouge">ngfft</code> 值：</p>
+
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">acell</code></strong>：晶胞的初始尺寸（以玻尔半径为单位）。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">rprim</code></strong>：晶胞的基向量（定义晶胞的形状和方向）。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">ecut</code></strong>：平面波截断能量（以哈特里为单位）。</li>
+</ol>
+
+<p>ABINIT通过以下步骤自动选择最优的 <code class="language-plaintext highlighter-rouge">ngfft</code> 值：</p>
+
+<h3 id="1-计算倒空间中的最大波矢">1. <strong>计算倒空间中的最大波矢</strong></h3>
+<ul>
+  <li>
+    <p>根据 <code class="language-plaintext highlighter-rouge">ecut</code> 和平面波的动能公式：</p>
+
+\[\frac{\hbar^2 |\mathbf{G}|^2}{2m} \leq \text{ecut}\]
+
+    <p>其中 $\mathbf{G}$ 是倒格矢，$m$ 是电子质量。</p>
+  </li>
+  <li>
+    <p>由此可以确定倒空间中最大波矢的长度 $|\mathbf{G}|_{\text{max}}$。</p>
+  </li>
+</ul>
+
+<h3 id="2-确定实空间中的最小网格间距">2. <strong>确定实空间中的最小网格间距</strong></h3>
+<ul>
+  <li>根据 Nyquist 采样定理，实空间中的网格间距 $\Delta r$ 必须满足：
+\(\Delta r \leq \frac{\pi}{|\mathbf{G}|_{\text{max}}}\)
+以确保能够准确表示倒空间中的最高频率分量。</li>
+</ul>
+
+<h3 id="3-计算每个维度上的网格点数">3. <strong>计算每个维度上的网格点数</strong></h3>
+<ul>
+  <li>根据晶胞的尺寸（<code class="language-plaintext highlighter-rouge">acell</code> 和 <code class="language-plaintext highlighter-rouge">rprim</code>）和最小网格间距 $\Delta r$，计算每个维度上的网格点数：
+\(\text{ngfft}(i) = \frac{\text{acell}(i) \cdot \text{rprim}(i)}{\Delta r}\)
+其中 $i = 1, 2, 3$ 表示三个维度。</li>
+  <li>为了满足FFT算法的要求，<code class="language-plaintext highlighter-rouge">ngfft(i)</code> 必须是2、3、5的乘积。因此，ABINIT会将计算值向上取整到最近的满足条件的整数。</li>
+</ul>
+
+<h3 id="4-考虑-boxcutmin-参数">4. <strong>考虑 <code class="language-plaintext highlighter-rouge">boxcutmin</code> 参数</strong></h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">boxcutmin</code> 是一个用户可调参数，用于控制FFT网格的最小尺寸与倒空间基球直径的比值。</li>
+  <li>默认情况下，<code class="language-plaintext highlighter-rouge">boxcutmin = 2.0</code>，这意味着FFT网格的尺寸至少是倒空间基球直径的两倍，以确保高精度。</li>
+  <li>如果 <code class="language-plaintext highlighter-rouge">boxcutmin</code> 设置为较小的值（如1.5），ABINIT会选择更小的 <code class="language-plaintext highlighter-rouge">ngfft</code> 值，从而加快计算速度，但会引入傅里叶滤波器近似，可能降低精度。</li>
+</ul>
+
+<h3 id="5-输出-boxcut-参数">5. <strong>输出 <code class="language-plaintext highlighter-rouge">boxcut</code> 参数</strong></h3>
+<ul>
+  <li>ABINIT会计算并输出 <code class="language-plaintext highlighter-rouge">boxcut</code> 参数，表示FFT网格尺寸与倒空间基球直径的实际比值：
+\(\text{boxcut} = \frac{\text{FFT网格尺寸}}{\text{倒空间基球直径}}\)</li>
+  <li>如果 <code class="language-plaintext highlighter-rouge">boxcut &lt; 2</code>，说明使用了傅里叶滤波器近似；如果 <code class="language-plaintext highlighter-rouge">boxcut &lt; 1.5</code>，近似可能过于粗糙，建议测试更大的 <code class="language-plaintext highlighter-rouge">ngfft</code> 值。</li>
+</ul>
+
+<h3 id="6-优化fft效率">6. <strong>优化FFT效率</strong></h3>
+<ul>
+  <li>ABINIT会进一步调整 <code class="language-plaintext highlighter-rouge">ngfft</code> 的值，以提高FFT计算的效率。例如，选择稍大的 <code class="language-plaintext highlighter-rouge">ngfft</code> 值，以便更好地利用缓存和并行计算资源。</li>
+</ul>
+
+<h3 id="总结">总结</h3>
+
+<p>ABINIT自动选择 <code class="language-plaintext highlighter-rouge">ngfft</code> 的过程基于以下原则：</p>
+<ol>
+  <li>确保FFT网格能够准确表示倒空间中的最高频率分量（由 <code class="language-plaintext highlighter-rouge">ecut</code> 决定）。</li>
+  <li>满足FFT算法的基数要求（2、3、5的乘积）。</li>
+  <li>考虑 <code class="language-plaintext highlighter-rouge">boxcutmin</code> 参数，在精度和速度之间进行权衡。</li>
+  <li>优化FFT计算的效率。</li>
+</ol>
+
+<p>这种自动选择机制是推荐的，因为它能够根据输入参数动态调整 <code class="language-plaintext highlighter-rouge">ngfft</code>，确保计算的精度和效率。如果需要手动设置 <code class="language-plaintext highlighter-rouge">ngfft</code>，建议先运行自动选择机制，参考其输出的 <code class="language-plaintext highlighter-rouge">boxcut</code> 值，再进行调整。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[在ABINIT软件中，ngfft 是一个用于定义快速傅里叶变换（FFT）网格大小的参数。它决定了在三个维度上FFT网格的点数，直接影响计算的精度和效率。]]></summary></entry><entry><title type="html">如何在Cursor中安装DeepSeek模型</title><link href="http://localhost:4000/ai%20tools/2024/12/29/%E5%9C%A8cursor%E5%AE%89%E8%A3%85deepseek%E6%A8%A1%E5%9E%8B.html" rel="alternate" type="text/html" title="如何在Cursor中安装DeepSeek模型" /><published>2024-12-29T00:00:00+01:00</published><updated>2024-12-29T00:00:00+01:00</updated><id>http://localhost:4000/ai%20tools/2024/12/29/%E5%9C%A8cursor%E5%AE%89%E8%A3%85deepseek%E6%A8%A1%E5%9E%8B</id><content type="html" xml:base="http://localhost:4000/ai%20tools/2024/12/29/%E5%9C%A8cursor%E5%AE%89%E8%A3%85deepseek%E6%A8%A1%E5%9E%8B.html"><![CDATA[<p>Cursor作为一款集成AI功能的IDE，使用体验非常丝滑。然而，当赠送的额度用完后，还希望能够继续使用AI功能。DeepSeek作为一款很棒的AI模型，特别其v3版本在网页端表现优异。本文将介绍如何在Cursor中通过API使用DeepSeek模型。</p>
+
+<h2 id="准备工作">准备工作</h2>
+<ol>
+  <li><strong>获取API Key</strong>
+    <ul>
+      <li>访问<a href="https://www.deepseek.com">DeepSeek官网</a></li>
+      <li>购买API服务（500万tokens仅需10元人民币，支持支付宝付款）</li>
+      <li>记录下获取的API Key</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="配置步骤">配置步骤</h2>
+
+<h3 id="第一步添加deepseek模型">第一步：添加DeepSeek模型</h3>
+<ol>
+  <li>打开Cursor的设置界面</li>
+  <li>进入”模型”设置</li>
+  <li>添加新模型，命名为<code class="language-plaintext highlighter-rouge">deepseek-chat</code></li>
+  <li><strong>重要</strong>：取消勾选其他所有模型，仅保留<code class="language-plaintext highlighter-rouge">deepseek-chat</code>。不做的话后面验证API会报错。</li>
+</ol>
+
+<h3 id="第二步配置api">第二步：配置API</h3>
+<ol>
+  <li>在”OpenAI API Key”字段中，粘贴购买的DeepSeek API Key</li>
+  <li>在”Base URL”字段中填写：<code class="language-plaintext highlighter-rouge">https://api.deepseek.com/v1</code>
+    <ul>
+      <li>注意：必须准确填写，如果是别的模型地址，会导致验证报错。</li>
+    </ul>
+  </li>
+  <li>点击验证按钮</li>
+  <li>如果没有报错，说明配置成功，可以开始使用</li>
+</ol>]]></content><author><name></name></author><category term="AI tools" /><summary type="html"><![CDATA[Cursor作为一款集成AI功能的IDE，使用体验非常丝滑。然而，当赠送的额度用完后，还希望能够继续使用AI功能。DeepSeek作为一款很棒的AI模型，特别其v3版本在网页端表现优异。本文将介绍如何在Cursor中通过API使用DeepSeek模型。]]></summary></entry><entry><title type="html">粒子在一维盒子中</title><link href="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E7%B2%92%E5%AD%90%E5%9C%A8%E4%B8%80%E7%BB%B4%E7%9B%92%E5%AD%90%E4%B8%AD.html" rel="alternate" type="text/html" title="粒子在一维盒子中" /><published>2024-12-29T00:00:00+01:00</published><updated>2024-12-29T00:00:00+01:00</updated><id>http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E7%B2%92%E5%AD%90%E5%9C%A8%E4%B8%80%E7%BB%B4%E7%9B%92%E5%AD%90%E4%B8%AD</id><content type="html" xml:base="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E7%B2%92%E5%AD%90%E5%9C%A8%E4%B8%80%E7%BB%B4%E7%9B%92%E5%AD%90%E4%B8%AD.html"><![CDATA[<p>本节将求解一维盒子中粒子的时间无关薛定谔方程。这里的“一维盒子”指的是粒子在x轴上受到一个势能函数的作用，该势能在长度为l的线段外处处为无穷大，而在线段内势能为零。虽然这种系统在物理上可能显得不现实，但该模型可以成功地应用于某些共轭分子；参见问题2.17。我们将坐标原点放在线段的左端（图2.1）。</p>
 
 <h2 id="区域划分">区域划分</h2>
 
@@ -85,7 +605,68 @@
 
 \[E = \frac{n^2 h^2}{8ml^2} \quad n = 1, 2, 3, \ldots \tag{2.20}\]
 
-<p>只有能量值 (2.20) 允许 $\psi$ 满足在 $x = l$ 处的连续性边界条件。边界条件的应用迫使我们得出结论，能量值是量子化的（图2.2）。这与经典结果形成鲜明对比，经典结果认为盒子中的粒子可以具有任何非负能量。注意，粒子的能量有一个大于零的最小值。最低能量的状态称为基态。能量高于基态能量的状态称为激发态。（在经典力学中，盒子中粒子的最低可能能量为零。经典粒子在盒子内静止不动，动能为零，势能为零。）</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[本节将求解一维盒子中粒子的时间无关薛定谔方程。这里的“一维盒子”指的是粒子在x轴上受到一个势能函数的作用，该势能在长度为l的线段外处处为无穷大，而在线段内势能为零。虽然这种系统在物理上可能显得不现实，但该模型可以成功地应用于某些共轭分子；参见问题2.17。我们将坐标原点放在线段的左端（图2.1）。]]></summary></entry><entry><title type="html">量子力学的历史背景</title><link href="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%8E%86%E5%8F%B2%E8%83%8C%E6%99%AF.html" rel="alternate" type="text/html" title="量子力学的历史背景" /><published>2024-12-29T00:00:00+01:00</published><updated>2024-12-29T00:00:00+01:00</updated><id>http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%8E%86%E5%8F%B2%E8%83%8C%E6%99%AF</id><content type="html" xml:base="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%8E%86%E5%8F%B2%E8%83%8C%E6%99%AF.html"><![CDATA[<p>量子力学的发展始于1900年，当时普朗克研究了加热固体发出的光。为了理解这一发展，我们首先需要讨论光的性质。</p>
+<p>只有能量值 (2.20) 允许 $\psi$ 满足在 $x = l$ 处的连续性边界条件。边界条件的应用迫使我们得出结论，能量值是量子化的（图2.2）。这与经典结果形成鲜明对比，经典结果认为盒子中的粒子可以具有任何非负能量。注意，粒子的能量有一个大于零的最小值。最低能量的状态称为基态。能量高于基态能量的状态称为激发态。（在经典力学中，盒子中粒子的最低可能能量为零。经典粒子在盒子内静止不动，动能为零，势能为零。）</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[本节将求解一维盒子中粒子的时间无关薛定谔方程。这里的“一维盒子”指的是粒子在x轴上受到一个势能函数的作用，该势能在长度为l的线段外处处为无穷大，而在线段内势能为零。虽然这种系统在物理上可能显得不现实，但该模型可以成功地应用于某些共轭分子；参见问题2.17。我们将坐标原点放在线段的左端（图2.1）。]]></summary></entry><entry><title type="html">量子力学中的微分方程</title><link href="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E4%B8%AD%E7%9A%84%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B.html" rel="alternate" type="text/html" title="量子力学中的微分方程" /><published>2024-12-29T00:00:00+01:00</published><updated>2024-12-29T00:00:00+01:00</updated><id>http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E4%B8%AD%E7%9A%84%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B</id><content type="html" xml:base="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E4%B8%AD%E7%9A%84%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B.html"><![CDATA[<p>在量子力学中，研究一个粒子在一维系统中的稳态波函数和能级是通过求解时间无关的薛定谔方程（1.19）来实现的。在本章中，我们将对一个非常简单的系统——一维盒子中的粒子（第2.2节）——求解时间无关的薛定谔方程。由于薛定谔方程是一个微分方程，我们首先讨论微分方程。</p>
+
+<h2 id="微分方程">微分方程</h2>
+
+<p>本节仅讨论常微分方程，即只有一个自变量的微分方程。[偏微分方程则有多个自变量。例如，时间相关的薛定谔方程（1.16）中，$t$ 和 $x$ 是自变量。] 常微分方程是涉及自变量 $x$、因变量 $y(x)$ 以及 $y$ 的一阶、二阶、……、$n$ 阶导数（$y’,y’’,\ldots,y^{(n)}$）的关系式。例如：</p>
+
+\[y'' + 2x(y')^2 + y^2 \sin x = 3e^x \tag{2.1}\]
+
+<p>微分方程的阶数是方程中最高导数的阶数。因此，（2.1）式是一个三阶方程。</p>
+
+<p>一种特殊的微分方程是线性微分方程，其形式为：</p>
+
+\[A_n(x)y^{(n)} + A_{n-1}(x)y^{(n-1)} + \cdots + A_1(x)y' + A_0(x)y = g(x) \tag{2.2}\]
+
+<p>其中 $A$ 和 $g$（其中一些可能为零）仅是 $x$ 的函数。在 $n$ 阶线性微分方程（2.2）中，$y$ 及其导数以一次幂出现。不能写成（2.2）形式的微分方程是非线性的。如果（2.2）中的 $g(x) = 0$，则线性微分方程是齐次的；否则是非齐次的。一维薛定谔方程（1.19）是一个线性齐次二阶微分方程。</p>
+
+<p>通过除以 $y’’$ 的系数，我们可以将每个线性齐次二阶微分方程写成以下形式：</p>
+
+\[y'' + P(x)y' + Q(x)y = 0 \tag{2.3}\]
+
+<p>假设 $y_1$ 和 $y_2$ 是两个独立的函数，每个都满足（2.3）。这里的独立意味着 $y_2$ 不是 $y_1$ 的简单倍数。那么线性齐次微分方程（2.3）的通解为：</p>
+
+\[y = c_1y_1 + c_2y_2 \tag{2.4}\]
+
+<h2 id="微分方程的通解与常系数线性齐次方程">微分方程的通解与常系数线性齐次方程</h2>
+
+<p>在求解微分方程时，我们经常需要找到方程的通解。通解通常包含一些任意常数，这些常数可以通过边界条件来确定。边界条件是指在某些点上指定 $y$ 或其导数的值。例如，如果 $y$ 表示一根固定在两点的振动弦的位移，我们知道在这两点上 $y$ 必须为零。</p>
+
+<p>对于一个线性齐次二阶微分方程，如果 $y_1$ 和 $y_2$ 是两个独立的解，那么方程的通解可以表示为：</p>
+
+\[y = c_1 y_1 + c_2 y_2 \tag{2.4}\]
+
+<p>其中 $c_1$ 和 $c_2$ 是任意常数。通过将（2.4）代入方程（2.3）的左边，可以验证这一点：</p>
+
+\[\begin{align}
+c_1 y_1'' + c_2 y_2'' &amp; + P(x) c_1 y_1' + P(x) c_2 y_2'  \\
+&amp; + Q(x) c_1 y_1 + Q(x) c_2 y_2 = c_1 [y_1'' + P(x) y_1' + Q(x) y_1] \\
+&amp; + c_2 [y_2'' + P(x) y_2' + Q(x) y_2] = c_1 \cdot 0 + c_2 \cdot 0 = 0 \tag{2.5}
+\end{align}\]
+
+<p>这里利用了 $y_1$ 和 $y_2$ 满足方程（2.3）的事实。</p>
+
+<h2 id="常系数线性齐次方程">常系数线性齐次方程</h2>
+
+<p>一个重要的特殊情况是常系数的线性齐次二阶微分方程：</p>
+
+\[y'' + p y' + q y = 0 \tag{2.6}\]
+
+<p>其中 $p$ 和 $q$ 是常数。为了求解（2.6），我们假设解的形式为 $y = e^{sx}$。指数函数在求导时会重复自身，因此是一个合适的选择。将 $y = e^{sx}$ 代入（2.6）得到：</p>
+
+<p>\(s^2 e^{sx} + p s e^{sx} + q e^{sx} = 0\)
+\(s^2 + p s + q = 0 \tag{2.7}\)</p>
+
+<p>方程（2.7）称为辅助方程。它是一个二次方程，有两个根 $s_1$ 和 $s_2$。如果 $s_1$ 和 $s_2$ 不相等，它们将给出方程（2.6）的两个独立解。因此，方程（2.6）的通解为：</p>
+
+\[y = c_1 e^{s_1 x} + c_2 e^{s_2 x} \tag{2.8}\]
+
+<p>例如，对于方程 $y’’ + 6y’ - 7y = 0$，辅助方程是 $s^2 + 6s - 7 = 0$。使用求根公式得到 $s_1 = 1$ 和 $s_2 = -7$，因此通解为 $c_1 e^x + c_2 e^{-7x}$。</p>
+
+<hr />
+<p>本文参考自：
+Levine, Ira N. “Quantum Chemistry, 58.” PHI Learning Pri. Ltd. Delhi (2013): 461-462.</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[在量子力学中，研究一个粒子在一维系统中的稳态波函数和能级是通过求解时间无关的薛定谔方程（1.19）来实现的。在本章中，我们将对一个非常简单的系统——一维盒子中的粒子（第2.2节）——求解时间无关的薛定谔方程。由于薛定谔方程是一个微分方程，我们首先讨论微分方程。]]></summary></entry><entry><title type="html">量子力学的历史背景</title><link href="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%8E%86%E5%8F%B2%E8%83%8C%E6%99%AF.html" rel="alternate" type="text/html" title="量子力学的历史背景" /><published>2024-12-29T00:00:00+01:00</published><updated>2024-12-29T00:00:00+01:00</updated><id>http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%8E%86%E5%8F%B2%E8%83%8C%E6%99%AF</id><content type="html" xml:base="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%8E%86%E5%8F%B2%E8%83%8C%E6%99%AF.html"><![CDATA[<p>量子力学的发展始于1900年，当时普朗克研究了加热固体发出的光。为了理解这一发展，我们首先需要讨论光的性质。</p>
 
 <h2 id="光的波动性">光的波动性</h2>
 
@@ -148,288 +729,7 @@
 <hr />
 <p>本文参考自：</p>
 
-<p>Levine, Ira N. “Quantum Chemistry, 58.” PHI Learning Pri. Ltd. Delhi (2013): 461-462.</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[量子力学的发展始于1900年，当时普朗克研究了加热固体发出的光。为了理解这一发展，我们首先需要讨论光的性质。]]></summary></entry><entry><title type="html">量子力学中的微分方程</title><link href="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E4%B8%AD%E7%9A%84%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B.html" rel="alternate" type="text/html" title="量子力学中的微分方程" /><published>2024-12-29T00:00:00+01:00</published><updated>2024-12-29T00:00:00+01:00</updated><id>http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E4%B8%AD%E7%9A%84%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B</id><content type="html" xml:base="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/29/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E4%B8%AD%E7%9A%84%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B.html"><![CDATA[<p>在量子力学中，研究一个粒子在一维系统中的稳态波函数和能级是通过求解时间无关的薛定谔方程（1.19）来实现的。在本章中，我们将对一个非常简单的系统——一维盒子中的粒子（第2.2节）——求解时间无关的薛定谔方程。由于薛定谔方程是一个微分方程，我们首先讨论微分方程。</p>
-
-<h2 id="微分方程">微分方程</h2>
-
-<p>本节仅讨论常微分方程，即只有一个自变量的微分方程。[偏微分方程则有多个自变量。例如，时间相关的薛定谔方程（1.16）中，$t$ 和 $x$ 是自变量。] 常微分方程是涉及自变量 $x$、因变量 $y(x)$ 以及 $y$ 的一阶、二阶、……、$n$ 阶导数（$y’,y’’,\ldots,y^{(n)}$）的关系式。例如：</p>
-
-\[y'' + 2x(y')^2 + y^2 \sin x = 3e^x \tag{2.1}\]
-
-<p>微分方程的阶数是方程中最高导数的阶数。因此，（2.1）式是一个三阶方程。</p>
-
-<p>一种特殊的微分方程是线性微分方程，其形式为：</p>
-
-\[A_n(x)y^{(n)} + A_{n-1}(x)y^{(n-1)} + \cdots + A_1(x)y' + A_0(x)y = g(x) \tag{2.2}\]
-
-<p>其中 $A$ 和 $g$（其中一些可能为零）仅是 $x$ 的函数。在 $n$ 阶线性微分方程（2.2）中，$y$ 及其导数以一次幂出现。不能写成（2.2）形式的微分方程是非线性的。如果（2.2）中的 $g(x) = 0$，则线性微分方程是齐次的；否则是非齐次的。一维薛定谔方程（1.19）是一个线性齐次二阶微分方程。</p>
-
-<p>通过除以 $y’’$ 的系数，我们可以将每个线性齐次二阶微分方程写成以下形式：</p>
-
-\[y'' + P(x)y' + Q(x)y = 0 \tag{2.3}\]
-
-<p>假设 $y_1$ 和 $y_2$ 是两个独立的函数，每个都满足（2.3）。这里的独立意味着 $y_2$ 不是 $y_1$ 的简单倍数。那么线性齐次微分方程（2.3）的通解为：</p>
-
-\[y = c_1y_1 + c_2y_2 \tag{2.4}\]
-
-<h2 id="微分方程的通解与常系数线性齐次方程">微分方程的通解与常系数线性齐次方程</h2>
-
-<p>在求解微分方程时，我们经常需要找到方程的通解。通解通常包含一些任意常数，这些常数可以通过边界条件来确定。边界条件是指在某些点上指定 $y$ 或其导数的值。例如，如果 $y$ 表示一根固定在两点的振动弦的位移，我们知道在这两点上 $y$ 必须为零。</p>
-
-<p>对于一个线性齐次二阶微分方程，如果 $y_1$ 和 $y_2$ 是两个独立的解，那么方程的通解可以表示为：</p>
-
-\[y = c_1 y_1 + c_2 y_2 \tag{2.4}\]
-
-<p>其中 $c_1$ 和 $c_2$ 是任意常数。通过将（2.4）代入方程（2.3）的左边，可以验证这一点：</p>
-
-\[\begin{align}
-c_1 y_1'' + c_2 y_2'' &amp; + P(x) c_1 y_1' + P(x) c_2 y_2'  \\
-&amp; + Q(x) c_1 y_1 + Q(x) c_2 y_2 = c_1 [y_1'' + P(x) y_1' + Q(x) y_1] \\
-&amp; + c_2 [y_2'' + P(x) y_2' + Q(x) y_2] = c_1 \cdot 0 + c_2 \cdot 0 = 0 \tag{2.5}
-\end{align}\]
-
-<p>这里利用了 $y_1$ 和 $y_2$ 满足方程（2.3）的事实。</p>
-
-<h2 id="常系数线性齐次方程">常系数线性齐次方程</h2>
-
-<p>一个重要的特殊情况是常系数的线性齐次二阶微分方程：</p>
-
-\[y'' + p y' + q y = 0 \tag{2.6}\]
-
-<p>其中 $p$ 和 $q$ 是常数。为了求解（2.6），我们假设解的形式为 $y = e^{sx}$。指数函数在求导时会重复自身，因此是一个合适的选择。将 $y = e^{sx}$ 代入（2.6）得到：</p>
-
-<p>\(s^2 e^{sx} + p s e^{sx} + q e^{sx} = 0\)
-\(s^2 + p s + q = 0 \tag{2.7}\)</p>
-
-<p>方程（2.7）称为辅助方程。它是一个二次方程，有两个根 $s_1$ 和 $s_2$。如果 $s_1$ 和 $s_2$ 不相等，它们将给出方程（2.6）的两个独立解。因此，方程（2.6）的通解为：</p>
-
-\[y = c_1 e^{s_1 x} + c_2 e^{s_2 x} \tag{2.8}\]
-
-<p>例如，对于方程 $y’’ + 6y’ - 7y = 0$，辅助方程是 $s^2 + 6s - 7 = 0$。使用求根公式得到 $s_1 = 1$ 和 $s_2 = -7$，因此通解为 $c_1 e^x + c_2 e^{-7x}$。</p>
-
-<hr />
-<p>本文参考自：
-Levine, Ira N. “Quantum Chemistry, 58.” PHI Learning Pri. Ltd. Delhi (2013): 461-462.</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[在量子力学中，研究一个粒子在一维系统中的稳态波函数和能级是通过求解时间无关的薛定谔方程（1.19）来实现的。在本章中，我们将对一个非常简单的系统——一维盒子中的粒子（第2.2节）——求解时间无关的薛定谔方程。由于薛定谔方程是一个微分方程，我们首先讨论微分方程。]]></summary></entry><entry><title type="html">Abinit变量rprim</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim.html" rel="alternate" type="text/html" title="Abinit变量rprim" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Frprim.html"><![CDATA[<h1 id="理解abinit中的rprim变量">理解ABINIT中的<code class="language-plaintext highlighter-rouge">rprim</code>变量</h1>
-
-<p>在ABINIT软件中，<code class="language-plaintext highlighter-rouge">rprim</code>是一个用于定义实空间原始平移矢量的关键变量。本文将解释<code class="language-plaintext highlighter-rouge">rprim</code>的含义、特性及其在计算中的作用。</p>
-
-<h2 id="什么是rprim">什么是<code class="language-plaintext highlighter-rouge">rprim</code>？</h2>
-
-<p><code class="language-plaintext highlighter-rouge">rprim</code>是ABINIT中的一个实数型变量，维度为<code class="language-plaintext highlighter-rouge">(3,3)</code>，即一个3x3的矩阵。它用于定义实空间中三个无量纲的原始平移矢量。这些矢量会被<code class="language-plaintext highlighter-rouge">acell</code>和<code class="language-plaintext highlighter-rouge">scalecart</code>变量缩放，最终得到实际的晶格矢量。</p>
-
-<h2 id="rprim的特性"><code class="language-plaintext highlighter-rouge">rprim</code>的特性</h2>
-
-<ul>
-  <li><strong>EVOLVING</strong>: 该变量在计算过程中可能会发生变化，但仅在<code class="language-plaintext highlighter-rouge">ionmov == 2</code>或<code class="language-plaintext highlighter-rouge">22</code>且<code class="language-plaintext highlighter-rouge">optcell/=0</code>时才会变化，否则它是固定的。</li>
-</ul>
-
-<h2 id="rprim的默认值"><code class="language-plaintext highlighter-rouge">rprim</code>的默认值</h2>
-
-<p><code class="language-plaintext highlighter-rouge">rprim</code>的默认值为单位矩阵：</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> [1, 0, 0],  
- [0, 1, 0],  
- [0, 0, 1]
-</code></pre></div></div>
-<p>这意味着默认情况下，三个原始平移矢量是笛卡尔坐标系中的单位矢量。</p>
-
-<h2 id="rprim的使用场景"><code class="language-plaintext highlighter-rouge">rprim</code>的使用场景</h2>
-
-<p><code class="language-plaintext highlighter-rouge">rprim</code>在ABINIT的测试和教程中非常常用。在所有的ABINIT测试中，<code class="language-plaintext highlighter-rouge">rprim</code>被使用了1000次（共1245次测试），在教程中也被使用了130次（共159个教程）。</p>
-
-<h2 id="rprim与其它变量的关系"><code class="language-plaintext highlighter-rouge">rprim</code>与其它变量的关系</h2>
-
-<ul>
-  <li><strong><code class="language-plaintext highlighter-rouge">acell</code></strong>: <code class="language-plaintext highlighter-rouge">rprim</code>定义的矢量会被<code class="language-plaintext highlighter-rouge">acell</code>缩放，以得到实际的长度。</li>
-  <li><strong><code class="language-plaintext highlighter-rouge">scalecart</code></strong>: <code class="language-plaintext highlighter-rouge">rprim</code>定义的矢量还会被<code class="language-plaintext highlighter-rouge">scalecart</code>沿笛卡尔坐标轴拉伸。</li>
-  <li><strong><code class="language-plaintext highlighter-rouge">%rprimd</code></strong>: 最终的实际晶格矢量存储在内部变量<code class="language-plaintext highlighter-rouge">%rprimd</code>中。</li>
-</ul>
-
-<h2 id="rprim的具体作用"><code class="language-plaintext highlighter-rouge">rprim</code>的具体作用</h2>
-
-<p><code class="language-plaintext highlighter-rouge">rprim</code>定义了三个原始平移矢量的方向，而<code class="language-plaintext highlighter-rouge">acell</code>和<code class="language-plaintext highlighter-rouge">scalecart</code>则分别用于缩放这些矢量的长度和方向。具体来说，实际晶格矢量的计算公式为：</p>
-
-\[\begin{align*}R_{1p}(i) &amp;= \text{scalecart}(i) \times \text{rprim}(i,1) \times \text{acell}(1) \\R_{2p}(i) &amp;= \text{scalecart}(i) \times \text{rprim}(i,2) \times \text{acell}(2) \\R_{3p}(i) &amp;= \text{scalecart}(i) \times \text{rprim}(i,3) \times \text{acell}(3)\end{align*}\]
-
-<p>其中，<code class="language-plaintext highlighter-rouge">i=1,2,3</code>分别对应x、y、z三个方向。</p>
-
-<h2 id="注意事项">注意事项</h2>
-
-<ol>
-  <li><strong>输入顺序</strong>: <code class="language-plaintext highlighter-rouge">rprim</code>的输入顺序是Fortran数组的顺序，即前三个数是第一个矢量的坐标，接下来三个是第二个矢量的坐标，最后三个是第三个矢量的坐标。</li>
-  <li><strong>混合积为正</strong>: <code class="language-plaintext highlighter-rouge">rprim</code>定义的三个矢量的混合积（即 \((R_1 \times R_2) \cdot R_3\)）必须为正数，否则需要交换一对矢量。</li>
-  <li><strong>替代变量</strong>: 对于六方晶格等特殊结构，可以使用<code class="language-plaintext highlighter-rouge">angdeg</code>变量来定义原始矢量的方向，以避免手动输入复杂的<code class="language-plaintext highlighter-rouge">rprim</code>值。</li>
-  <li><strong>常见错误</strong>: 初学者在使用<code class="language-plaintext highlighter-rouge">acell</code>和<code class="language-plaintext highlighter-rouge">scalecart</code>时容易混淆。例如，在定义体心四方晶格时，错误地使用<code class="language-plaintext highlighter-rouge">acell</code>会导致晶格矢量方向错误。</li>
-</ol>
-
-<h2 id="示例">示例</h2>
-
-<p>以下是一个体心四方晶格的正确定义方式：</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rprim   1        0       0  
-        0        1       0  
-        1/2      1/2     1/2  
-scalecart  "a"  "a"  "c"  
-acell 3*1    ! 默认值
-</code></pre></div></div>
-<p>而以下方式是错误的：</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rprim   1       0       0  
-        0       1       0  
-        1/2     1/2     1/2  
-acell  "a"  "a"  "c"    ! 错误  
-scalecart 3*1    ! 默认值
-</code></pre></div></div>
-
-<h2 id="总结">总结</h2>
-
-<p><code class="language-plaintext highlighter-rouge">rprim</code>是ABINIT中用于定义晶格原始平移矢量的关键变量。通过<code class="language-plaintext highlighter-rouge">rprim</code>、<code class="language-plaintext highlighter-rouge">acell</code>和<code class="language-plaintext highlighter-rouge">scalecart</code>的配合，用户可以灵活地定义晶格的结构。理解<code class="language-plaintext highlighter-rouge">rprim</code>的含义及其与其它变量的关系，对于正确使用ABINIT进行材料模拟至关重要。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[理解ABINIT中的rprim变量]]></summary></entry><entry><title type="html">Hartree–Fock方程推导</title><link href="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/28/Hartree-Fock%E6%96%B9%E7%A8%8B%E6%8E%A8%E5%AF%BC.html" rel="alternate" type="text/html" title="Hartree–Fock方程推导" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/28/Hartree%E2%80%93Fock%E6%96%B9%E7%A8%8B%E6%8E%A8%E5%AF%BC</id><content type="html" xml:base="http://localhost:4000/dft%E7%90%86%E8%AE%BA/2024/12/28/Hartree-Fock%E6%96%B9%E7%A8%8B%E6%8E%A8%E5%AF%BC.html"><![CDATA[<p>我们将详细介绍Hartree-Fock方程的推导过程。为了使形式尽可能简单，我们考虑两个电子的情况，并且暂时忽略自旋。在最后，我们将指出如何将以下推导推广到任意数量且带有自旋自由度的电子。</p>
-
-<p>我们首先重写多体薛定谔方程（公式2.28），针对$N=2$个电子的特定情况：</p>
-
-\[\left[\hat{H}_0(\mathbf{r}_1) + \hat{H}_0(\mathbf{r}_2) + \frac{1}{|\mathbf{r}_1-\mathbf{r}_2|}\right]\Psi = E\Psi \tag{A.1}\]
-
-<p>其中单粒子哈密顿量$\hat{H}_0$与公式2.31中的相同。Hartree-Fock方法的核心思想是寻找该方程的Slater行列式形式的解 $\Psi$。下面我们报告了公式2.41中给出的Slater行列式的定义，并为了方便起见，用 $\psi_1$ 和 $\psi_2$ 表示单粒子波函数：</p>
-
-\[\Psi(\mathbf{r}_1, \mathbf{r}_2) = \frac{1}{\sqrt{2}}[\psi_1(\mathbf{r}_1)\psi_2(\mathbf{r}_2) - \psi_1(\mathbf{r}_2)\psi_2(\mathbf{r}_1)] \tag{A.2}\]
-
-<p>在这个阶段，我们并不知道$\psi_{1}$和$\psi_{2}$，为了继续推导，我们需要额外的信息。我们可以使用的一个信息是，公式A.2中的两体波函数$\Psi$不仅仅是公式A.1的任意解，而是具有最低能量$E$的解，即电子基态。</p>
-
-<p>为了找到使总能量最小化的函数$\psi_{1}$和$\psi_{2}$，第一步是将$E$写成波函数的显式泛函。这是通过结合公式2.53、A.1和A.2来实现的。经过一些繁琐但直接的操作，我们得到：</p>
-
-\[\begin{multline*}
-E = \langle\psi_{1}|\hat{H}_{0}|\psi_{1}\rangle\langle\psi_{2}|\psi_{2} \rangle+\langle\psi_{2}|\hat{H}_{0}|\psi_{2}\rangle\langle\psi_{1}|\psi_{1} \rangle \\
--\langle\psi_{1}|\hat{H}_{0}|\psi_{2}\rangle\langle\psi_{2}|\psi_{1} \rangle-\langle\psi_{2}|\hat{H}_{0}|\psi_{1}\rangle\langle\psi_{1}|\psi_{2} \rangle \\
-+ \int d\mathbf{r}_{1}d\mathbf{r}_{2}\,\frac{|\psi_{1}(\mathbf{r}_{1})|^{2}|\psi_{2}(\mathbf{r}_{2})|^{2}}{|\mathbf{r}_{1}-\mathbf{r}_{2}|} \\
--\int d\mathbf{r}_{1}d\mathbf{r}_{2}\,\frac{\psi_{1}^{*}(\mathbf{r}_{1})\psi_{2}^{*}(\mathbf{r}_{2})\psi_{1}(\mathbf{r}_{2})\psi_{2}(\mathbf{r}_{1})}{|\mathbf{r}_{1}-\mathbf{r}_{2}|}
-\end{multline*}
-\tag{A.3}\]
-
-<p>其中使用了第2章中介绍的Dirac符号。</p>
-
-<p>如果我们要求函数$\psi_{1}({\bf r})$和$\psi_{2}({\bf r})$是正交归一的，即归一化且正交，那么公式A.3将大大简化。这一要求对应于设置：</p>
-
-\[\langle \psi_1 |\psi_1 \rangle = \langle \psi_2 |\psi_2 \rangle = 1, \text{ 且 } \langle \psi_1 |\psi_2 \rangle = \langle \psi_2 |\psi_1 \rangle = 0 \tag{A.4}\]
-
-<p>这些条件自动意味着我们的试探解 $\Psi$ 是正确归一化的，正如第2.6节所讨论的那样。在方程A.3中使用方程A.4，我们立即得到：</p>
-
-\[E = \int d\mathbf{r} \psi_1^*(\mathbf{r}) \hat{H}_0(\mathbf{r}) \psi_1(\mathbf{r}) + \int d\mathbf{r} \psi_2^*(\mathbf{r}) \hat{H}_0(\mathbf{r}) \psi_2(\mathbf{r})\]
-
-\[+ \int d\mathbf{r}_1 d\mathbf{r}_2 \frac{\psi_1^*(\mathbf{r}_1) \psi_2^*(\mathbf{r}_2) \psi_1(\mathbf{r}_1) \psi_2(\mathbf{r}_2)}{|\mathbf{r}_1 - \mathbf{r}_2|} - \int d\mathbf{r}_1 d\mathbf{r}_2 \frac{\psi_1^*(\mathbf{r}_1) \psi_2^*(\mathbf{r}_2) \psi_1(\mathbf{r}_2) \psi_2(\mathbf{r}_1)}{|\mathbf{r}_1 - \mathbf{r}_2|} \tag{A.5}\]
-
-<p>方程A.5显示了能量 $E$ 如何是 $\psi_1$ 和 $\psi_2$ 的泛函，简写为 $E = E[\psi_1, \psi_2]$。现在我们可以寻找使这个泛函最小化的函数 $\psi_1$ 和 $\psi_2$。原则上，我们可以通过要求 $E$ 对 $\psi_1$ 和 $\psi_2$ 的泛函导数等于零来实现这一点（参见练习3.4了解泛函导数的定义）：</p>
-
-\[\frac{\delta E}{\delta \psi_1} = 0, \quad \frac{\delta E}{\delta \psi_2} = 0 \tag{A.6}\]
-
-<p>这与标准微积分中多变量函数的极值计算完全类似。然而，这里的极小化过程由于我们的函数需要满足方程A.4中的约束而变得复杂。为了有效地处理这些约束，使用拉格朗日乘数法（Nocedal and Wright, 1999）是方便的。在这种方法中，引入一个新的泛函，自动包含约束：</p>
-
-\[L[\psi_1, \psi_2, \lambda_{11}, \ldots, \lambda_{22}] = E[\psi_1, \psi_2] - \sum_{i,j} \lambda_{ij} [\langle \psi_i |\psi_j \rangle - \delta_{ij}] \tag{A.7}\]
-
-<p>其中常数 $\lambda_{11}, \lambda_{12}, \lambda_{21}$ 和 $\lambda_{22}$ 是未知的。用 $L$ 替换 $E$ 是合理的，因为根据方程A.4，方括号中的项需要消失。常数 $\lambda_{ij}$ 称为拉格朗日乘数，可以被视为新的独立变量。在拉格朗日的方法中，由方程A.6和A.4定义的约束极小化问题被替换为以下无约束极小化问题：</p>
-
-\[\frac{\delta L}{\delta \psi_i} = 0, \quad i = 1,2, \quad \frac{\delta L}{\delta \lambda_{ij}} = 0, \quad i,j = 1,2 \tag{A.8}\]
-
-<p>可以立即验证，对拉格朗日乘数的泛函导数正好得到方程A.4中的约束。</p>
-
-<p>在继续之前，我们注意到对 $\psi_i$ 和 $\psi_i^*$ 的导数并不是独立的；然而，它们可以有效地被视为独立的。这是一个微妙的问题，与哈密顿量是厄米的事实有关，关于这一点的澄清可以在Bransden和Joachain（1983）的第2.8章找到。在下面，为了方便起见，我们计算对 $\psi_i^*$ 的导数。让我们以方程A.5中的第一项为例，为了明确起见，我们称之为 $G$：</p>
-
-\[G = \int d\mathbf{r}\,\psi_1^*(\mathbf{r})\hat{H}_0(\mathbf{r})\psi_1(\mathbf{r})\]
-
-<p>根据方程3.24中给出的泛函导数的定义，我们得到：</p>
-
-\[\int dr h(r) \frac{\delta G}{\delta \psi_1^*} = \frac{d}{d\epsilon} \int dr [\psi_1^*(r) + \epsilon h(r)] \hat{H}_0(r)\psi_1(r) = \int dr h(r) \hat{H}_0(r)\psi_1(r)\]
-
-<p>因此，我们有：</p>
-
-\[\frac{\delta G}{\delta \psi_1^*} = \hat{H}_0(r)\psi_1(r)\]
-
-<p>方程A.5中所有其他项以及方程A.7中的正交归一约束的泛函导数可以类似地得到。我们发现：</p>
-
-\[\frac{\delta L}{\delta \psi_1^*} = \hat{H}_0(r)\psi_1(r) + \int dr' \frac{|\psi_2(r')|^2}{|r - r'|} \psi_1(r) - \int dr' \frac{\psi_2^*(r') \psi_2(r)}{|r - r'|} \psi_1(r') - \lambda_{11} \psi_1(r) - \lambda_{12} \psi_2(r)\]
-
-\[\frac{\delta L}{\delta \psi_2^*} = \hat{H}_0(r)\psi_2(r) + \int dr' \frac{|\psi_1(r')|^2}{|r - r'|} \psi_2(r) - \int dr' \frac{\psi_1^*(r') \psi_1(r)}{|r - r'|} \psi_2(r') - \lambda_{21} \psi_1(r) - \lambda_{22} \psi_2(r)\]
-
-\[\frac{\delta L}{\delta \lambda_{ij}} = \delta_{ij} - \langle \psi_i | \psi_j \rangle \quad \text{对于任意 } i,j = 1,2\]
-
-<p>通过将这些导数设为零，我们得到了函数$\psi_1$和$\psi_2$必须满足的条件，以最小化能量：</p>
-
-\[\hat{H}_0(r)\psi_1(r) + \int dr' \frac{|\psi_2(r')|^2}{|r - r'|} \psi_1(r) - \int dr' \frac{\psi_2^*(r') \psi_2(r)}{|r - r'|} \psi_1(r') = \lambda_{11} \psi_1(r) + \lambda_{12} \psi_2(r)\]
-
-\[\hat{H}_0(r)\psi_2(r) + \int dr' \frac{|\psi_1(r')|^2}{|r - r'|} \psi_2(r) - \int dr' \frac{\psi_1^*(r') \psi_1(r)}{|r - r'|} \psi_2(r') = \lambda_{21} \psi_1(r) + \lambda_{22} \psi_2(r)\]
-
-\[\int dr \psi_i^*(r) \psi_j(r) = \delta_{ij} \quad \text{对于任意 } i,j = 1,2.\]
-
-<p>方程A.9和A.10可以重新表述为类似于第2.8节中的Hartree-Fock方程的形式。为此，我们使用方程2.47中的Hartree势和方程2.60中的交换势的表达式：</p>
-
-\[V_H(r) = \sum_j \int dr' \frac{|\psi_j(r')|^2}{|r - r'|}, \quad V_X(r,r') = -\sum_j \frac{\psi_j^*(r') \psi_j(r)}{|r - r'|}\]
-
-<p>其中$j = 1,2$。通过将这些表达式代入方程A.9和A.10，我们立即得到：</p>
-
-\[\left[ -\frac{\nabla^2}{2} + V_n(r) + V_H(r) \right] \psi_1(r) + \int dr' V_X(r,r') \psi_1(r') = \lambda_{11} \psi_1(r) + \lambda_{12} \psi_2(r)\]
-
-\[\left[ -\frac{\nabla^2}{2} + V_n(r) + V_H(r) \right] \psi_2(r) + \int dr' V_X(r,r') \psi_2(r') = \lambda_{21} \psi_1(r) + \lambda_{22} \psi_2(r)\]
-
-<p>最后一步是消除两个方程右侧的其中一个函数。这可以通过引入一个$2 \times 2$矩阵$S$来实现，该矩阵对角化拉格朗日乘数。</p>
-
-\[S\begin{pmatrix} \lambda_{11} &amp; \lambda_{12} \\ \lambda_{21} &amp; \lambda_{22} \end{pmatrix}S^{-1} = \begin{pmatrix} \varepsilon_1 &amp; 0 \\ 0 &amp; \varepsilon_2 \end{pmatrix}\]
-
-<p>由于哈密顿量 $\hat{H}$ 是厄米的，拉格朗日乘子也是厄米的，即 $\lambda_{ij}^* = \lambda_{ji}$（Messiah, 1965, Section II.9）；因此 $S$ 是一个酉矩阵，且特征值 $\varepsilon_1, \varepsilon_2$ 是实数。如果我们现在定义新的波函数 $\phi_1$ 和 $\phi_2$ 如下：</p>
-
-\[\phi_i = \sum_j S_{ij} \psi_j,\]
-
-<p>我们可以将方程 A.9 和 A.10 重写为：</p>
-
-\[\left[ -\frac{\nabla^2}{2} + V_n(\mathbf{r}) + V_H(\mathbf{r}) \right] \phi_1(\mathbf{r}) + \int d\mathbf{r}' V_X(\mathbf{r}, \mathbf{r}')\phi_1(\mathbf{r}) = \varepsilon_1 \phi_1(\mathbf{r}) \tag{A.16}\]
-
-\[\left[ -\frac{\nabla^2}{2} + V_n(\mathbf{r}) + V_H(\mathbf{r}) \right] \phi_2(\mathbf{r}) + \int d\mathbf{r}' V_X(\mathbf{r}, \mathbf{r}')\phi_2(\mathbf{r}) = \varepsilon_2 \phi_2(\mathbf{r}) \tag{A.17}\]
-
-<p>在这种形式下，我们可以看到引入的拉格朗日乘子实际上是 Hartree-Fock 特征值的代理。利用 $S$ 是酉矩阵的事实，还可以验证，在新的函数 $\phi_1$ 和 $\phi_2$ 下，方程 A.11 中的正交归一条件和方程 A.12 中的 Hartree 和交换势变为：</p>
-
-\[\int d\mathbf{r}\phi_i^*( \mathbf{r})\phi_j(\mathbf{r}) = \delta_{ij} \quad \text{对于} \quad i,j=1,2 \tag{A.18}\]
-
-\[V_H(\mathbf{r}) = \sum_j \int d\mathbf{r}' \frac{|\phi_j(\mathbf{r})|^2}{|\mathbf{r}-\mathbf{r}'|}, \quad V_X(\mathbf{r}, \mathbf{r}') = - \sum_j \frac{\phi_j^*( \mathbf{r}') \phi_j(\mathbf{r})}{|\mathbf{r}-\mathbf{r}'|} \tag{A.19}\]
-
-<p>也就是说，它们在形式上与用函数 $\psi_1$ 和 $\psi_2$ 表达的相应表达式相同。方程 A.16-A.18 正是第 2.8 节中讨论的 Hartree-Fock 方程。在 $N$ 个电子的情况下，推导与上述相同，唯一的区别是我们得到 $N$ 个类似于方程 A.16 的方程，并且方程 A.19 中的求和是对具有最低能量特征值 $\varepsilon_i$ 的 $N$ 个波函数 $\phi_i$ 进行的。</p>
-
-<p>在前面的推导中引入自旋（参见第 11 章）可以通过将变量 $\mathbf{r}_1$ 和 $\mathbf{r}_2$ 视为描述两个电子的位置以及它们相对于无穷小均匀磁场的自旋方向来实现：</p>
-
-\[\mathbf{r}_1 \rightarrow (\mathbf{r}_1, \sigma_1) \quad \text{和} \quad \mathbf{r}_2 \rightarrow (\mathbf{r}_2, \sigma_2)\]
-
-<p>其中 $\sigma = \uparrow$ 或 $\downarrow$。在此替换之后，每个积分应被视为对空间变量的积分和对自旋变量的求和：</p>
-
-\[\int d\mathbf{r} \rightarrow \sum_\sigma \int d\mathbf{r}\]
-
-<p>这是我们需要对旋量取期望值的结果，如方程 11.38 所示。在这些替换之后，方程 A.16 几乎保持不变。唯一的新颖之处是，只有与 $\phi_1$ 具有相同自旋的波函数 $\phi_j$ 才会对定义方程 A.19 中交换势的求和做出贡献。</p>
-
-<hr />
-<p>本文参考自：</p>
-
-<p>[1] Giustino, Feliciano. Materials modelling using density functional theory: properties and predictions. Oxford University Press, 2014.</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[我们将详细介绍Hartree-Fock方程的推导过程。为了使形式尽可能简单，我们考虑两个电子的情况，并且暂时忽略自旋。在最后，我们将指出如何将以下推导推广到任意数量且带有自旋自由度的电子。]]></summary></entry><entry><title type="html">Abinit变量ecut</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html" rel="alternate" type="text/html" title="Abinit变量ecut" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html"><![CDATA[<h1 id="理解abinit中的能量截断energy-cutoffecut变量">理解ABINIT中的能量截断(Energy Cutoff)<code class="language-plaintext highlighter-rouge">ecut</code>变量</h1>
-<h2 id="概述">概述</h2>
-
-<p>在平面波计算中，能量截断 (<code class="language-plaintext highlighter-rouge">ecut</code>) 是一个关键参数，用于控制给定 k 点的平面波数量。平面波的动能必须低于 <code class="language-plaintext highlighter-rouge">ecut</code> 才能被包含在计算中。这个约束条件在倒易空间中表示为：</p>
-
-\[\frac{1}{2} \left( \frac{2\pi}{a} \right)^2 (k + G)^2 &lt; \text{ecut}\]
-
-<p>其中，( G ) 是倒易空间中的向量。所有位于以 k 点为中心的基球内的平面波都将被包含在基组中（除非定义了 <code class="language-plaintext highlighter-rouge">dillatmx</code>）。</p>
-
-<h2 id="参数特性">参数特性</h2>
-
-<ul>
-  <li><strong>变量类型</strong>: 实数</li>
-  <li><strong>维度</strong>: 标量</li>
-  <li><strong>默认值</strong>: 无</li>
-  <li><strong>单位</strong>: 默认单位为 Hartree (Ha)，也可以使用 Rydberg (Ry)、电子伏特 (eV) 或开尔文 (Kelvin)。1 Ha = 27.2113845 eV。</li>
-</ul>
-
-<h2 id="重要性">重要性</h2>
-
-<p><code class="language-plaintext highlighter-rouge">ecut</code> 是影响计算质量的单一参数。通常，<code class="language-plaintext highlighter-rouge">ecut</code> 越大，计算结果越收敛。在几何结构固定的情况下，由于问题的变分性质，总能量必须随着 <code class="language-plaintext highlighter-rouge">ecut</code> 的增加而降低。通常需要运行多个不同 <code class="language-plaintext highlighter-rouge">ecut</code> 的计算，以研究达到可靠结果所需的收敛性。</p>
-
-<h2 id="时间反转对称性">时间反转对称性</h2>
-
-<p>对于坐标由 0 或 ½ 构建的 k 点，已经实现了时间反转对称性，该对称性链接了倒易空间中波函数系数。如果激活了输入变量 <code class="language-plaintext highlighter-rouge">istwfk</code>（默认模式），则可以将显式处理的平面波数量 (<code class="language-plaintext highlighter-rouge">npw</code>) 减少一半。尽管如此，最终结果应与“完整”平面波集相同。</p>
-
-<h2 id="结论">结论</h2>
-
-<p><code class="language-plaintext highlighter-rouge">ecut</code> 是平面波计算中至关重要的参数，直接影响计算的精度和收敛性。通过合理设置 <code class="language-plaintext highlighter-rouge">ecut</code>，可以确保计算结果的可靠性和准确性。建议在实际计算中，通过多次试验不同的 <code class="language-plaintext highlighter-rouge">ecut</code> 值，以确定最佳的参数设置。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[理解ABINIT中的能量截断(Energy Cutoff)ecut变量 概述]]></summary></entry><entry><title type="html">Abinit变量acell</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell.html" rel="alternate" type="text/html" title="Abinit变量acell" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell.html"><![CDATA[<h1 id="理解abinit中的acell变量">理解ABINIT中的<code class="language-plaintext highlighter-rouge">acell</code>变量</h1>
+<p>Levine, Ira N. “Quantum Chemistry, 58.” PHI Learning Pri. Ltd. Delhi (2013): 461-462.</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[量子力学的发展始于1900年，当时普朗克研究了加热固体发出的光。为了理解这一发展，我们首先需要讨论光的性质。]]></summary></entry><entry><title type="html">Abinit变量acell</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell.html" rel="alternate" type="text/html" title="Abinit变量acell" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell.html"><![CDATA[<h1 id="理解abinit中的acell变量">理解ABINIT中的<code class="language-plaintext highlighter-rouge">acell</code>变量</h1>
 
 <p>在ABINIT软件中，<code class="language-plaintext highlighter-rouge">acell</code>是一个非常重要的变量，它用于定义晶格矢量的缩放比例。本文将解释<code class="language-plaintext highlighter-rouge">acell</code>的含义及其在计算中的作用。</p>
 
@@ -466,325 +766,32 @@ E = \langle\psi_{1}|\hat{H}_{0}|\psi_{1}\rangle\langle\psi_{2}|\psi_{2} \rangle+
 
 <h2 id="总结">总结</h2>
 
-<p><code class="language-plaintext highlighter-rouge">acell</code>是ABINIT中用于定义晶格矢量缩放比例的关键变量。通过调整<code class="language-plaintext highlighter-rouge">acell</code>，用户可以控制晶格的基本矢量在空间中的实际长度，从而影响整个计算的结果。理解<code class="language-plaintext highlighter-rouge">acell</code>的含义及其与其它变量的关系，对于正确使用ABINIT进行材料模拟至关重要。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[理解ABINIT中的acell变量]]></summary></entry><entry><title type="html">Ollama模型Tokens输出测试与局域网内设备使用配置</title><link href="http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html" rel="alternate" type="text/html" title="Ollama模型Tokens输出测试与局域网内设备使用配置" /><published>2024-12-27T00:00:00+01:00</published><updated>2024-12-27T00:00:00+01:00</updated><id>http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE</id><content type="html" xml:base="http://localhost:4000/ai%20tools/2024/12/27/Ollama%E6%A8%A1%E5%9E%8BTokens%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html"><![CDATA[<p>本文介绍如何在局域网内通过手机、平板等设备访问运行在主机上的Ollama开源模型。</p>
+<p><code class="language-plaintext highlighter-rouge">acell</code>是ABINIT中用于定义晶格矢量缩放比例的关键变量。通过调整<code class="language-plaintext highlighter-rouge">acell</code>，用户可以控制晶格的基本矢量在空间中的实际长度，从而影响整个计算的结果。理解<code class="language-plaintext highlighter-rouge">acell</code>的含义及其与其它变量的关系，对于正确使用ABINIT进行材料模拟至关重要。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[理解ABINIT中的acell变量]]></summary></entry><entry><title type="html">Abinit变量ecut</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html" rel="alternate" type="text/html" title="Abinit变量ecut" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html"><![CDATA[<h1 id="理解abinit中的能量截断energy-cutoffecut变量">理解ABINIT中的能量截断(Energy Cutoff)<code class="language-plaintext highlighter-rouge">ecut</code>变量</h1>
+<h2 id="概述">概述</h2>
 
-<h2 id="不同开源模型输出的tokens速度测试">不同开源模型输出的tokens速度测试</h2>
+<p>在平面波计算中，能量截断 (<code class="language-plaintext highlighter-rouge">ecut</code>) 是一个关键参数，用于控制给定 k 点的平面波数量。平面波的动能必须低于 <code class="language-plaintext highlighter-rouge">ecut</code> 才能被包含在计算中。这个约束条件在倒易空间中表示为：</p>
 
-<p>使用 <code class="language-plaintext highlighter-rouge">--verbose</code> 参数可以实时查看每秒输出的tokens，例如：</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ollama run <span class="nt">--verbose</span> qwen2.5-coder:32b
-</code></pre></div></div>
-<h3 id="qwen25-coder32b">qwen2.5-coder:32b</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>总时长: 2m13.328514583s
-加载时长: 25.161ms
-提示词评估数量: 33 tokens
-提示词评估时长: 10.819s
-提示词评估速率: 3.05 tokens/s
-生成数量: 611 tokens
-生成时长: 2m2.318s
-生成速率: 5.00 tokens/s
-</code></pre></div></div>
+\[\frac{1}{2} \left( \frac{2\pi}{a} \right)^2 (k + G)^2 &lt; \text{ecut}\]
 
-<h3 id="qwen25-coder7b">qwen2.5-coder:7b</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>总时长: 14.339346583s
-加载时长: 26.574958ms
-提示词评估数量: 33 tokens
-提示词评估时长: 2.44s
-提示词评估速率: 13.52 tokens/s
-生成数量: 246 tokens
-生成时长: 11.708s
-生成速率: 21.01 tokens/s
-</code></pre></div></div>
+<p>其中，( G ) 是倒易空间中的向量。所有位于以 k 点为中心的基球内的平面波都将被包含在基组中（除非定义了 <code class="language-plaintext highlighter-rouge">dillatmx</code>）。</p>
 
-<h3 id="llama318b">llama3.1:8b</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>总时长: 28.566681417s
-加载时长: 27.195334ms
-提示词评估数量: 14 tokens
-提示词评估时长: 2.426s
-提示词评估速率: 5.77 tokens/s
-生成数量: 515 tokens
-生成时长: 26.112s
-生成速率: 19.72 tokens/s
-</code></pre></div></div>
+<h2 id="参数特性">参数特性</h2>
 
-<h3 id="qwen2514b-instruct-q8_0">qwen2.5:14b-instruct-q8_0</h3>
-<p>注：q8_0为精度设置，相比q4具有更高精度。</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>总时长: 1m25.738078416s
-加载时长: 27.547791ms
-提示词评估数量: 33 tokens
-提示词评估时长: 399ms
-提示词评估速率: 82.71 tokens/s
-生成数量: 542 tokens
-生成时长: 1m25.308s
-生成速率: 6.35 tokens/s
-</code></pre></div></div>
-
-<h2 id="局域网内主机ollama-配置说明">局域网内主机Ollama 配置说明</h2>
-
-<h3 id="内存管理">内存管理</h3>
-<p>默认情况下，Ollama在闲置5分钟后会释放所有模型。若需保持模型常驻内存，可设置：</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">OLLAMA_KEEP_ALIVE</span><span class="o">=</span><span class="nt">-1</span>
-</code></pre></div></div>
-
-<h3 id="网络设置">网络设置</h3>
-<p>默认情况下，Ollama仅监听localhost (127.0.0.1)。要允许局域网设备访问，需修改监听地址：</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">OLLAMA_HOST</span><span class="o">=</span>0.0.0.0:11434
-ollama serve
-</code></pre></div></div>
-<p>其中0.0.0.0表示监听所有网络接口，11434为默认端口。</p>
-
-<h3 id="客户端支持">客户端支持</h3>
 <ul>
-  <li>桌面端：Open WebUI</li>
-  <li>iPhone：Enchanted</li>
+  <li><strong>变量类型</strong>: 实数</li>
+  <li><strong>维度</strong>: 标量</li>
+  <li><strong>默认值</strong>: 无</li>
+  <li><strong>单位</strong>: 默认单位为 Hartree (Ha)，也可以使用 Rydberg (Ry)、电子伏特 (eV) 或开尔文 (Kelvin)。1 Ha = 27.2113845 eV。</li>
 </ul>
 
-<h2 id="通过docker部署open-webui">通过Docker部署Open WebUI</h2>
-<p>在主机上我们直接采用 Docker 部署 Open WebUI，因为已经部署了 Ollama，采用如下命令：</p>
+<h2 id="重要性">重要性</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="nt">-p</span> 3000:8080 <span class="nt">--add-host</span><span class="o">=</span>host.docker.internal:host-gateway <span class="nt">-v</span> open-webui:/app/backend/data <span class="nt">--name</span> open-webui <span class="nt">--restart</span> always ghcr.io/open-webui/open-webui:main
-</code></pre></div></div>
-<p>其中：<code class="language-plaintext highlighter-rouge">--add-host=host.docker.internal:host-gateway</code> 是为了添加一个主机名映射，将 <code class="language-plaintext highlighter-rouge">host.docker.internal</code> 指向主机的网关，方便容器访问宿主机服务。</p>
+<p><code class="language-plaintext highlighter-rouge">ecut</code> 是影响计算质量的单一参数。通常，<code class="language-plaintext highlighter-rouge">ecut</code> 越大，计算结果越收敛。在几何结构固定的情况下，由于问题的变分性质，总能量必须随着 <code class="language-plaintext highlighter-rouge">ecut</code> 的增加而降低。通常需要运行多个不同 <code class="language-plaintext highlighter-rouge">ecut</code> 的计算，以研究达到可靠结果所需的收敛性。</p>
 
-<p>假设你之前没有安装过 Ollama，也可以采用如下镜像（打包安装 Ollama + Open WebUI）：</p>
+<h2 id="时间反转对称性">时间反转对称性</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="nt">-p</span> 3000:8080 <span class="nt">-v</span> ollama:/root/.ollama <span class="nt">-v</span> open-webui:/app/backend/data <span class="nt">--name</span> &lt;container_name&gt; ghcr.io/open-webui/open-webui:ollama
-</code></pre></div></div>
-<h2 id="enchanted配置指南">Enchanted配置指南</h2>
+<p>对于坐标由 0 或 ½ 构建的 k 点，已经实现了时间反转对称性，该对称性链接了倒易空间中波函数系数。如果激活了输入变量 <code class="language-plaintext highlighter-rouge">istwfk</code>（默认模式），则可以将显式处理的平面波数量 (<code class="language-plaintext highlighter-rouge">npw</code>) 减少一半。尽管如此，最终结果应与“完整”平面波集相同。</p>
 
-<h3 id="设置步骤">设置步骤</h3>
-<ol>
-  <li>获取PC的IP地址
-    <ul>
-      <li>Windows：使用<code class="language-plaintext highlighter-rouge">ipconfig</code>命令</li>
-      <li>macOS/Linux：使用<code class="language-plaintext highlighter-rouge">ifconfig</code>命令</li>
-    </ul>
-  </li>
-  <li>启动Ollama服务
-    <ul>
-      <li>确保已运行<code class="language-plaintext highlighter-rouge">ollama serve</code></li>
-    </ul>
-  </li>
-  <li>配置手机端
-    <ul>
-      <li>在Enchanted中输入服务器地址：<code class="language-plaintext highlighter-rouge">&lt;PC的IP地址&gt;:11434</code></li>
-      <li>示例：<code class="language-plaintext highlighter-rouge">192.168.1.100:11434</code></li>
-    </ul>
-  </li>
-  <li>检查防火墙
-    <ul>
-      <li>确保PC防火墙允许11434端口的入站连接</li>
-    </ul>
-  </li>
-  <li>测试连接
-    <ul>
-      <li>访问配置的地址确认连接状态</li>
-    </ul>
-  </li>
-</ol>
+<h2 id="结论">结论</h2>
 
-<p>注意：首次配置Enchanted后可能看不到模型列表，关闭并重启应用后即可正常显示和使用。</p>
-
-<h2 id="lm-studio-使用开源ai大模型">LM Studio 使用开源AI大模型</h2>
-
-<p>LM Studio提供了便捷的开源大模型使用方式。在其发现页面可以直接下载和管理模型文件，支持多种主流开源模型。特别值得注意的是带有MLX标记的模型，这些模型使用了苹果公司专门为Apple Silicon开发的机器学习框架MLX进行优化。在M系列芯片的Mac设备上，MLX优化版本相比原生模型可提升2-3倍的推理速度。</p>
-
-<p>使用步骤：</p>
-<ol>
-  <li>下载并安装LM Studio</li>
-  <li>在Discover页面选择合适的模型（推荐选择MLX标记的版本）</li>
-  <li>下载完成后，点击Run可直接启动本地服务</li>
-  <li>默认服务地址为 http://localhost:1234</li>
-</ol>
-
-<p>MLX优化版性能参考：</p>
-<ul>
-  <li>MLX优化版Mistral 7B在M2芯片上可达到25-30 tokens/s</li>
-  <li>原生版本速度约为8-12 tokens/s</li>
-</ul>]]></content><author><name></name></author><category term="AI tools" /><summary type="html"><![CDATA[本文介绍如何在局域网内通过手机、平板等设备访问运行在主机上的Ollama开源模型。]]></summary></entry><entry><title type="html">AI工具在学术研究中应用</title><link href="http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8.html" rel="alternate" type="text/html" title="AI工具在学术研究中应用" /><published>2024-12-26T00:00:00+01:00</published><updated>2024-12-26T00:00:00+01:00</updated><id>http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8</id><content type="html" xml:base="http://localhost:4000/ai%20tools/2024/12/26/AI%E5%B7%A5%E5%85%B7%E5%9C%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BA%94%E7%94%A8.html"><![CDATA[<p>自ChatGPT发布以来，人工智能辅助工具在学术研究领域取得了显著突破，为科研工作提供了多维度的支持。本文将系统性地探讨主流AI模型在学术研究中的应用场景，包括代码开发、文献分析、学术写作、文本翻译以及文本重述等方面。</p>
-
-<p>主流大语言模型(LLM)评析：</p>
-<ul>
-  <li>Claude 3.5 Sonnet: 在代码生成领域展现出卓越的性能表现。</li>
-  <li>DeepSeek Coder v3: 具备强大的代码生成能力，并在PDF文档理解和深度分析方面表现突出，特别适合学术文献综述工作（不开启深度思考）。还可以开启深度思考进行推理。主打免费。</li>
-  <li>Qwen 2.5 32B: 具有优秀的代码生成能力，可通过Ollama框架实现本地部署，降低了使用成本。本地部署后只能在Terminal中使用。通过docker安装open-webui，可以实现本地网页端使用，界面和Chatgpt类似，非常酷。</li>
-  <li>LLaMA 3.1 7B: 轻量级模型，本地部署和实验性应用，对计算资源要求相对较低，装在电脑上玩一玩。</li>
-  <li>LLaMA 3.2 70B: 参数规模庞大，对计算硬件要求较高，我的Macmini-M4跑不动。</li>
-  <li>ChatGPT: 用了一年多，已放弃，其性能相较于新的AI模型已显示出一定局限性。</li>
-</ul>
-
-<p>智能开发环境(IDE)集成解决方案：</p>
-<ul>
-  <li>Cursor: 提供卓越的AI代码辅助功能，用来静态网站开发、Python编程，还可以写Latex。具有扩展应用潜力，后续将尝试用于机器学习、密度泛函理论(DFT)计算以及分子动力学模拟等写代码科研场景。</li>
-  <li>GitHub Copilot: 作为成熟的AI编程助手，通过GitHub Education计划向学生群体提供免费使用权限，但感觉表现与Cursor相比尚有提升空间。</li>
-</ul>]]></content><author><name></name></author><category term="AI tools" /><summary type="html"><![CDATA[自ChatGPT发布以来，人工智能辅助工具在学术研究领域取得了显著突破，为科研工作提供了多维度的支持。本文将系统性地探讨主流AI模型在学术研究中的应用场景，包括代码开发、文献分析、学术写作、文本翻译以及文本重述等方面。]]></summary></entry><entry><title type="html">安装Jekyll教程并且上传到Github Page</title><link href="http://localhost:4000/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll.html" rel="alternate" type="text/html" title="安装Jekyll教程并且上传到Github Page" /><published>2024-12-24T00:00:00+01:00</published><updated>2024-12-24T00:00:00+01:00</updated><id>http://localhost:4000/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/2024/12/24/%E5%AE%89%E8%A3%85jekyll.html"><![CDATA[<h1 id="安装-jekyll-完整指南">安装 Jekyll 完整指南</h1>
-
-<p>本文将指导你如何在 macOS 系统上正确安装和配置 Jekyll 博客系统。我们将使用 rbenv 来管理 Ruby 版本，这是目前最推荐的方式。</p>
-
-<h2 id="1-环境准备">1. 环境准备</h2>
-
-<h3 id="安装-homebrew">安装 Homebrew</h3>
-
-<p>如果你还没有安装 Homebrew，请先运行以下命令：</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/bin/bash <span class="nt">-c</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="si">)</span><span class="s2">"</span>
-</code></pre></div></div>
-
-<h3 id="安装和配置-rbenv">安装和配置 rbenv</h3>
-
-<p>1) 使用 Homebrew 安装 rbenv：</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>rbenv
-rbenv init
-</code></pre></div></div>
-
-<p>2) 配置 Shell 环境：将以下配置添加到你的 Shell 配置文件中（根据你使用的 Shell 选择）：</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 添加到 ~/.zshrc（如果使用 zsh）或 ~/.bash_profile（如果使用 bash）</span>
-<span class="nb">eval</span> <span class="s2">"</span><span class="si">$(</span>rbenv init -<span class="si">)</span><span class="s2">"</span>
-</code></pre></div></div>
-
-<p>3) 使配置生效:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 如果使用 zsh</span>
-<span class="nb">source</span> ~/.zshrc
-
-<span class="c"># 如果使用 bash</span>
-<span class="nb">source</span> ~/.bash_profile
-</code></pre></div></div>
-
-<h2 id="2-安装-ruby">2. 安装 Ruby</h2>
-
-<p>1) 查看可用的 Ruby 版本：</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rbenv <span class="nb">install</span> <span class="nt">-l</span>
-</code></pre></div></div>
-
-<p>2) 安装并配置 Ruby：</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 安装最新稳定版 Ruby</span>
-rbenv <span class="nb">install </span>3.2.2
-
-<span class="c"># 设置全局 Ruby 版本</span>
-rbenv global 3.2.2
-
-<span class="c"># 验证安装（如显示旧版本，需重新加载 Shell 配置）</span>
-ruby <span class="nt">-v</span>
-</code></pre></div></div>
-
-<h2 id="3-安装-jekyll">3. 安装 Jekyll</h2>
-
-<p>安装 Jekyll 和 Bundler：</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>jekyll bundler
-</code></pre></div></div>
-
-<h2 id="4-创建新博客">4. 创建新博客</h2>
-
-<p>1) 创建新的 Jekyll 站点：</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jekyll new myblog
-</code></pre></div></div>
-
-<p>2) 进入项目目录：</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>myblog
-</code></pre></div></div>
-
-<p>3) 安装依赖：</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">install</span>
-</code></pre></div></div>
-
-<p>4) 启动本地服务器：</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>jekyll serve
-</code></pre></div></div>
-
-<p>完成以上步骤后，你可以通过访问 <code class="language-plaintext highlighter-rouge">http://localhost:4000</code> 查看你的博客站点。</p>
-
-<h2 id="常见问题解决">常见问题解决</h2>
-
-<p>如果在安装过程中遇到权限相关的问题，请确保：</p>
-
-<ol>
-  <li>已正确配置 rbenv</li>
-  <li>Shell 配置文件已被正确加载</li>
-  <li>使用的是 rbenv 管理的 Ruby 版本而非系统版本</li>
-</ol>
-
-<h2 id="注意事项">注意事项</h2>
-
-<ul>
-  <li>避免使用 <code class="language-plaintext highlighter-rouge">sudo gem install</code>，这可能会导致权限问题</li>
-  <li>确保在执行 Jekyll 命令前已经切换到项目目录</li>
-  <li>定期更新 Ruby 和 Jekyll 版本以获取最新的功能和安全修复</li>
-</ul>
-
-<h2 id="主题文件位置">主题文件位置</h2>
-
-<p>如果你使用的是默认的 minima 主题，主题文件可以在以下位置找到：</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/.rbenv/versions/[ruby-version]/lib/ruby/gems/[gems-version]/gems/minima-[theme-version]
-</code></pre></div></div>
-
-<p>例如：</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/my_host_name/.rbenv/versions/3.3.6/lib/ruby/gems/3.3.0/gems/minima-2.5.2
-</code></pre></div></div>
-
-<p><br /></p>
-
-<h1 id="将博客上传到github-page">将博客上传到Github Page</h1>
-
-<h2 id="1-创建-github-仓库">1. 创建 GitHub 仓库</h2>
-<ul>
-  <li>登录 GitHub，创建一个新的仓库</li>
-  <li>仓库名必须为: <code class="language-plaintext highlighter-rouge">{你的GitHub用户名}.github.io</code></li>
-  <li>例如,如果你的用户名是 <code class="language-plaintext highlighter-rouge">john</code>，那么仓库名应该是 <code class="language-plaintext highlighter-rouge">john.github.io</code></li>
-</ul>
-
-<h2 id="2-在本地创建博客项目">2. 在本地创建博客项目</h2>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 克隆仓库到本地</span>
-git clone https://github.com/<span class="o">{</span>用户名<span class="o">}</span>/<span class="o">{</span>用户名<span class="o">}</span>.github.io.git
-<span class="nb">cd</span> <span class="o">{</span>用户名<span class="o">}</span>.github.io
-
-<span class="c"># 创建一个简单的首页</span>
-<span class="nb">echo</span> <span class="s2">"# Welcome to my blog"</span> <span class="o">&gt;</span> index.md
-</code></pre></div></div>
-
-<h2 id="3-提交并推送内容">3. 提交并推送内容</h2>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 添加更改</span>
-git add <span class="nb">.</span>
-
-<span class="c"># 提交更改</span>
-git commit <span class="nt">-m</span> <span class="s2">"Initial commit"</span>
-
-<span class="c"># 推送到 GitHub</span>
-git push <span class="nt">-u</span> origin main
-</code></pre></div></div>
-
-<h2 id="4-配置-github-pages">4. 配置 GitHub Pages</h2>
-<ul>
-  <li>进入仓库的 Settings 页面</li>
-  <li>找到 Pages 设置选项</li>
-  <li>在 Source 部分选择 main 分支</li>
-  <li>保存设置</li>
-</ul>
-
-<h2 id="5-维护博客">5. 维护博客</h2>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 创建新文章后</span>
-git add <span class="nb">.</span>
-git commit <span class="nt">-m</span> <span class="s2">"Add new post"</span>
-git push
-</code></pre></div></div>
-
-<p>几分钟后,你就可以通过 <code class="language-plaintext highlighter-rouge">https://{用户名}.github.io</code> 访问你的博客了。</p>
-
-<p>要注意的几点:</p>
-<ul>
-  <li>确保仓库是公开的</li>
-  <li>Markdown 文件会自动被转换为 HTML</li>
-  <li>可以使用自定义域名</li>
-  <li>记得在本地预览后再推送更改</li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[安装 Jekyll 完整指南]]></summary></entry></feed>
+<p><code class="language-plaintext highlighter-rouge">ecut</code> 是平面波计算中至关重要的参数，直接影响计算的精度和收敛性。通过合理设置 <code class="language-plaintext highlighter-rouge">ecut</code>，可以确保计算结果的可靠性和准确性。建议在实际计算中，通过多次试验不同的 <code class="language-plaintext highlighter-rouge">ecut</code> 值，以确定最佳的参数设置。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[理解ABINIT中的能量截断(Energy Cutoff)ecut变量 概述]]></summary></entry></feed>
