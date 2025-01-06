@@ -1,4 +1,195 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-02T23:19:22+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">ZWei</title><subtitle>专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。</subtitle><entry><title type="html">Abinit变量istwfk</title><link href="http://localhost:4000/abinit%20variables/2025/01/02/Abinit%E5%8F%98%E9%87%8Fistwfk.html" rel="alternate" type="text/html" title="Abinit变量istwfk" /><published>2025-01-02T00:00:00+01:00</published><updated>2025-01-02T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2025/01/02/Abinit%E5%8F%98%E9%87%8Fistwfk</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2025/01/02/Abinit%E5%8F%98%E9%87%8Fistwfk.html"><![CDATA[<p>在ABINIT软件中，<code class="language-plaintext highlighter-rouge">istwfk</code> 是一个用于控制每个k点波函数存储方式的参数。它决定了是否利用时间反演对称性来优化波函数在倒空间中的存储，从而减少计算所需的平面波数量。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-06T15:45:10+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">ZWei</title><subtitle>专注于计算科学、材料科学与物理学的学术博客，分享前沿研究见解与专业知识。</subtitle><entry><title type="html">通过 AbiPy 从输入文件中提取优化后的结构</title><link href="http://localhost:4000/abipy/2025/01/05/%E9%80%9A%E8%BF%87-AbiPy-%E4%BB%8E%E8%BE%93%E5%85%A5%E6%96%87%E4%BB%B6%E4%B8%AD%E6%8F%90%E5%8F%96%E4%BC%98%E5%8C%96%E5%90%8E%E7%9A%84%E7%BB%93%E6%9E%84.html" rel="alternate" type="text/html" title="通过 AbiPy 从输入文件中提取优化后的结构" /><published>2025-01-05T00:00:00+01:00</published><updated>2025-01-05T00:00:00+01:00</updated><id>http://localhost:4000/abipy/2025/01/05/%E9%80%9A%E8%BF%87%20AbiPy%20%E4%BB%8E%E8%BE%93%E5%85%A5%E6%96%87%E4%BB%B6%E4%B8%AD%E6%8F%90%E5%8F%96%E4%BC%98%E5%8C%96%E5%90%8E%E7%9A%84%E7%BB%93%E6%9E%84</id><content type="html" xml:base="http://localhost:4000/abipy/2025/01/05/%E9%80%9A%E8%BF%87-AbiPy-%E4%BB%8E%E8%BE%93%E5%85%A5%E6%96%87%E4%BB%B6%E4%B8%AD%E6%8F%90%E5%8F%96%E4%BC%98%E5%8C%96%E5%90%8E%E7%9A%84%E7%BB%93%E6%9E%84.html"><![CDATA[<p>在使用 Abinit 进行结构优化计算后，我们通常需要从输出文件中提取优化后的结构，并将其导出为常见的文件格式（如 CIF 文件）。<code class="language-plaintext highlighter-rouge">AbiPy</code> 是一个强大的 Python 工具库，可以帮助我们轻松实现这一目标。本文将详细介绍如何使用 <code class="language-plaintext highlighter-rouge">AbiPy</code> 从 <code class="language-plaintext highlighter-rouge">.abo</code> 文件中提取优化后的结构，并导出为 CIF 文件。</p>
+
+<h2 id="步骤-1安装-abipy">步骤 1：安装 AbiPy</h2>
+
+<p>首先，确保你已经安装了 <code class="language-plaintext highlighter-rouge">AbiPy</code>。如果尚未安装，可以通过以下命令安装：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>abipy
+</code></pre></div></div>
+
+<h2 id="步骤-2编写-python-脚本">步骤 2：编写 Python 脚本</h2>
+
+<p>接下来，我们需要编写一个 Python 脚本来提取优化后的结构。以下是完整的脚本内容：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">abipy</span> <span class="kn">import</span> <span class="n">abilab</span>
+
+<span class="c1"># 指定 .abo 文件路径
+</span><span class="n">abo_file</span> <span class="o">=</span> <span class="sh">"</span><span class="s">input.abo</span><span class="sh">"</span>  <span class="c1"># 替换为你的 .abo 文件名
+</span>
+<span class="c1"># 使用 abilab.abiopen 打开 .abo 文件
+</span><span class="k">with</span> <span class="n">abilab</span><span class="p">.</span><span class="nf">abiopen</span><span class="p">(</span><span class="n">abo_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">abo</span><span class="p">:</span>
+    <span class="c1"># 提取优化后的结构
+</span>    <span class="n">optimized_structure</span> <span class="o">=</span> <span class="n">abo</span><span class="p">.</span><span class="n">final_structure</span>
+
+    <span class="c1"># 打印优化后的结构信息
+</span>    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">优化后的结构：</span><span class="sh">"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">optimized_structure</span><span class="p">)</span>
+
+    <span class="c1"># 导出为 CIF 文件
+</span>    <span class="n">optimized_structure</span><span class="p">.</span><span class="nf">to</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="sh">"</span><span class="s">optimized_structure.cif</span><span class="sh">"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">优化后的结构已保存为 optimized_structure.cif</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="脚本说明">脚本说明：</h3>
+<ol>
+  <li><strong>导入 AbiPy</strong>：<code class="language-plaintext highlighter-rouge">from abipy import abilab</code> 导入 AbiPy 的核心模块。</li>
+  <li><strong>指定文件路径</strong>：将 <code class="language-plaintext highlighter-rouge">abo_file</code> 设置为你的 <code class="language-plaintext highlighter-rouge">.abo</code> 文件路径。</li>
+  <li><strong>提取结构</strong>：使用 <code class="language-plaintext highlighter-rouge">abilab.abiopen</code> 打开 <code class="language-plaintext highlighter-rouge">.abo</code> 文件，并通过 <code class="language-plaintext highlighter-rouge">abo.final_structure</code> 提取优化后的结构。</li>
+  <li><strong>导出为 CIF 文件</strong>：使用 <code class="language-plaintext highlighter-rouge">optimized_structure.to</code> 方法将结构导出为 CIF 文件。</li>
+</ol>
+
+<h2 id="步骤-3运行脚本">步骤 3：运行脚本</h2>
+
+<p>将上述脚本保存为 <code class="language-plaintext highlighter-rouge">extract_structure.py</code>，然后在终端中运行：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 extract_structure.py
+</code></pre></div></div>
+
+<p>运行后，脚本会：</p>
+<ol>
+  <li>从 <code class="language-plaintext highlighter-rouge">.abo</code> 文件中提取优化后的结构。</li>
+  <li>将结构保存为 <code class="language-plaintext highlighter-rouge">optimized_structure.cif</code> 文件。</li>
+</ol>
+
+<h2 id="注意事项">注意事项</h2>
+
+<h3 id="1-检查缩进">1. 检查缩进</h3>
+<p>Python 对代码缩进非常敏感。确保脚本中的缩进一致：</p>
+<ul>
+  <li>使用 <strong>4 个空格</strong> 作为缩进。</li>
+  <li>避免混用空格和 Tab 键。</li>
+</ul>
+
+<p>如果你使用 <code class="language-plaintext highlighter-rouge">vim</code> 编辑器，可以通过以下命令检查缩进：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:set list
+</code></pre></div></div>
+<p>这将显示不可见字符，帮助你确保所有缩进都是空格。</p>
+
+<h3 id="2-确保-abo-文件存在">2. 确保 <code class="language-plaintext highlighter-rouge">.abo</code> 文件存在</h3>
+<p>在运行脚本之前，确保当前目录下存在 <code class="language-plaintext highlighter-rouge">input.abo</code> 文件。你可以通过以下命令检查文件是否存在：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span>
+</code></pre></div></div>
+
+<h3 id="3-检查-abipy-安装">3. 检查 AbiPy 安装</h3>
+<p>如果运行脚本时提示 <code class="language-plaintext highlighter-rouge">ModuleNotFoundError: No module named 'abipy'</code>，说明 <code class="language-plaintext highlighter-rouge">AbiPy</code> 未正确安装。请通过以下命令重新安装：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>abipy
+</code></pre></div></div>
+
+<h2 id="总结">总结</h2>
+
+<p>通过 <code class="language-plaintext highlighter-rouge">AbiPy</code>，我们可以轻松地从 <code class="language-plaintext highlighter-rouge">.abo</code> 文件中提取优化后的结构，并将其导出为 CIF 文件。这种方法不仅高效，而且避免了手动提取结构的繁琐过程。如果你经常需要处理 Abinit 的输出文件，<code class="language-plaintext highlighter-rouge">AbiPy</code> 将是一个非常有用的工具。</p>]]></content><author><name></name></author><category term="Abipy" /><summary type="html"><![CDATA[在使用 Abinit 进行结构优化计算后，我们通常需要从输出文件中提取优化后的结构，并将其导出为常见的文件格式（如 CIF 文件）。AbiPy 是一个强大的 Python 工具库，可以帮助我们轻松实现这一目标。本文将详细介绍如何使用 AbiPy 从 .abo 文件中提取优化后的结构，并导出为 CIF 文件。]]></summary></entry><entry><title type="html">通过Abipy生成Ovito或JSmol可视化的结构演变文件</title><link href="http://localhost:4000/abipy/2025/01/05/%E9%80%9A%E8%BF%87-AbiPy%E6%8F%90%E5%8F%96%E7%BB%93%E6%9E%84%E6%BC%94%E5%8F%98%E5%8F%AF%E8%A7%86%E5%8C%96%E6%96%87%E4%BB%B6.html" rel="alternate" type="text/html" title="通过Abipy生成Ovito或JSmol可视化的结构演变文件" /><published>2025-01-05T00:00:00+01:00</published><updated>2025-01-05T00:00:00+01:00</updated><id>http://localhost:4000/abipy/2025/01/05/%E9%80%9A%E8%BF%87%20AbiPy%E6%8F%90%E5%8F%96%E7%BB%93%E6%9E%84%E6%BC%94%E5%8F%98%E5%8F%AF%E8%A7%86%E5%8C%96%E6%96%87%E4%BB%B6</id><content type="html" xml:base="http://localhost:4000/abipy/2025/01/05/%E9%80%9A%E8%BF%87-AbiPy%E6%8F%90%E5%8F%96%E7%BB%93%E6%9E%84%E6%BC%94%E5%8F%98%E5%8F%AF%E8%A7%86%E5%8C%96%E6%96%87%E4%BB%B6.html"><![CDATA[<p>生成可以用 <strong>OVITO</strong> 或 <strong>JSmol</strong> 可视化的结构演变文件，而不是静态图片或动画。以下是完整的代码，用于从 <code class="language-plaintext highlighter-rouge">.HIST.nc</code> 文件中提取结构演变数据，并保存为 <strong>XYZ</strong> 或 <strong>CIF</strong> 格式的文件，这些文件可以直接用 OVITO 或 JSmol 进行可视化。</p>
+
+<h3 id="python代码">Python代码</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">abipy</span> <span class="kn">import</span> <span class="n">abilab</span>
+
+<span class="c1"># 指定 HIST.nc 文件路径
+</span><span class="n">hist_file</span> <span class="o">=</span> <span class="sh">"</span><span class="s">inputo_HIST.nc</span><span class="sh">"</span>  <span class="c1"># 替换为你的 HIST.nc 文件名
+</span>
+<span class="c1"># 使用 abilab.abiopen 打开 HIST.nc 文件
+</span><span class="k">with</span> <span class="n">abilab</span><span class="p">.</span><span class="nf">abiopen</span><span class="p">(</span><span class="n">hist_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">hist</span><span class="p">:</span>
+    <span class="c1"># 打印历史轨迹信息
+</span>    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">历史轨迹信息：</span><span class="sh">"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span>
+
+    <span class="c1"># 提取所有步骤的结构
+</span>    <span class="n">structures</span> <span class="o">=</span> <span class="n">hist</span><span class="p">.</span><span class="n">structures</span>  <span class="c1"># 获取所有步骤的结构
+</span>    <span class="n">num_steps</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">structures</span><span class="p">)</span>  <span class="c1"># 获取步骤数
+</span>
+    <span class="c1"># 保存为 XYZ 文件（适用于 OVITO）
+</span>    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">正在生成 XYZ 文件...</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="sh">"</span><span class="s">structure_evolution.xyz</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">w</span><span class="sh">"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">step</span><span class="p">,</span> <span class="n">structure</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">structures</span><span class="p">):</span>
+            <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">structure</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># 写入原子数
+</span>            <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Step </span><span class="si">{</span><span class="n">step</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># 写入步骤信息
+</span>            <span class="k">for</span> <span class="n">site</span> <span class="ow">in</span> <span class="n">structure</span><span class="p">:</span>
+                <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">site</span><span class="p">.</span><span class="n">specie</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">site</span><span class="p">.</span><span class="n">x</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">site</span><span class="p">.</span><span class="n">y</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">site</span><span class="p">.</span><span class="n">z</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># 写入原子坐标
+</span>    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">结构演变已保存为 structure_evolution.xyz</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="c1"># 保存为 CIF 文件（适用于 JSmol）
+</span>    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">正在生成 CIF 文件...</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">step</span><span class="p">,</span> <span class="n">structure</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">structures</span><span class="p">):</span>
+        <span class="n">structure</span><span class="p">.</span><span class="nf">to</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="sh">"</span><span class="s">structure_step_</span><span class="si">{</span><span class="n">step</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s">.cif</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># 每个步骤保存为一个 CIF 文件
+</span>    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">结构演变已保存为多个 CIF 文件（每个步骤一个文件）</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="代码说明">代码说明</h3>
+
+<ol>
+  <li><strong>保存为 XYZ 文件</strong>：
+    <ul>
+      <li>XYZ 文件是一种简单的文本格式，适用于 <strong>OVITO</strong>。</li>
+      <li>每个步骤的结构会被写入到 <code class="language-plaintext highlighter-rouge">structure_evolution.xyz</code> 文件中。</li>
+      <li>文件格式：
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>29
+Step 1
+Al 0.0 0.0 0.319292
+Al 0.0 0.5 0.319292
+...
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>保存为 CIF 文件</strong>：
+    <ul>
+      <li>CIF 文件是一种常见的晶体结构文件格式，适用于 <strong>JSmol</strong>。</li>
+      <li>每个步骤的结构会被保存为一个单独的 CIF 文件，文件名为 <code class="language-plaintext highlighter-rouge">structure_step_1.cif</code>、<code class="language-plaintext highlighter-rouge">structure_step_2.cif</code> 等。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="运行脚本">运行脚本</h3>
+
+<p>将上述脚本保存为 <code class="language-plaintext highlighter-rouge">visualize_evolution.py</code>，然后在终端中运行：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 visualize_evolution.py
+</code></pre></div></div>
+
+<h3 id="输出文件">输出文件</h3>
+
+<p>运行脚本后，当前目录下会生成以下文件：</p>
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">structure_evolution.xyz</code></strong>：包含所有步骤的结构演变数据，适用于 OVITO。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">structure_step_1.cif</code>、<code class="language-plaintext highlighter-rouge">structure_step_2.cif</code>、…</strong>：每个步骤的结构保存为单独的 CIF 文件，适用于 JSmol。</li>
+</ol>
+
+<h3 id="使用-ovito-可视化-xyz-文件">使用 OVITO 可视化 XYZ 文件</h3>
+
+<ol>
+  <li>打开 <strong>OVITO</strong>。</li>
+  <li>选择 <code class="language-plaintext highlighter-rouge">File -&gt; Load File</code>，加载 <code class="language-plaintext highlighter-rouge">structure_evolution.xyz</code>。</li>
+  <li>在 OVITO 中，你可以通过时间轴查看结构演变过程。</li>
+</ol>
+
+<h3 id="使用-jsmol-可视化-cif-文件">使用 JSmol 可视化 CIF 文件</h3>
+
+<ol>
+  <li>将生成的 CIF 文件上传到支持 JSmol 的网站（如 <a href="https://chemapps.stolaf.edu/jmol/">JSmol 官网</a>）。</li>
+  <li>加载 CIF 文件后，可以通过切换文件查看不同步骤的结构。</li>
+</ol>
+
+<h3 id="注意事项">注意事项</h3>
+
+<ol>
+  <li><strong>确保 <code class="language-plaintext highlighter-rouge">HIST.nc</code> 文件存在</strong>：
+    <ul>
+      <li>确保 Abinit 计算中启用了历史轨迹输出（通过设置 <code class="language-plaintext highlighter-rouge">prtvol</code> 和 <code class="language-plaintext highlighter-rouge">ionmov</code> 等参数）。</li>
+    </ul>
+  </li>
+  <li><strong>依赖安装</strong>：
+    <ul>
+      <li>如果运行脚本时提示缺少依赖（如 <code class="language-plaintext highlighter-rouge">abipy</code>），请通过以下命令安装：
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>abipy
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>文件格式</strong>：
+    <ul>
+      <li>XYZ 文件适用于 OVITO，而 CIF 文件适用于 JSmol。根据你的需求选择合适的格式。</li>
+    </ul>
+  </li>
+</ol>]]></content><author><name></name></author><category term="Abipy" /><summary type="html"><![CDATA[生成可以用 OVITO 或 JSmol 可视化的结构演变文件，而不是静态图片或动画。以下是完整的代码，用于从 .HIST.nc 文件中提取结构演变数据，并保存为 XYZ 或 CIF 格式的文件，这些文件可以直接用 OVITO 或 JSmol 进行可视化。]]></summary></entry><entry><title type="html">Abinit变量istwfk</title><link href="http://localhost:4000/abinit%20variables/2025/01/02/Abinit%E5%8F%98%E9%87%8Fistwfk.html" rel="alternate" type="text/html" title="Abinit变量istwfk" /><published>2025-01-02T00:00:00+01:00</published><updated>2025-01-02T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2025/01/02/Abinit%E5%8F%98%E9%87%8Fistwfk</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2025/01/02/Abinit%E5%8F%98%E9%87%8Fistwfk.html"><![CDATA[<p>在ABINIT软件中，<code class="language-plaintext highlighter-rouge">istwfk</code> 是一个用于控制每个k点波函数存储方式的参数。它决定了是否利用时间反演对称性来优化波函数在倒空间中的存储，从而减少计算所需的平面波数量。</p>
 
 <hr />
 
@@ -729,69 +920,4 @@ Levine, Ira N. “Quantum Chemistry, 58.” PHI Learning Pri. Ltd. Delhi (2013):
 <hr />
 <p>本文参考自：</p>
 
-<p>Levine, Ira N. “Quantum Chemistry, 58.” PHI Learning Pri. Ltd. Delhi (2013): 461-462.</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[量子力学的发展始于1900年，当时普朗克研究了加热固体发出的光。为了理解这一发展，我们首先需要讨论光的性质。]]></summary></entry><entry><title type="html">Abinit变量acell</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell.html" rel="alternate" type="text/html" title="Abinit变量acell" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Facell.html"><![CDATA[<h1 id="理解abinit中的acell变量">理解ABINIT中的<code class="language-plaintext highlighter-rouge">acell</code>变量</h1>
-
-<p>在ABINIT软件中，<code class="language-plaintext highlighter-rouge">acell</code>是一个非常重要的变量，它用于定义晶格矢量的缩放比例。本文将解释<code class="language-plaintext highlighter-rouge">acell</code>的含义及其在计算中的作用。</p>
-
-<h2 id="什么是acell">什么是<code class="language-plaintext highlighter-rouge">acell</code>？</h2>
-
-<p><code class="language-plaintext highlighter-rouge">acell</code>是ABINIT中的一个实数型变量，具有三个维度（即<code class="language-plaintext highlighter-rouge">acell(3)</code>）。它用于指定无量纲的原始平移矢量（<code class="language-plaintext highlighter-rouge">rprim</code>）的缩放比例。简单来说，<code class="language-plaintext highlighter-rouge">acell</code>决定了晶格的基本矢量在空间中的实际长度。</p>
-
-<h2 id="acell的特性"><code class="language-plaintext highlighter-rouge">acell</code>的特性</h2>
-
-<ul>
-  <li><strong>EVOLVING</strong>: 该变量在计算过程中可能会发生变化。</li>
-  <li><strong>LENGTH</strong>: <code class="language-plaintext highlighter-rouge">acell</code>具有长度特性，默认单位为Bohr（1 Bohr = 0.5291772108 Å），但也可以指定为Å。</li>
-</ul>
-
-<h2 id="acell的默认值"><code class="language-plaintext highlighter-rouge">acell</code>的默认值</h2>
-
-<p><code class="language-plaintext highlighter-rouge">acell</code>的默认值为<code class="language-plaintext highlighter-rouge">3 * 1</code>，即三个方向上的缩放比例均为1。</p>
-
-<h2 id="acell的使用场景"><code class="language-plaintext highlighter-rouge">acell</code>的使用场景</h2>
-
-<p><code class="language-plaintext highlighter-rouge">acell</code>在ABINIT的测试和教程中非常常用。在所有的ABINIT测试中，<code class="language-plaintext highlighter-rouge">acell</code>被使用了1218次（共1245次测试），在教程中也被使用了147次（共159个教程）。</p>
-
-<h2 id="acell与其它变量的关系"><code class="language-plaintext highlighter-rouge">acell</code>与其它变量的关系</h2>
-
-<ul>
-  <li><strong><code class="language-plaintext highlighter-rouge">rprim</code></strong>: <code class="language-plaintext highlighter-rouge">acell</code>用于缩放<code class="language-plaintext highlighter-rouge">rprim</code>，即原始平移矢量。</li>
-  <li><strong><code class="language-plaintext highlighter-rouge">scalecart</code></strong>: 如果你想缩放笛卡尔坐标，可以使用<code class="language-plaintext highlighter-rouge">scalecart</code>变量。</li>
-  <li><strong><code class="language-plaintext highlighter-rouge">%rprimd</code></strong>: <code class="language-plaintext highlighter-rouge">acell</code>与内部变量<code class="language-plaintext highlighter-rouge">%rprimd</code>相关联。</li>
-</ul>
-
-<h2 id="注意事项">注意事项</h2>
-
-<p>需要注意的是，<code class="language-plaintext highlighter-rouge">acell</code>并不是常规正交基矢量的长度，而是原始矢量的缩放因子。如果你需要缩放笛卡尔坐标，应使用<code class="language-plaintext highlighter-rouge">scalecart</code>变量。</p>
-
-<h2 id="总结">总结</h2>
-
-<p><code class="language-plaintext highlighter-rouge">acell</code>是ABINIT中用于定义晶格矢量缩放比例的关键变量。通过调整<code class="language-plaintext highlighter-rouge">acell</code>，用户可以控制晶格的基本矢量在空间中的实际长度，从而影响整个计算的结果。理解<code class="language-plaintext highlighter-rouge">acell</code>的含义及其与其它变量的关系，对于正确使用ABINIT进行材料模拟至关重要。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[理解ABINIT中的acell变量]]></summary></entry><entry><title type="html">Abinit变量ecut</title><link href="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html" rel="alternate" type="text/html" title="Abinit变量ecut" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut</id><content type="html" xml:base="http://localhost:4000/abinit%20variables/2024/12/28/Abinit%E5%8F%98%E9%87%8Fecut.html"><![CDATA[<h1 id="理解abinit中的能量截断energy-cutoffecut变量">理解ABINIT中的能量截断(Energy Cutoff)<code class="language-plaintext highlighter-rouge">ecut</code>变量</h1>
-<h2 id="概述">概述</h2>
-
-<p>在平面波计算中，能量截断 (<code class="language-plaintext highlighter-rouge">ecut</code>) 是一个关键参数，用于控制给定 k 点的平面波数量。平面波的动能必须低于 <code class="language-plaintext highlighter-rouge">ecut</code> 才能被包含在计算中。这个约束条件在倒易空间中表示为：</p>
-
-\[\frac{1}{2} \left( \frac{2\pi}{a} \right)^2 (k + G)^2 &lt; \text{ecut}\]
-
-<p>其中，( G ) 是倒易空间中的向量。所有位于以 k 点为中心的基球内的平面波都将被包含在基组中（除非定义了 <code class="language-plaintext highlighter-rouge">dillatmx</code>）。</p>
-
-<h2 id="参数特性">参数特性</h2>
-
-<ul>
-  <li><strong>变量类型</strong>: 实数</li>
-  <li><strong>维度</strong>: 标量</li>
-  <li><strong>默认值</strong>: 无</li>
-  <li><strong>单位</strong>: 默认单位为 Hartree (Ha)，也可以使用 Rydberg (Ry)、电子伏特 (eV) 或开尔文 (Kelvin)。1 Ha = 27.2113845 eV。</li>
-</ul>
-
-<h2 id="重要性">重要性</h2>
-
-<p><code class="language-plaintext highlighter-rouge">ecut</code> 是影响计算质量的单一参数。通常，<code class="language-plaintext highlighter-rouge">ecut</code> 越大，计算结果越收敛。在几何结构固定的情况下，由于问题的变分性质，总能量必须随着 <code class="language-plaintext highlighter-rouge">ecut</code> 的增加而降低。通常需要运行多个不同 <code class="language-plaintext highlighter-rouge">ecut</code> 的计算，以研究达到可靠结果所需的收敛性。</p>
-
-<h2 id="时间反转对称性">时间反转对称性</h2>
-
-<p>对于坐标由 0 或 ½ 构建的 k 点，已经实现了时间反转对称性，该对称性链接了倒易空间中波函数系数。如果激活了输入变量 <code class="language-plaintext highlighter-rouge">istwfk</code>（默认模式），则可以将显式处理的平面波数量 (<code class="language-plaintext highlighter-rouge">npw</code>) 减少一半。尽管如此，最终结果应与“完整”平面波集相同。</p>
-
-<h2 id="结论">结论</h2>
-
-<p><code class="language-plaintext highlighter-rouge">ecut</code> 是平面波计算中至关重要的参数，直接影响计算的精度和收敛性。通过合理设置 <code class="language-plaintext highlighter-rouge">ecut</code>，可以确保计算结果的可靠性和准确性。建议在实际计算中，通过多次试验不同的 <code class="language-plaintext highlighter-rouge">ecut</code> 值，以确定最佳的参数设置。</p>]]></content><author><name></name></author><category term="ABINIT variables" /><summary type="html"><![CDATA[理解ABINIT中的能量截断(Energy Cutoff)ecut变量 概述]]></summary></entry></feed>
+<p>Levine, Ira N. “Quantum Chemistry, 58.” PHI Learning Pri. Ltd. Delhi (2013): 461-462.</p>]]></content><author><name></name></author><category term="DFT理论" /><summary type="html"><![CDATA[量子力学的发展始于1900年，当时普朗克研究了加热固体发出的光。为了理解这一发展，我们首先需要讨论光的性质。]]></summary></entry></feed>
